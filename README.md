@@ -5,7 +5,7 @@ App to bring books to book lovers.
 
 Basic git Commands:
 
-git clone ### Clone the repository (only need to do once) ###
+git clone https://github.com/midfords/Decentralized-Library.git ### Clone the repository (only need to do once) ###
 
 git checkout -b \<branch-name\> ### Create new branch and switch to it ###
 
