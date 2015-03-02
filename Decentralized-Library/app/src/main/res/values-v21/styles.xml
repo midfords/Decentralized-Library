@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme" parent="android:Theme.Material.Light">
+        <item name="android:actionBarStyle">@style/BlueActionBar</item>
+    </style>
+
+    <style name="BlueActionBar" parent="@android:style/Widget.Material.Light.ActionBar">
+        <item name="android:background">#ff8800</item>
     </style>
 </resources>
