@@ -1,8 +1,6 @@
 # Decentralized-Library
 App to bring books to book lovers.
 
-* Push changes to dev. Don't push to master *
-
 Basic git Commands:
 
 git clone https://github.com/midfords/Decentralized-Library.git ### Clone the repository (only need to do once) ###
