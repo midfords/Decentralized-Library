@@ -11,4 +11,7 @@
 
     <string name="search_action">Search</string>
     <string name="filter_action">Filter</string>
+    <string name="request_action">Request</string>
+
+    <string name="dresden_files_sg">Dresden Files: Skin Game</string>
 </resources>
