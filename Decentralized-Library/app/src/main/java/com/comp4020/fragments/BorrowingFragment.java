@@ -13,14 +13,14 @@ import com.comp4020.decentralized_library.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BorrowingFragment.OnFragmentInteractionListener} interface
+ * {@link com.comp4020.fragments.BorrowingFragment.BorrowingFragmentCallbacks} interface
  * to handle interaction events.
  * Use the {@link BorrowingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class BorrowingFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private BorrowingFragmentCallbacks mListener;
 
     /**
      * Use this factory method to create a new instance of
@@ -52,7 +52,7 @@ public class BorrowingFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onBorrowingFragmentInteraction(uri);
         }
     }
 
@@ -60,7 +60,7 @@ public class BorrowingFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (BorrowingFragmentCallbacks) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -83,9 +83,9 @@ public class BorrowingFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface BorrowingFragmentCallbacks {
 
-        public void onFragmentInteraction(Uri uri);
+        public void onBorrowingFragmentInteraction(Uri uri);
     }
 
 }

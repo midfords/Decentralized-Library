@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class DetailsActivity extends Activity {
@@ -13,6 +15,31 @@ public class DetailsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        // Setup details info
+
+        Bundle b = getIntent().getExtras();
+        String bookTitle = b.getString("bookTitle");
+        String bookAuthor = b.getString("bookAuthor");
+        String bookCover = b.getString("bookCover");
+        String bookOwner = b.getString("bookOwner");
+        String bookDetails = b.getString("bookDetails");
+
+        TextView titleLabel = (TextView) findViewById(R.id.detialTitleLabel);
+        TextView authorLabel = (TextView) findViewById(R.id.detailAuthorLabel);
+        TextView ownerLabel = (TextView) findViewById(R.id.detailOwnerLabel);
+        TextView detailsLabel = (TextView) findViewById(R.id.detailDetailsLabel);
+        ImageView coverImage = (ImageView) findViewById(R.id.detailImageView);
+
+        titleLabel.setText(bookTitle);
+        authorLabel.setText(bookAuthor);
+        ownerLabel.setText(bookOwner);
+        detailsLabel.setText(bookDetails);
+
+        int resID = getResources().getIdentifier(bookCover,
+                "drawable", getPackageName());
+        coverImage.setImageResource(resID);
+
     }
 
 

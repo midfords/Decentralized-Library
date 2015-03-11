@@ -1,7 +1,6 @@
 package com.comp4020.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,14 +19,14 @@ import com.comp4020.decentralized_library.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MyLibraryFragment.OnFragmentInteractionListener} interface
+ * {@link com.comp4020.fragments.MyLibraryFragment.MyLibraryFragmentCallbacks} interface
  * to handle interaction events.
  * Use the {@link MyLibraryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class MyLibraryFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private MyLibraryFragmentCallbacks mListener;
 
     private ListView listView;
 
@@ -61,7 +60,7 @@ public class MyLibraryFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_my_library, container, false);
         listView = (ListView) contentView.findViewById(R.id.myLibraryListView);
 
-        String[] titles = new String[] {
+        final String[] titles = new String[] {
                 "Dresden Files Skin Game",
                 "Watchmen",
                 "V For Vendetta",
@@ -71,7 +70,7 @@ public class MyLibraryFragment extends Fragment {
                 "V For Vendetta4",
                 "V For Vendetta5",
                 "V For Vendetta6"};
-        String[] authors = new String[] {
+        final String[] authors = new String[] {
                 "Jim Butcher",
                 "Alan Moore",
                 "Alan Moore",
@@ -81,7 +80,7 @@ public class MyLibraryFragment extends Fragment {
                 "Alan Moore",
                 "Alan Moore",
                 "Alan Moore"};
-        String[] covers = new String[] {
+        final String[] covers = new String[] {
                 "djskalfj",
                 "huerdiop",
                 "jowlkcui",
@@ -100,7 +99,7 @@ public class MyLibraryFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
-                                    int position, long id) {
+                                    final int position, long id) {
 
                 view.animate().setDuration(20).alpha(0).withEndAction(
                         new Runnable() {
@@ -109,6 +108,15 @@ public class MyLibraryFragment extends Fragment {
                             public void run() {
 
                                 Intent i = new Intent(view.getContext(), DetailsActivity.class);
+
+                                Bundle b = new Bundle();
+                                b.putString("bookTitle", titles[position]);
+                                b.putString("bookAuthor", authors[position]);
+                                b.putString("bookCover", covers[position]);
+                                b.putString("bookOwner", "TEMP");
+                                b.putString("bookDescription", "TEMP");
+                                i.putExtras(b);
+
                                 startActivity(i);
                             }
                         });
@@ -122,7 +130,7 @@ public class MyLibraryFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onMyLibraryFragmentInteraction(uri);
         }
     }
 
@@ -130,7 +138,7 @@ public class MyLibraryFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (MyLibraryFragmentCallbacks) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -155,9 +163,9 @@ public class MyLibraryFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface MyLibraryFragmentCallbacks {
 
-        public void onFragmentInteraction(Uri uri);
+        public void onMyLibraryFragmentInteraction(Uri uri);
     }
 
 }

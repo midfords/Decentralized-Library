@@ -15,14 +15,15 @@ import com.comp4020.fragments.FriendsFragment;
 import com.comp4020.fragments.MyLibraryFragment;
 import com.comp4020.fragments.NavigationDrawerFragment;
 import com.comp4020.fragments.SettingsFragment;
+import com.comp4020.utils.Logger;
 
 public  class       MainActivity
         extends     Activity
         implements  NavigationDrawerFragment.NavigationDrawerCallbacks,
-                    MyLibraryFragment.OnFragmentInteractionListener,
-                    FriendsFragment.OnFragmentInteractionListener,
-                    BorrowingFragment.OnFragmentInteractionListener,
-                    SettingsFragment.OnFragmentInteractionListener {
+        MyLibraryFragment.MyLibraryFragmentCallbacks,
+        FriendsFragment.FriendsFragmentCallbacks,
+        BorrowingFragment.BorrowingFragmentCallbacks,
+        SettingsFragment.SettingsFragmentCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Fragment mViewFragment = null;
@@ -62,6 +63,12 @@ public  class       MainActivity
                 fragmentTransaction.replace(R.id.container, myLibraryFragment);
                 fragmentTransaction.commit();
 
+                try {
+                    Logger.log("Navigation Drawer - My Library");
+                } catch (Exception e) {
+                    System.out.println("Failed to write to EventLogger.");
+                }
+
                 break;
             case 1: // Friends
 
@@ -69,6 +76,12 @@ public  class       MainActivity
                 mViewFragment = friendsFragment;
                 fragmentTransaction.replace(R.id.container, friendsFragment);
                 fragmentTransaction.commit();
+
+                try {
+                    Logger.log("Navigation Drawer - Friends");
+                } catch (Exception e) {
+                    System.out.println("Failed to write to EventLogger.");
+                }
 
                 break;
             case 2: // Borrowing
@@ -78,6 +91,12 @@ public  class       MainActivity
                 fragmentTransaction.replace(R.id.container, borrowingFragment);
                 fragmentTransaction.commit();
 
+                try {
+                    Logger.log("Navigation Drawer - Borrowing");
+                } catch (Exception e) {
+                    System.out.println("Failed to write to EventLogger.");
+                }
+
                 break;
             case 3: // Settings
 
@@ -85,6 +104,13 @@ public  class       MainActivity
                 mViewFragment = settingsFragment;
                 fragmentTransaction.replace(R.id.container, settingsFragment);
                 fragmentTransaction.commit();
+
+                try {
+                    Logger.log("Navigation Drawer - Settings");
+                } catch (Exception e) {
+                    System.out.println("Failed to write to EventLogger.");
+                }
+
                 break;
         }
     }
@@ -132,15 +158,59 @@ public  class       MainActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onBorrowingFragmentInteraction(Uri uri) {
 
         // Do something
-        // All callbacks direct here
+
+        try {
+            Logger.log("List Entry - Borrowing. <" + uri.toString() + ">");
+        } catch (Exception e) {
+            System.out.println("Failed to write to EventLogger.");
+        }
+
+    }
+
+    @Override
+    public void onFriendsFragmentInteraction(Uri uri) {
+
+        // Do something
+
+        try {
+            Logger.log("List Entry - Friends. <" + uri.toString() + ">");
+        } catch (Exception e) {
+            System.out.println("Failed to write to EventLogger.");
+        }
+
+    }
+
+    @Override
+    public void onMyLibraryFragmentInteraction(Uri uri) {
+
+        // Do something
+
+        try {
+            Logger.log("List Entry - My Library. <" + uri.toString() + ">");
+        } catch (Exception e) {
+            System.out.println("Failed to write to EventLogger.");
+        }
+
+    }
+
+    @Override
+    public void onSettingsFragmentInteraction(Uri uri) {
+
+        // Do something
+
+        try {
+            Logger.log("List Entry - Settings. <" + uri.toString() + ">");
+        } catch (Exception e) {
+            System.out.println("Failed to write to EventLogger.");
+        }
+
     }
 }

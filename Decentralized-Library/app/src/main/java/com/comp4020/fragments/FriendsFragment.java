@@ -1,7 +1,6 @@
 package com.comp4020.fragments;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -12,23 +11,20 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.comp4020.adapters.FriendsArrayAdapter;
-import com.comp4020.decentralized_library.DetailsActivity;
 import com.comp4020.decentralized_library.R;
-
-import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FriendsFragment.OnFragmentInteractionListener} interface
+ * {@link com.comp4020.fragments.FriendsFragment.FriendsFragmentCallbacks} interface
  * to handle interaction events.
  * Use the {@link FriendsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class FriendsFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private FriendsFragmentCallbacks mListener;
 
     private ListView listView = null;
 
@@ -112,7 +108,7 @@ public class FriendsFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFriendsFragmentInteraction(uri);
         }
     }
 
@@ -120,7 +116,7 @@ public class FriendsFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (FriendsFragmentCallbacks) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -143,9 +139,9 @@ public class FriendsFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface FriendsFragmentCallbacks {
 
-        public void onFragmentInteraction(Uri uri);
+        public void onFriendsFragmentInteraction(Uri uri);
     }
 
 }

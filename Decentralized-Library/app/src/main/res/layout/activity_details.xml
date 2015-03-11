@@ -23,26 +23,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/detail_title_size"
-            android:text="Book Title"/>
+            android:id="@+id/detailTitleLabel" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Book Author"/>
+            android:id="@+id/detailAuthorLabel" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Book Owner"/>
+            android:id="@+id/detailOwnerLabel" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descrption example: Alice was beginning to get very tired of
-              sitting by her sister on the bank, and of having nothing to do: once or twice
-              she had peeped into the book her sister was reading, but it had no pictures
-              or conversations in it, and what is the use of a book, thought Alice
-              without pictures or conversation?"/>
+            android:id="@+id/detailDetailsLabel" />
 
     </LinearLayout>
 </RelativeLayout>

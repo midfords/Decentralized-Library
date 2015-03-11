@@ -18,7 +18,7 @@
     <string name="approved_label">Approved</string>
     <string name="lent_label">Lent</string>
 
-    <string name="coming_soon_label">Coming Soon!</string>
+    <string name="experimenter_label">For Experimenter Use Only!</string>
     <string name="title_activity_details">Book Details</string>
 
     <string name="action_settings">Settings</string>
