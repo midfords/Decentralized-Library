@@ -13,5 +13,14 @@
     <string name="filter_action">Filter</string>
     <string name="request_action">Request</string>
 
-    <string name="dresden_files_sg">Dresden Files: Skin Game</string>
+    <string name="requests_label">Requests</string>
+    <string name="requested_label">Requested</string>
+    <string name="approved_label">Approved</string>
+    <string name="lent_label">Lent</string>
+
+    <string name="coming_soon_label">Coming Soon!</string>
+    <string name="title_activity_details">Book Details</string>
+
+    <string name="action_settings">Settings</string>
+
 </resources>

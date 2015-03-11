@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.comp4020.decentralized_library.DetailsActivity">
+
+    <ImageView
+        android:layout_width="@dimen/detail_image_width"
+        android:layout_height="@dimen/detail_image_height"
+        android:scaleType="fitStart"
+        android:id="@+id/detailImageView"
+        android:src="@drawable/djskalfj"/>
+
+    <LinearLayout
+        android:layout_width="@dimen/detail_text_width"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/detailImageView">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/detail_title_size"
+            android:text="Book Title"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book Author"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book Owner"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descrption example: Alice was beginning to get very tired of
+              sitting by her sister on the bank, and of having nothing to do: once or twice
+              she had peeped into the book her sister was reading, but it had no pictures
+              or conversations in it, and what is the use of a book, thought Alice
+              without pictures or conversation?"/>
+
+    </LinearLayout>
+</RelativeLayout>

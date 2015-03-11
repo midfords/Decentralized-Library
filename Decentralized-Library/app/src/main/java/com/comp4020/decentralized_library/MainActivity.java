@@ -4,28 +4,28 @@ import android.app.Activity;
 
 import android.app.ActionBar;
 import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import java.util.ArrayList;
+import com.comp4020.fragments.BorrowingFragment;
+import com.comp4020.fragments.FriendsFragment;
+import com.comp4020.fragments.MyLibraryFragment;
+import com.comp4020.fragments.NavigationDrawerFragment;
+import com.comp4020.fragments.SettingsFragment;
 
+public  class       MainActivity
+        extends     Activity
+        implements  NavigationDrawerFragment.NavigationDrawerCallbacks,
+                    MyLibraryFragment.OnFragmentInteractionListener,
+                    FriendsFragment.OnFragmentInteractionListener,
+                    BorrowingFragment.OnFragmentInteractionListener,
+                    SettingsFragment.OnFragmentInteractionListener {
 
-public class MainActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
-    private ListView listView;
+    private Fragment mViewFragment = null;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -36,37 +36,6 @@ public class MainActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Initialize listView items
-        listView = (ListView) findViewById(R.id.listView);
-
-        String[] titles = new String[] { "Dresden Files Skin Game", "Watchmen", "V For Vendetta"};
-        String[] authors = new String[] { "Jim Butcher", "Alan Moore", "Alan Moore"};
-        String[] covers = new String[] { "djskalfj", "huerdiop", "jowlkcui"};
-
-        final LibraryArrayAdapter adapter = new LibraryArrayAdapter(this, R.layout.row_layout,
-                titles, authors, covers);
-
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, final View view,
-                                    int position, long id) {
-
-                final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(20).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                //list.remove(item);
-                                //adapter.notifyDataSetChanged();
-                                //view.setAlpha(1);
-                            }
-                        });
-            }
-
-        });
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -81,13 +50,47 @@ public class MainActivity extends Activity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        if (mViewFragment != null)
+            fragmentTransaction.remove(mViewFragment);
+
+        switch(position) {
+            case 0: // My Library
+
+                MyLibraryFragment myLibraryFragment = new MyLibraryFragment();
+                mViewFragment = myLibraryFragment;
+                fragmentTransaction.replace(R.id.container, myLibraryFragment);
+                fragmentTransaction.commit();
+
+                break;
+            case 1: // Friends
+
+                FriendsFragment friendsFragment = new FriendsFragment();
+                mViewFragment = friendsFragment;
+                fragmentTransaction.replace(R.id.container, friendsFragment);
+                fragmentTransaction.commit();
+
+                break;
+            case 2: // Borrowing
+
+                BorrowingFragment borrowingFragment = new BorrowingFragment();
+                mViewFragment = borrowingFragment;
+                fragmentTransaction.replace(R.id.container, borrowingFragment);
+                fragmentTransaction.commit();
+
+                break;
+            case 3: // Settings
+
+                SettingsFragment settingsFragment = new SettingsFragment();
+                mViewFragment = settingsFragment;
+                fragmentTransaction.replace(R.id.container, settingsFragment);
+                fragmentTransaction.commit();
+                break;
+        }
     }
 
     public void onSectionAttached(int number) {
+
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
@@ -110,7 +113,6 @@ public class MainActivity extends Activity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,43 +137,10 @@ public class MainActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
+        // Do something
+        // All callbacks direct here
     }
 }
