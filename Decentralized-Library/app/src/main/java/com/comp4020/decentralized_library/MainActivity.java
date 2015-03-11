@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.comp4020.fragments.BorrowingFragment;
 import com.comp4020.fragments.FriendsFragment;
-import com.comp4020.fragments.MyLibraryFragment;
+import com.comp4020.fragments.LibraryFragment;
 import com.comp4020.fragments.NavigationDrawerFragment;
 import com.comp4020.fragments.SettingsFragment;
 import com.comp4020.utils.Logger;
@@ -20,7 +20,7 @@ import com.comp4020.utils.Logger;
 public  class       MainActivity
         extends     Activity
         implements  NavigationDrawerFragment.NavigationDrawerCallbacks,
-        MyLibraryFragment.MyLibraryFragmentCallbacks,
+        LibraryFragment.LibraryFragmentCallbacks,
         FriendsFragment.FriendsFragmentCallbacks,
         BorrowingFragment.BorrowingFragmentCallbacks,
         SettingsFragment.SettingsFragmentCallbacks {
@@ -58,9 +58,40 @@ public  class       MainActivity
         switch(position) {
             case 0: // My Library
 
-                MyLibraryFragment myLibraryFragment = new MyLibraryFragment();
-                mViewFragment = myLibraryFragment;
-                fragmentTransaction.replace(R.id.container, myLibraryFragment);
+                final String[] titles = new String[] {
+                        "Dresden Files Skin Game",
+                        "Watchmen",
+                        "V For Vendetta",
+                        "V For Vendetta1",
+                        "V For Vendetta2",
+                        "V For Vendetta3",
+                        "V For Vendetta4",
+                        "V For Vendetta5",
+                        "V For Vendetta6"};
+                final String[] authors = new String[] {
+                        "Jim Butcher",
+                        "Alan Moore",
+                        "Alan Moore",
+                        "Alan Moore",
+                        "Alan Moore",
+                        "Alan Moore",
+                        "Alan Moore",
+                        "Alan Moore",
+                        "Alan Moore"};
+                final String[] covers = new String[] {
+                        "djskalfj",
+                        "huerdiop",
+                        "jowlkcui",
+                        "jowlkcui",
+                        "jowlkcui",
+                        "jowlkcui",
+                        "jowlkcui",
+                        "jowlkcui",
+                        "jowlkcui"};
+
+                LibraryFragment libraryFragment = LibraryFragment.newInstance(titles, authors, covers);
+                mViewFragment = libraryFragment;
+                fragmentTransaction.replace(R.id.container, libraryFragment);
                 fragmentTransaction.commit();
 
                 try {
@@ -72,7 +103,7 @@ public  class       MainActivity
                 break;
             case 1: // Friends
 
-                FriendsFragment friendsFragment = new FriendsFragment();
+                FriendsFragment friendsFragment = FriendsFragment.newInstance();
                 mViewFragment = friendsFragment;
                 fragmentTransaction.replace(R.id.container, friendsFragment);
                 fragmentTransaction.commit();
@@ -86,7 +117,7 @@ public  class       MainActivity
                 break;
             case 2: // Borrowing
 
-                BorrowingFragment borrowingFragment = new BorrowingFragment();
+                BorrowingFragment borrowingFragment = BorrowingFragment.newInstance();
                 mViewFragment = borrowingFragment;
                 fragmentTransaction.replace(R.id.container, borrowingFragment);
                 fragmentTransaction.commit();
@@ -100,7 +131,7 @@ public  class       MainActivity
                 break;
             case 3: // Settings
 
-                SettingsFragment settingsFragment = new SettingsFragment();
+                SettingsFragment settingsFragment = SettingsFragment.newInstance();
                 mViewFragment = settingsFragment;
                 fragmentTransaction.replace(R.id.container, settingsFragment);
                 fragmentTransaction.commit();
@@ -189,7 +220,7 @@ public  class       MainActivity
     }
 
     @Override
-    public void onMyLibraryFragmentInteraction(Uri uri) {
+    public void onLibraryFragmentInteraction(Uri uri) {
 
         // Do something
 

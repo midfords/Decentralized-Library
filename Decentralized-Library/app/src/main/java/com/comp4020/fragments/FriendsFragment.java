@@ -1,6 +1,7 @@
 package com.comp4020.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.comp4020.adapters.FriendsArrayAdapter;
+import com.comp4020.decentralized_library.DetailsActivity;
+import com.comp4020.decentralized_library.FriendsLibraryActivity;
 import com.comp4020.decentralized_library.R;
 
 
@@ -56,7 +59,7 @@ public class FriendsFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_friends, container, false);
         listView = (ListView) contentView.findViewById(R.id.friendListView);
 
-        String[] titles = new String[] {
+        final String[] titles = new String[] {
                 "Dresden Files Skin Game",
                 "Watchmen",
                 "V For Vendetta",
@@ -66,7 +69,7 @@ public class FriendsFragment extends Fragment {
                 "V For Vendetta4",
                 "V For Vendetta5",
                 "V For Vendetta6"};
-        String[] owners = new String[] {
+        final String[] owners = new String[] {
                 "Sean",
                 "Sean",
                 "Jeff",
@@ -85,7 +88,7 @@ public class FriendsFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
-                                    int position, long id) {
+                                    final int position, long id) {
 
                 view.animate().setDuration(20).alpha(0).withEndAction(
                         new Runnable() {
@@ -94,7 +97,13 @@ public class FriendsFragment extends Fragment {
                             public void run() {
 
                                 // Show friend's library
+                                Intent i = new Intent(view.getContext(), FriendsLibraryActivity.class);
 
+                                Bundle b = new Bundle();
+                                b.putString("bookOwner", owners[position]);
+                                i.putExtras(b);
+
+                                startActivity(i);
                             }
                         });
             }

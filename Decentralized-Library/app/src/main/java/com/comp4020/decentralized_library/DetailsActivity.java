@@ -25,7 +25,7 @@ public class DetailsActivity extends Activity {
         String bookOwner = b.getString("bookOwner");
         String bookDetails = b.getString("bookDetails");
 
-        TextView titleLabel = (TextView) findViewById(R.id.detialTitleLabel);
+        TextView titleLabel = (TextView) findViewById(R.id.detailTitleLabel);
         TextView authorLabel = (TextView) findViewById(R.id.detailAuthorLabel);
         TextView ownerLabel = (TextView) findViewById(R.id.detailOwnerLabel);
         TextView detailsLabel = (TextView) findViewById(R.id.detailDetailsLabel);

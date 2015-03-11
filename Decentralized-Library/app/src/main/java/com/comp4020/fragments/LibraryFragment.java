@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.comp4020.adapters.MyLibraryArrayAdapter;
+import com.comp4020.adapters.LibraryArrayAdapter;
 import com.comp4020.decentralized_library.DetailsActivity;
 import com.comp4020.decentralized_library.R;
 
@@ -19,16 +19,23 @@ import com.comp4020.decentralized_library.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link com.comp4020.fragments.MyLibraryFragment.MyLibraryFragmentCallbacks} interface
+ * {@link LibraryFragment.LibraryFragmentCallbacks} interface
  * to handle interaction events.
- * Use the {@link MyLibraryFragment#newInstance} factory method to
+ * Use the {@link LibraryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyLibraryFragment extends Fragment {
+public class LibraryFragment extends Fragment {
 
-    private MyLibraryFragmentCallbacks mListener;
-
+    private LibraryFragmentCallbacks mListener;
     private ListView listView;
+
+    private static final String ARG_TITLES = "titles";
+    private static final String ARG_AUTHORS = "authors";
+    private static final String ARG_COVERS = "covers";
+
+    private String[] titles;
+    private String[] authors;
+    private String[] covers;
 
     /**
      * Use this factory method to create a new instance of
@@ -36,20 +43,32 @@ public class MyLibraryFragment extends Fragment {
      *
      * @return A new instance of fragment MainFragment.
      */
-    public static MyLibraryFragment newInstance() {
+    public static LibraryFragment newInstance(String[] titles,
+                                              String[] authors,
+                                              String[] covers) {
 
-        return new MyLibraryFragment();
+        LibraryFragment fragment = new LibraryFragment();
+        Bundle args = new Bundle();
+        args.putStringArray(ARG_TITLES, titles);
+        args.putStringArray(ARG_AUTHORS, authors);
+        args.putStringArray(ARG_COVERS, covers);
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
-    public MyLibraryFragment() {
+    public LibraryFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        if (getArguments() != null) {
+            titles = getArguments().getStringArray(ARG_TITLES);
+            authors = getArguments().getStringArray(ARG_AUTHORS);
+            covers = getArguments().getStringArray(ARG_COVERS);
+        }
     }
 
     @Override
@@ -57,41 +76,10 @@ public class MyLibraryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Initialize listView items
-        View contentView = inflater.inflate(R.layout.fragment_my_library, container, false);
-        listView = (ListView) contentView.findViewById(R.id.myLibraryListView);
+        View contentView = inflater.inflate(R.layout.fragment_library, container, false);
+        listView = (ListView) contentView.findViewById(R.id.libraryListView);
 
-        final String[] titles = new String[] {
-                "Dresden Files Skin Game",
-                "Watchmen",
-                "V For Vendetta",
-                "V For Vendetta1",
-                "V For Vendetta2",
-                "V For Vendetta3",
-                "V For Vendetta4",
-                "V For Vendetta5",
-                "V For Vendetta6"};
-        final String[] authors = new String[] {
-                "Jim Butcher",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore"};
-        final String[] covers = new String[] {
-                "djskalfj",
-                "huerdiop",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui"};
-
-        final MyLibraryArrayAdapter adapter = new MyLibraryArrayAdapter(contentView.getContext(),
+        final LibraryArrayAdapter adapter = new LibraryArrayAdapter(contentView.getContext(),
                 R.layout.row_layout_book, titles, authors, covers);
 
         listView.setAdapter(adapter);
@@ -130,7 +118,7 @@ public class MyLibraryFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onMyLibraryFragmentInteraction(uri);
+            mListener.onLibraryFragmentInteraction(uri);
         }
     }
 
@@ -138,7 +126,7 @@ public class MyLibraryFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (MyLibraryFragmentCallbacks) activity;
+            mListener = (LibraryFragmentCallbacks) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -163,9 +151,9 @@ public class MyLibraryFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface MyLibraryFragmentCallbacks {
+    public interface LibraryFragmentCallbacks {
 
-        public void onMyLibraryFragmentInteraction(Uri uri);
+        public void onLibraryFragmentInteraction(Uri uri);
     }
 
 }
