@@ -1,14 +1,25 @@
-package com.comp4020.data_classes;
+package com.comp4020.utils;
 
 /**
  * Created by jeff on 15-03-11.
  */
 import android.os.Bundle;
 
-public class Library {
-    public final int size;
-    public final String[] titles;
-    public final String[] authors = new String[] {
+public class Data {
+
+    private static final String[] titles = new String[] {
+            "Dresden Files Skin Game",
+            "Watchmen",
+            "V For Vendetta",
+            "V For Vendetta1",
+            "V For Vendetta2",
+            "V For Vendetta3",
+            "V For Vendetta4",
+            "V For Vendetta5",
+            "V For Vendetta6"
+    };
+
+    private static final String[] authors = new String[] {
             "Jim Butcher",
             "Alan Moore",
             "Alan Moore",
@@ -17,8 +28,10 @@ public class Library {
             "Alan Moore",
             "Alan Moore",
             "Alan Moore",
-            "Alan Moore"};
-    public final String[] covers = new String[] {
+            "Alan Moore"
+    };
+
+    private static final String[] covers = new String[] {
             "djskalfj",
             "huerdiop",
             "jowlkcui",
@@ -27,8 +40,10 @@ public class Library {
             "jowlkcui",
             "jowlkcui",
             "jowlkcui",
-            "jowlkcui"};
-    public final String[] genres = new String[] {
+            "jowlkcui"
+    };
+
+    private static final String[] genres = new String[] {
             "Fantasy",
             "Comic",
             "Genre",
@@ -37,8 +52,10 @@ public class Library {
             "Genre",
             "Genre",
             "Genre",
-            "Genre"};
-    public final String[] years = new String[] {
+            "Genre"
+    };
+
+    private static final String[] years = new String[] {
             "2014",
             "1986",
             "Year",
@@ -47,8 +64,10 @@ public class Library {
             "Year",
             "Year",
             "Year",
-            "Year"};
-    public final String[] publishers = new String[] {
+            "Year"
+    };
+
+    private static final String[] publishers = new String[] {
             "Publisher",
             "DC Comics",
             "Publisher",
@@ -57,8 +76,10 @@ public class Library {
             "Publisher",
             "Publisher",
             "Publisher",
-            "Publisher"};
-    public final String[] synopsiss = new String[] {
+            "Publisher"
+    };
+
+    private static final String[] synopsiss = new String[] {
             "Harry Dresden, Chicago’s only professional wizard, is about to have a very bad day….\n" +
                     "\n" +
                     "Because as Winter Knight to the Queen of Air and Darkness, Harry never knows what the scheming Mab might want him to do. Usually, it’s something awful.\n" +
@@ -77,20 +98,27 @@ public class Library {
             "Synopsis",
             "Synopsis",
             "Synopsis",
-            "Synopsis"};
-    public final String[] owners = new String[] {
-            "Me",
-            "Me",
-            "Me",
+            "Synopsis"
+    };
+
+    private static final String[] owners = new String[] {
+            "Sean",
+            "Sean",
+            "Sean",
             "Gerald",
             "Gerald",
             "Harriet",
             "Harriet",
             "Harriet",
-            "Billy Joe"};
+            "Billy Joe"
+    };
+
+    private static final int[] numBooks = new int[] {
+            3, 6, 2, 7, 8, 3, 6, 4, 7
+    };
 
     //Statusses are not final because we will change them as lending actions happen
-    public String[] statuss = new String[] {
+    private static String[] statuss = new String[] {
             "On Shelf",
             "Lent",
             "Lent",
@@ -99,23 +127,10 @@ public class Library {
             "On Shelf",
             "On Shelf",
             "On Shelf",
-            "On Shelf"};
+            "On Shelf"
+    };
 
-    public Library() {
-        titles = new String[] {
-                "Dresden Files Skin Game",
-                "Watchmen",
-                "V For Vendetta",
-                "V For Vendetta1",
-                "V For Vendetta2",
-                "V For Vendetta3",
-                "V For Vendetta4",
-                "V For Vendetta5",
-                "V For Vendetta6"};
-        size = titles.length;
-    }
-
-    public Bundle getBook(int i)
+    public static Bundle getBookBundle(int i)
     {
         Bundle b = new Bundle();
         b.putString("bookTitle", titles[i]);
@@ -126,7 +141,47 @@ public class Library {
         return b;
     }
 
-    public String[][] getListViewItems() { //Title Author Cover Status are needed for listview
-        return new String[][]{titles, authors, covers, statuss};
+    public static String[] getTitles() {
+        return titles;
     }
+
+    public static String[] getAuthors() {
+        return authors;
+    }
+
+    public static String[] getCovers() {
+        return covers;
+    }
+
+    public static String[] getGenres() {
+        return genres;
+    }
+
+    public static String[] getYears() {
+        return years;
+    }
+
+    public static String[] getPublishers() {
+        return publishers;
+    }
+
+    public static String[] getSynopsiss() {
+        return synopsiss;
+    }
+
+    public static String[] getOwners() {
+        return owners;
+    }
+
+    public static int[] getNumBooks() {
+        return numBooks;
+    }
+
+    public static String[] getStatuss() {
+        return statuss;
+    }
+
+    //public String[][] getListViewItems() { //Title Author Cover Status are needed for listview
+    //    return new String[][]{titles, authors, covers, statuss};
+    //}
 }

@@ -12,10 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.comp4020.adapters.FriendsArrayAdapter;
-import com.comp4020.decentralized_library.DetailsActivity;
 import com.comp4020.decentralized_library.FriendsLibraryActivity;
 import com.comp4020.decentralized_library.R;
-import com.comp4020.data_classes.*;
+import com.comp4020.utils.Data;
 
 
 /**
@@ -32,15 +31,24 @@ public class FriendsFragment extends Fragment {
 
     private ListView listView = null;
 
+    private static final String ARG_OWNERS = "owners";
+    private String[] owners;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @return A new instance of fragment FriendsFragment.
      */
-    public static FriendsFragment newInstance() {
+    public static FriendsFragment newInstance(Data data) {
 
-        return new FriendsFragment();
+        FriendsFragment fragment = new FriendsFragment();
+
+        Bundle args = new Bundle();
+        args.putStringArray(ARG_OWNERS, data.getOwners());
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
     public FriendsFragment() {
@@ -49,7 +57,11 @@ public class FriendsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            owners = getArguments().getStringArray(ARG_OWNERS);
+        }
     }
 
     @Override
@@ -59,10 +71,9 @@ public class FriendsFragment extends Fragment {
         // Initialize listView items
         View contentView = inflater.inflate(R.layout.fragment_friends, container, false);
         listView = (ListView) contentView.findViewById(R.id.friendListView);
-        final Library library = new Library();
 
         final FriendsArrayAdapter adapter = new FriendsArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_friend, new Friends());
+                R.layout.row_layout_friend, new Data());
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -81,7 +92,7 @@ public class FriendsFragment extends Fragment {
                                 Intent i = new Intent(view.getContext(), FriendsLibraryActivity.class);
 
                                 Bundle b = new Bundle();
-                                b.putString("bookOwner", library.owners[position]);
+                                b.putString("bookOwner", owners[position]);
                                 i.putExtras(b);
 
                                 startActivity(i);

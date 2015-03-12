@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.comp4020.utils.Data;
 import com.comp4020.decentralized_library.R;
-import com.comp4020.data_classes.Friends;
 
 public class FriendsArrayAdapter extends ArrayAdapter<String> {
 
@@ -17,12 +17,12 @@ public class FriendsArrayAdapter extends ArrayAdapter<String> {
     private final int[] numBooks;
     private final int row_layout_friend_id;
 
-    public FriendsArrayAdapter(Context context, int id, Friends friends) {
-        super(context, id, friends.names);
+    public FriendsArrayAdapter(Context context, int id, Data data) {
+        super(context, id, data.getOwners());
         this.row_layout_friend_id = id;
         this.context = context;
-        this.names = friends.names;
-        this.numBooks = friends.numBooks;
+        this.names = data.getOwners();
+        this.numBooks = data.getNumBooks();
     }
 
     @Override
@@ -33,11 +33,11 @@ public class FriendsArrayAdapter extends ArrayAdapter<String> {
 
         View rowView = inflater.inflate(row_layout_friend_id, parent, false);
 
-        TextView textViewTitle = (TextView) rowView.findViewById(R.id.friendLayout_BookTitle);
-        TextView textViewAuthor = (TextView) rowView.findViewById(R.id.friendLayout_BookOwner);
+        TextView textViewTitle = (TextView) rowView.findViewById(R.id.friendLayout_BookOwner);
+        TextView textViewNumBooks = (TextView) rowView.findViewById(R.id.friendLayout_BookNumBooks);
 
         textViewTitle.setText(names[position]);
-        textViewAuthor.setText(numBooks[position] + " Books");
+        textViewNumBooks.setText(numBooks[position] + " Books");
 
         return rowView;
     }

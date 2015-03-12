@@ -15,8 +15,8 @@ import com.comp4020.fragments.FriendsFragment;
 import com.comp4020.fragments.LibraryFragment;
 import com.comp4020.fragments.NavigationDrawerFragment;
 import com.comp4020.fragments.SettingsFragment;
+import com.comp4020.utils.Data;
 import com.comp4020.utils.Logger;
-import com.comp4020.data_classes.*;
 
 public  class       MainActivity
         extends     Activity
@@ -55,13 +55,13 @@ public  class       MainActivity
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         if (mViewFragment != null)
             fragmentTransaction.remove(mViewFragment);
+        Data data = new Data();
 
         switch(position) {
             case 0: // My Library
 
-                Library myLibrary = new Library();
 
-                LibraryFragment libraryFragment = LibraryFragment.newInstance(myLibrary);
+                LibraryFragment libraryFragment = LibraryFragment.newInstance(data);
                 mViewFragment = libraryFragment;
                 fragmentTransaction.replace(R.id.container, libraryFragment);
                 fragmentTransaction.commit();
@@ -75,7 +75,7 @@ public  class       MainActivity
                 break;
             case 1: // Friends
 
-                FriendsFragment friendsFragment = FriendsFragment.newInstance();
+                FriendsFragment friendsFragment = FriendsFragment.newInstance(data);
                 mViewFragment = friendsFragment;
                 fragmentTransaction.replace(R.id.container, friendsFragment);
                 fragmentTransaction.commit();
