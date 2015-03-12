@@ -1,13 +1,13 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="60dp"
     android:padding="6dip" >
 
     <TextView
-        android:id="@+id/friendLayout_BookOwner"
+        android:id="@+id/friendLayout_BookNumBooks"
         android:layout_width="fill_parent"
-        android:layout_height="26dip"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:ellipsize="marquee"
@@ -15,10 +15,10 @@
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/friendLayout_BookTitle"
+        android:id="@+id/friendLayout_BookOwner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/friendLayout_BookOwner"
+        android:layout_above="@id/friendLayout_BookNumBooks"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"

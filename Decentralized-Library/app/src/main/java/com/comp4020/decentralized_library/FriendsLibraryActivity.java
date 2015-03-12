@@ -8,8 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.comp4020.fragments.LibraryFragment;
+import com.comp4020.utils.Data;
 import com.comp4020.utils.Logger;
-import com.comp4020.data_classes.*;
 
 
 public  class       FriendsLibraryActivity
@@ -23,11 +23,12 @@ public  class       FriendsLibraryActivity
 
         Bundle b = getIntent().getExtras();
         String bookOwner = b.getString("bookOwner");
-        final Library library = new Library();
         getActionBar().setTitle(bookOwner + "'s Library");
 
+        Data data = new Data(); // TODO should get specific user data object
+
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        LibraryFragment libraryFragment = LibraryFragment.newInstance(library);
+        LibraryFragment libraryFragment = LibraryFragment.newInstance(data);
         fragmentTransaction.replace(R.id.container, libraryFragment);
         fragmentTransaction.commit();
     }
