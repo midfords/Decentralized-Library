@@ -44,6 +44,18 @@ public class LibraryFragment extends Fragment {
      *
      * @return A new instance of fragment MainFragment.
      */
+    public static LibraryFragment newInstance(String[][] library) {
+
+        LibraryFragment fragment = new LibraryFragment();
+        Bundle args = new Bundle();
+        args.putStringArray(ARG_TITLES, library[0]);
+        args.putStringArray(ARG_AUTHORS, library[1]);
+        args.putStringArray(ARG_COVERS, library[2]);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
     public static LibraryFragment newInstance(Data data) {
 
         LibraryFragment fragment = new LibraryFragment();

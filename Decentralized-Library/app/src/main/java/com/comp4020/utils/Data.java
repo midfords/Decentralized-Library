@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 public class Data {
 
+    private static final int NUM_FIELDS = 9;
+
     private static final String[] titles = new String[] {
             "Dresden Files Skin Game",
             "Watchmen",
@@ -129,6 +131,45 @@ public class Data {
             "On Shelf",
             "On Shelf"
     };
+
+    //return a two dimensional array: first dimension specifies field type, second dimension specifies which book.
+    public static String[][] getFriendsLibrary(String friend)
+    {
+        String[][] friendslibrary;
+        int friendsLibrarySize = 0, reiterate = 0, i;
+
+        for(i=0; i<owners.length; i++)
+        {
+            if(owners[i].equals(friend))
+            {
+                friendsLibrarySize++;
+            }
+        }
+
+        friendslibrary = new String[NUM_FIELDS][friendsLibrarySize];
+        i = 0;
+        while(reiterate < friendsLibrarySize && i<owners.length)
+        {
+            if(owners[i].equals(friend))
+            {
+                friendslibrary[0][reiterate] = titles[i];
+                friendslibrary[1][reiterate] = authors[i];
+                friendslibrary[2][reiterate] = covers[i];
+                friendslibrary[3][reiterate] = genres[i];
+                friendslibrary[4][reiterate] = years[i];
+                friendslibrary[5][reiterate] = publishers[i];
+                friendslibrary[6][reiterate] = synopsiss[i];
+                friendslibrary[7][reiterate] = owners[i];
+                friendslibrary[8][reiterate] = statuss[i];
+
+                reiterate++;
+            }
+            i++;
+        }
+
+        return friendslibrary;
+
+    }
 
     public static Bundle getBookBundle(int i)
     {

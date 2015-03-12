@@ -25,10 +25,11 @@ public  class       FriendsLibraryActivity
         String bookOwner = b.getString("bookOwner");
         getActionBar().setTitle(bookOwner + "'s Library");
 
-        Data data = new Data(); // TODO should get specific user data object
+        Data data = new Data();
+        String[][] friendsLibrary = data.getFriendsLibrary(bookOwner);
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        LibraryFragment libraryFragment = LibraryFragment.newInstance(data);
+        LibraryFragment libraryFragment = LibraryFragment.newInstance(friendsLibrary);
         fragmentTransaction.replace(R.id.container, libraryFragment);
         fragmentTransaction.commit();
     }
