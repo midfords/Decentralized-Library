@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.comp4020.adapters.LibraryArrayAdapter;
 import com.comp4020.decentralized_library.DetailsActivity;
 import com.comp4020.decentralized_library.R;
+import com.comp4020.data_classes.*;
 
 
 /**
@@ -43,15 +44,13 @@ public class LibraryFragment extends Fragment {
      *
      * @return A new instance of fragment MainFragment.
      */
-    public static LibraryFragment newInstance(String[] titles,
-                                              String[] authors,
-                                              String[] covers) {
+    public static LibraryFragment newInstance(Library library) {
 
         LibraryFragment fragment = new LibraryFragment();
         Bundle args = new Bundle();
-        args.putStringArray(ARG_TITLES, titles);
-        args.putStringArray(ARG_AUTHORS, authors);
-        args.putStringArray(ARG_COVERS, covers);
+        args.putStringArray(ARG_TITLES, library.titles);
+        args.putStringArray(ARG_AUTHORS, library.authors);
+        args.putStringArray(ARG_COVERS, library.covers);
         fragment.setArguments(args);
 
         return fragment;
@@ -97,12 +96,7 @@ public class LibraryFragment extends Fragment {
 
                                 Intent i = new Intent(view.getContext(), DetailsActivity.class);
 
-                                Bundle b = new Bundle();
-                                b.putString("bookTitle", titles[position]);
-                                b.putString("bookAuthor", authors[position]);
-                                b.putString("bookCover", covers[position]);
-                                b.putString("bookOwner", "TEMP");
-                                b.putString("bookDescription", "TEMP");
+                                Bundle b = new Library().getBook(position);
                                 i.putExtras(b);
 
                                 startActivity(i);

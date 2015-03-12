@@ -15,6 +15,7 @@ import com.comp4020.adapters.FriendsArrayAdapter;
 import com.comp4020.decentralized_library.DetailsActivity;
 import com.comp4020.decentralized_library.FriendsLibraryActivity;
 import com.comp4020.decentralized_library.R;
+import com.comp4020.data_classes.*;
 
 
 /**
@@ -58,30 +59,10 @@ public class FriendsFragment extends Fragment {
         // Initialize listView items
         View contentView = inflater.inflate(R.layout.fragment_friends, container, false);
         listView = (ListView) contentView.findViewById(R.id.friendListView);
-
-        final String[] titles = new String[] {
-                "Dresden Files Skin Game",
-                "Watchmen",
-                "V For Vendetta",
-                "V For Vendetta1",
-                "V For Vendetta2",
-                "V For Vendetta3",
-                "V For Vendetta4",
-                "V For Vendetta5",
-                "V For Vendetta6"};
-        final String[] owners = new String[] {
-                "Sean",
-                "Sean",
-                "Jeff",
-                "Jeff",
-                "Alan",
-                "Alan",
-                "Alan",
-                "Alan",
-                "Alan"};
+        final Library library = new Library();
 
         final FriendsArrayAdapter adapter = new FriendsArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_friend, titles, owners);
+                R.layout.row_layout_friend, new Friends());
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,7 +81,7 @@ public class FriendsFragment extends Fragment {
                                 Intent i = new Intent(view.getContext(), FriendsLibraryActivity.class);
 
                                 Bundle b = new Bundle();
-                                b.putString("bookOwner", owners[position]);
+                                b.putString("bookOwner", library.owners[position]);
                                 i.putExtras(b);
 
                                 startActivity(i);

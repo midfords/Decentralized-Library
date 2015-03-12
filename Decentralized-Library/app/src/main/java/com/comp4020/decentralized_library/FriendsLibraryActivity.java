@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.comp4020.fragments.LibraryFragment;
 import com.comp4020.utils.Logger;
+import com.comp4020.data_classes.*;
 
 
 public  class       FriendsLibraryActivity
@@ -22,24 +23,11 @@ public  class       FriendsLibraryActivity
 
         Bundle b = getIntent().getExtras();
         String bookOwner = b.getString("bookOwner");
-
+        final Library library = new Library();
         getActionBar().setTitle(bookOwner + "'s Library");
 
-        final String[] titles = new String[] {
-                "Dresden Files Skin Game",
-                "Watchmen",
-                "V For Vendetta"};
-        final String[] authors = new String[] {
-                "Jim Butcher",
-                "Alan Moore",
-                "Alan Moore"};
-        final String[] covers = new String[] {
-                "djskalfj",
-                "huerdiop",
-                "jowlkcui"};
-
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        LibraryFragment libraryFragment = LibraryFragment.newInstance(titles, authors, covers);
+        LibraryFragment libraryFragment = LibraryFragment.newInstance(library);
         fragmentTransaction.replace(R.id.container, libraryFragment);
         fragmentTransaction.commit();
     }

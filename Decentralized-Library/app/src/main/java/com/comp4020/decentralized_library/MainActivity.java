@@ -16,6 +16,7 @@ import com.comp4020.fragments.LibraryFragment;
 import com.comp4020.fragments.NavigationDrawerFragment;
 import com.comp4020.fragments.SettingsFragment;
 import com.comp4020.utils.Logger;
+import com.comp4020.data_classes.*;
 
 public  class       MainActivity
         extends     Activity
@@ -58,38 +59,9 @@ public  class       MainActivity
         switch(position) {
             case 0: // My Library
 
-                final String[] titles = new String[] {
-                        "Dresden Files Skin Game",
-                        "Watchmen",
-                        "V For Vendetta",
-                        "V For Vendetta1",
-                        "V For Vendetta2",
-                        "V For Vendetta3",
-                        "V For Vendetta4",
-                        "V For Vendetta5",
-                        "V For Vendetta6"};
-                final String[] authors = new String[] {
-                        "Jim Butcher",
-                        "Alan Moore",
-                        "Alan Moore",
-                        "Alan Moore",
-                        "Alan Moore",
-                        "Alan Moore",
-                        "Alan Moore",
-                        "Alan Moore",
-                        "Alan Moore"};
-                final String[] covers = new String[] {
-                        "djskalfj",
-                        "huerdiop",
-                        "jowlkcui",
-                        "jowlkcui",
-                        "jowlkcui",
-                        "jowlkcui",
-                        "jowlkcui",
-                        "jowlkcui",
-                        "jowlkcui"};
+                Library myLibrary = new Library();
 
-                LibraryFragment libraryFragment = LibraryFragment.newInstance(titles, authors, covers);
+                LibraryFragment libraryFragment = LibraryFragment.newInstance(myLibrary);
                 mViewFragment = libraryFragment;
                 fragmentTransaction.replace(R.id.container, libraryFragment);
                 fragmentTransaction.commit();
