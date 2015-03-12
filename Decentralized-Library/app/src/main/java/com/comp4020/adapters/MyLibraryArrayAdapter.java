@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.comp4020.data_classes.*;
 
 import com.comp4020.decentralized_library.R;
 
@@ -18,14 +19,13 @@ public class MyLibraryArrayAdapter extends ArrayAdapter<String> {
     private final String[] covers;
     private final int row_layout_book_id;
 
-    public MyLibraryArrayAdapter(Context context, int id, String[] titles, String[] authors,
-                                 String[] covers) {
+    public MyLibraryArrayAdapter(Context context, int id, String[] titles, Library library) {
         super(context, id, titles);
         this.row_layout_book_id = id;
         this.context = context;
         this.titles = titles;
-        this.authors = authors;
-        this.covers = covers;
+        this.authors = library.authors;
+        this.covers = library.covers;
     }
 
     @Override

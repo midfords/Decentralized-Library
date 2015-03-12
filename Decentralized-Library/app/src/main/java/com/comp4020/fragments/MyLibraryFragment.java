@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.comp4020.adapters.MyLibraryArrayAdapter;
 import com.comp4020.decentralized_library.DetailsActivity;
 import com.comp4020.decentralized_library.R;
+import com.comp4020.data_classes.*;
 
 
 /**
@@ -29,7 +30,7 @@ public class MyLibraryFragment extends Fragment {
     private MyLibraryFragmentCallbacks mListener;
 
     private ListView listView;
-
+    private Library library;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -60,39 +61,10 @@ public class MyLibraryFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_my_library, container, false);
         listView = (ListView) contentView.findViewById(R.id.myLibraryListView);
 
-        final String[] titles = new String[] {
-                "Dresden Files Skin Game",
-                "Watchmen",
-                "V For Vendetta",
-                "V For Vendetta1",
-                "V For Vendetta2",
-                "V For Vendetta3",
-                "V For Vendetta4",
-                "V For Vendetta5",
-                "V For Vendetta6"};
-        final String[] authors = new String[] {
-                "Jim Butcher",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore",
-                "Alan Moore"};
-        final String[] covers = new String[] {
-                "djskalfj",
-                "huerdiop",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui",
-                "jowlkcui"};
+        library = new Library();
 
         final MyLibraryArrayAdapter adapter = new MyLibraryArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_book, titles, authors, covers);
+                R.layout.row_layout_book, library.titles, library);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -108,15 +80,8 @@ public class MyLibraryFragment extends Fragment {
                             public void run() {
 
                                 Intent i = new Intent(view.getContext(), DetailsActivity.class);
-
-                                Bundle b = new Bundle();
-                                b.putString("bookTitle", titles[position]);
-                                b.putString("bookAuthor", authors[position]);
-                                b.putString("bookCover", covers[position]);
-                                b.putString("bookOwner", "TEMP");
-                                b.putString("bookDescription", "TEMP");
+                                Bundle b = library.getBook(position);
                                 i.putExtras(b);
-
                                 startActivity(i);
                             }
                         });

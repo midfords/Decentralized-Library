@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.comp4020.adapters.FriendsArrayAdapter;
 import com.comp4020.decentralized_library.R;
+import com.comp4020.data_classes.*;
 
 
 /**
@@ -56,29 +57,8 @@ public class FriendsFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_friends, container, false);
         listView = (ListView) contentView.findViewById(R.id.friendListView);
 
-        String[] titles = new String[] {
-                "Dresden Files Skin Game",
-                "Watchmen",
-                "V For Vendetta",
-                "V For Vendetta1",
-                "V For Vendetta2",
-                "V For Vendetta3",
-                "V For Vendetta4",
-                "V For Vendetta5",
-                "V For Vendetta6"};
-        String[] owners = new String[] {
-                "Sean",
-                "Sean",
-                "Jeff",
-                "Jeff",
-                "Alan",
-                "Alan",
-                "Alan",
-                "Alan",
-                "Alan"};
-
         final FriendsArrayAdapter adapter = new FriendsArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_friend, titles, owners);
+                R.layout.row_layout_friend, new Friends());
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

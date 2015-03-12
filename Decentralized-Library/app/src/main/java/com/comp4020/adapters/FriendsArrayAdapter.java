@@ -9,20 +9,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.comp4020.decentralized_library.R;
+import com.comp4020.data_classes.*;
 
 public class FriendsArrayAdapter extends ArrayAdapter<String> {
 
     private final Context context;
-    private final String[] titles;
-    private final String[] owners;
     private final int row_layout_friend_id;
+    private Friends friends;
 
-    public FriendsArrayAdapter(Context context, int id, String[] titles, String[] owners) {
-        super(context, id, titles);
+    public FriendsArrayAdapter(Context context, int id, Friends friends) {
+        super(context, id, friends.names);
         this.row_layout_friend_id = id;
         this.context = context;
-        this.titles = titles;
-        this.owners = owners;
+        this.friends = friends;
     }
 
     @Override
@@ -36,8 +35,8 @@ public class FriendsArrayAdapter extends ArrayAdapter<String> {
         TextView textViewTitle = (TextView) rowView.findViewById(R.id.friendLayout_BookTitle);
         TextView textViewAuthor = (TextView) rowView.findViewById(R.id.friendLayout_BookOwner);
 
-        textViewTitle.setText(titles[position]);
-        textViewAuthor.setText(owners[position]);
+        textViewTitle.setText(friends.names[position]);
+        textViewAuthor.setText(friends.numBooks[position] + " Books");
 
         return rowView;
     }
