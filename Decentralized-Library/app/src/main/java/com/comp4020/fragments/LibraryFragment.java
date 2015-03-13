@@ -44,25 +44,13 @@ public class LibraryFragment extends Fragment {
      *
      * @return A new instance of fragment MainFragment.
      */
-    public static LibraryFragment newInstance(String[][] library) {
+    public static LibraryFragment newInstance(String[] titles, String[] authors, String[] covers) {
 
         LibraryFragment fragment = new LibraryFragment();
         Bundle args = new Bundle();
-        args.putStringArray(ARG_TITLES, library[0]);
-        args.putStringArray(ARG_AUTHORS, library[1]);
-        args.putStringArray(ARG_COVERS, library[2]);
-        fragment.setArguments(args);
-
-        return fragment;
-    }
-
-    public static LibraryFragment newInstance(Data data) {
-
-        LibraryFragment fragment = new LibraryFragment();
-        Bundle args = new Bundle();
-        args.putStringArray(ARG_TITLES, data.getTitles());
-        args.putStringArray(ARG_AUTHORS, data.getAuthors());
-        args.putStringArray(ARG_COVERS, data.getCovers());
+        args.putStringArray(ARG_TITLES, titles);
+        args.putStringArray(ARG_AUTHORS, authors);
+        args.putStringArray(ARG_COVERS, covers);
         fragment.setArguments(args);
 
         return fragment;
@@ -91,7 +79,7 @@ public class LibraryFragment extends Fragment {
         listView = (ListView) contentView.findViewById(R.id.libraryListView);
 
         final LibraryArrayAdapter adapter = new LibraryArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_book, new Data());
+                R.layout.row_layout_book, titles, authors, covers);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

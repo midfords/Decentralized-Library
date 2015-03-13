@@ -55,13 +55,12 @@ public  class       MainActivity
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         if (mViewFragment != null)
             fragmentTransaction.remove(mViewFragment);
-        Data data = new Data();
 
         switch(position) {
             case 0: // My Library
 
-
-                LibraryFragment libraryFragment = LibraryFragment.newInstance(data);
+                LibraryFragment libraryFragment = LibraryFragment.newInstance(Data.getTitles(),
+                        Data.getAuthors(), Data.getCovers());
                 mViewFragment = libraryFragment;
                 fragmentTransaction.replace(R.id.container, libraryFragment);
                 fragmentTransaction.commit();
@@ -75,7 +74,7 @@ public  class       MainActivity
                 break;
             case 1: // Friends
 
-                FriendsFragment friendsFragment = FriendsFragment.newInstance(data);
+                FriendsFragment friendsFragment = FriendsFragment.newInstance(Data.getOwners());
                 mViewFragment = friendsFragment;
                 fragmentTransaction.replace(R.id.container, friendsFragment);
                 fragmentTransaction.commit();

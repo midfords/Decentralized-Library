@@ -22,14 +22,18 @@ public  class       FriendsLibraryActivity
         setContentView(R.layout.activity_friends_library);
 
         Bundle b = getIntent().getExtras();
-        String bookOwner = b.getString("bookOwner");
-        getActionBar().setTitle(bookOwner + "'s Library");
+        int bookOwnerPosition = b.getInt("bookOwnerPosition");
+        getActionBar().setTitle(Data.getOwnersName(bookOwnerPosition) + "'s Library");
 
         Data data = new Data();
-        String[][] friendsLibrary = data.getFriendsLibrary(bookOwner);
+        Bundle friendsLibrary = data.getFriendsLibraryBundle(bookOwnerPosition);
+        String[] friendLibraryTitles = friendsLibrary.getStringArray("titles");
+        String[] friendLibraryAuthors = friendsLibrary.getStringArray("authors");
+        String[] friendLibraryCovers = friendsLibrary.getStringArray("covers");
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        LibraryFragment libraryFragment = LibraryFragment.newInstance(friendsLibrary);
+        LibraryFragment libraryFragment = LibraryFragment.newInstance(friendLibraryTitles,
+                friendLibraryAuthors, friendLibraryCovers);
         fragmentTransaction.replace(R.id.container, libraryFragment);
         fragmentTransaction.commit();
     }

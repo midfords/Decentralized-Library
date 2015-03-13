@@ -7,7 +7,9 @@ import android.os.Bundle;
 
 public class Data {
 
-    private static final int NUM_FIELDS = 9;
+    //
+    // Book data
+    //
 
     private static final String[] titles = new String[] {
             "Dresden Files Skin Game",
@@ -103,23 +105,7 @@ public class Data {
             "Synopsis"
     };
 
-    private static final String[] owners = new String[] {
-            "Sean",
-            "Sean",
-            "Sean",
-            "Gerald",
-            "Gerald",
-            "Harriet",
-            "Harriet",
-            "Harriet",
-            "Billy Joe"
-    };
-
-    private static final int[] numBooks = new int[] {
-            3, 6, 2, 7, 8, 3, 6, 4, 7
-    };
-
-    //Statusses are not final because we will change them as lending actions happen
+    // Statusses are not final because we will change them as lending actions happen
     private static String[] statuss = new String[] {
             "On Shelf",
             "Lent",
@@ -132,45 +118,69 @@ public class Data {
             "On Shelf"
     };
 
-    //return a two dimensional array: first dimension specifies field type, second dimension specifies which book.
-    public static String[][] getFriendsLibrary(String friend)
-    {
-        String[][] friendslibrary;
-        int friendsLibrarySize = 0, reiterate = 0, i;
+    //
+    // Owner and friends data
+    //
 
-        for(i=0; i<owners.length; i++)
-        {
-            if(owners[i].equals(friend))
-            {
-                friendsLibrarySize++;
-            }
-        }
+    private static final String[] owners = new String[] {
+            "Sean",
+            "Sean",
+            "Sean",
+            "Gerald",
+            "Gerald",
+            "Harriet",
+            "Harriet",
+            "Harriet",
+            "Billy Joe"
+    };
 
-        friendslibrary = new String[NUM_FIELDS][friendsLibrarySize];
-        i = 0;
-        while(reiterate < friendsLibrarySize && i<owners.length)
-        {
-            if(owners[i].equals(friend))
-            {
-                friendslibrary[0][reiterate] = titles[i];
-                friendslibrary[1][reiterate] = authors[i];
-                friendslibrary[2][reiterate] = covers[i];
-                friendslibrary[3][reiterate] = genres[i];
-                friendslibrary[4][reiterate] = years[i];
-                friendslibrary[5][reiterate] = publishers[i];
-                friendslibrary[6][reiterate] = synopsiss[i];
-                friendslibrary[7][reiterate] = owners[i];
-                friendslibrary[8][reiterate] = statuss[i];
+    // TODO: This can be removed since friendsLibrary contains length info
+    //  leave in for now.
+    private static final int[] numBooks = new int[] {
+            3, 6, 2, 7, 8, 3, 6, 4, 1
+    };
 
-                reiterate++;
-            }
-            i++;
-        }
+    // Too much work to write separate libraries for all friends. Instead books are referenced by id
+    //  (array position)
+    private static int[][] friendLibrary = new int[][] {
+            {5, 7, 3},
+            {1, 3, 5, 4, 7, 8},
+            {2, 3},
+            {9, 8, 5, 4, 2, 6, 5},
+            {4, 3, 6, 5, 7, 8, 9, 0},
+            {1, 0, 9},
+            {5, 7, 6, 8, 4, 3, 2},
+            {9, 8, 0, 7},
+            {0}
+    };
 
-        return friendslibrary;
-
+    public static String getOwnersName(int i) {
+        return owners[i];
     }
 
+    // Return a bundle array containing string array of book info
+    public static Bundle getFriendsLibraryBundle(int friendIndex)
+    {
+        Bundle friendsLibraryBundle = new Bundle();
+        String[] friendTitles = new String[friendLibrary[friendIndex].length];
+        String[] friendAuthors = new String[friendLibrary[friendIndex].length];
+        String[] friendCovers = new String[friendLibrary[friendIndex].length];
+
+        for(int i = 0; i < friendLibrary[friendIndex].length; i++)
+        {
+            friendTitles[i] = titles[friendLibrary[friendIndex][i]];
+            friendAuthors[i] = authors[friendLibrary[friendIndex][i]];
+            friendCovers[i] = covers[friendLibrary[friendIndex][i]];
+        }
+
+        friendsLibraryBundle.putStringArray("titles", friendTitles);
+        friendsLibraryBundle.putStringArray("authors", friendAuthors);
+        friendsLibraryBundle.putStringArray("covers", friendCovers);
+
+        return friendsLibraryBundle;
+    }
+
+    // This is used to retrieve complete data for DetailActivity
     public static Bundle getBookBundle(int i)
     {
         Bundle b = new Bundle();

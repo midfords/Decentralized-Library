@@ -17,12 +17,13 @@ public class FriendsArrayAdapter extends ArrayAdapter<String> {
     private final int[] numBooks;
     private final int row_layout_friend_id;
 
-    public FriendsArrayAdapter(Context context, int id, Data data) {
-        super(context, id, data.getOwners());
+    public FriendsArrayAdapter(Context context, int id) {
+        super(context, id, Data.getOwners());
+
         this.row_layout_friend_id = id;
         this.context = context;
-        this.names = data.getOwners();
-        this.numBooks = data.getNumBooks();
+        this.names = Data.getOwners();
+        this.numBooks = Data.getNumBooks();
     }
 
     @Override

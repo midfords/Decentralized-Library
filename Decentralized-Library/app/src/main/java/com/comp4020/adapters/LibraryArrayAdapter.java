@@ -19,13 +19,14 @@ public class LibraryArrayAdapter extends ArrayAdapter<String> {
     private final String[] covers;
     private final int row_layout_book_id;
 
-    public LibraryArrayAdapter(Context context, int id, Data data) {
-        super(context, id, data.getTitles());
+    public LibraryArrayAdapter(Context context, int id, String[] titles,
+                               String[] authors, String[]covers) {
+        super(context, id, titles);
         this.row_layout_book_id = id;
         this.context = context;
-        this.titles = data.getTitles();
-        this.authors = data.getAuthors();
-        this.covers = data.getCovers();
+        this.titles = titles;
+        this.authors = authors;
+        this.covers = covers;
     }
 
     @Override

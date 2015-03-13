@@ -40,12 +40,12 @@ public class FriendsFragment extends Fragment {
      *
      * @return A new instance of fragment FriendsFragment.
      */
-    public static FriendsFragment newInstance(Data data) {
+    public static FriendsFragment newInstance(String[] owners) {
 
         FriendsFragment fragment = new FriendsFragment();
 
         Bundle args = new Bundle();
-        args.putStringArray(ARG_OWNERS, data.getOwners());
+        args.putStringArray(ARG_OWNERS, owners);
         fragment.setArguments(args);
 
         return fragment;
@@ -73,7 +73,7 @@ public class FriendsFragment extends Fragment {
         listView = (ListView) contentView.findViewById(R.id.friendListView);
 
         final FriendsArrayAdapter adapter = new FriendsArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_friend, new Data());
+                R.layout.row_layout_friend);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -92,7 +92,7 @@ public class FriendsFragment extends Fragment {
                                 Intent i = new Intent(view.getContext(), FriendsLibraryActivity.class);
 
                                 Bundle b = new Bundle();
-                                b.putString("bookOwner", owners[position]);
+                                b.putInt("bookOwnerPosition", position);
                                 i.putExtras(b);
 
                                 startActivity(i);
