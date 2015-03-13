@@ -1,10 +1,6 @@
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.comp4020.fragments.LibraryFragment">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.comp4020.fragments.LibraryGridFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,11 +18,13 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="5dp" />
 
-        <ListView
+        <GridView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/libraryListView">
+            android:numColumns="2"
+            android:id="@+id/libraryGridView">
 
-        </ListView>
+            </GridView>
+
     </LinearLayout>
-</RelativeLayout>
+</FrameLayout>

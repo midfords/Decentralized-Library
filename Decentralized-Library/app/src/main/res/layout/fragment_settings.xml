@@ -45,20 +45,5 @@
                 android:text="Grid View"/>
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:paddingTop="20dp"
-            android:text="My Library List Length"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/myLibraryListLength" />
-
     </LinearLayout>
 </RelativeLayout>

@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.comp4020.fragments.LibraryFragment;
+import com.comp4020.fragments.LibraryListFragment;
 import com.comp4020.utils.Data;
 import com.comp4020.utils.Logger;
 
 
 public  class       FriendsLibraryActivity
         extends     Activity
-        implements  LibraryFragment.LibraryFragmentCallbacks {
+        implements LibraryListFragment.LibraryListFragmentCallbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,9 @@ public  class       FriendsLibraryActivity
         String[] friendLibraryCovers = friendsLibrary.getStringArray("covers");
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        LibraryFragment libraryFragment = LibraryFragment.newInstance(friendLibraryTitles,
+        LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(friendLibraryTitles,
                 friendLibraryAuthors, friendLibraryCovers);
-        fragmentTransaction.replace(R.id.container, libraryFragment);
+        fragmentTransaction.replace(R.id.container, libraryListFragment);
         fragmentTransaction.commit();
     }
 
@@ -57,15 +57,10 @@ public  class       FriendsLibraryActivity
 
 
     @Override
-    public void onLibraryFragmentInteraction(Uri uri) {
+    public void onLibraryListFragmentInteraction(Uri uri) {
 
         // Do something
 
-        try {
-            Logger.log("List Entry - My Library. <" + uri.toString() + ">");
-        } catch (Exception e) {
-            System.out.println("Failed to write to EventLogger.");
-        }
-
+        Logger.log("List Entry - My Library. <" + uri.toString() + ">");
     }
 }

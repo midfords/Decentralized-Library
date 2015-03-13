@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.comp4020.decentralized_library.R;
 import com.comp4020.utils.Data;
 
-public class LibraryArrayAdapter extends ArrayAdapter<String> {
+public class LibraryListArrayAdapter extends ArrayAdapter<String> {
 
     private final Context context;
     private final String[] titles;
@@ -19,8 +19,8 @@ public class LibraryArrayAdapter extends ArrayAdapter<String> {
     private final String[] covers;
     private final int row_layout_book_id;
 
-    public LibraryArrayAdapter(Context context, int id, String[] titles,
-                               String[] authors, String[]covers) {
+    public LibraryListArrayAdapter(Context context, int id, String[] titles,
+                                   String[] authors, String[] covers) {
         super(context, id, titles);
         this.row_layout_book_id = id;
         this.context = context;

@@ -25,16 +25,22 @@ public class Logger {
         }
     }
 
-    public static void log(String callerInfo) throws FileNotFoundException, UnsupportedEncodingException {
+    public static void log(String callerInfo) {
 
-        openFile();
+        try {
+            openFile();
 
-        // Grab system time
-        long time = System.currentTimeMillis();
+            // Grab system time
+            long time = System.currentTimeMillis();
 
-        // Write info to log
-        writer.println("[" + time + "] " + callerInfo);
+            // Write info to log
+            writer.println("[" + time + "] " + callerInfo);
 
-        closeFile();
+            closeFile();
+
+        } catch (Exception e) {
+
+            closeFile();
+        }
     }
 }

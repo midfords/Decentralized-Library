@@ -12,16 +12,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.comp4020.fragments.BorrowingFragment;
 import com.comp4020.fragments.FriendsFragment;
-import com.comp4020.fragments.LibraryFragment;
+import com.comp4020.fragments.LibraryGridFragment;
+import com.comp4020.fragments.LibraryListFragment;
 import com.comp4020.fragments.NavigationDrawerFragment;
 import com.comp4020.fragments.SettingsFragment;
 import com.comp4020.utils.Data;
+import com.comp4020.utils.Globals;
 import com.comp4020.utils.Logger;
 
 public  class       MainActivity
         extends     Activity
         implements  NavigationDrawerFragment.NavigationDrawerCallbacks,
-        LibraryFragment.LibraryFragmentCallbacks,
+        LibraryListFragment.LibraryListFragmentCallbacks,
+        LibraryGridFragment.LibraryGridFragmentCallbacks,
         FriendsFragment.FriendsFragmentCallbacks,
         BorrowingFragment.BorrowingFragmentCallbacks,
         SettingsFragment.SettingsFragmentCallbacks {
@@ -58,18 +61,21 @@ public  class       MainActivity
 
         switch(position) {
             case 0: // My Library
-
-                LibraryFragment libraryFragment = LibraryFragment.newInstance(Data.getTitles(),
-                        Data.getAuthors(), Data.getCovers());
-                mViewFragment = libraryFragment;
-                fragmentTransaction.replace(R.id.container, libraryFragment);
-                fragmentTransaction.commit();
-
-                try {
-                    Logger.log("Navigation Drawer - My Library");
-                } catch (Exception e) {
-                    System.out.println("Failed to write to EventLogger.");
+                if (!Globals.gridViewType) {
+                    LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(
+                            Data.getTitles(), Data.getAuthors(), Data.getCovers());
+                    mViewFragment = libraryListFragment;
+                    fragmentTransaction.replace(R.id.container, libraryListFragment);
+                    fragmentTransaction.commit();
+                } else {
+                    LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance(
+                            Data.getTitles(), Data.getAuthors(), Data.getCovers());
+                    mViewFragment = libraryGridFragment;
+                    fragmentTransaction.replace(R.id.container, libraryGridFragment);
+                    fragmentTransaction.commit();
                 }
+
+                Logger.log("Navigation Drawer - My Library");
 
                 break;
             case 1: // Friends
@@ -79,11 +85,7 @@ public  class       MainActivity
                 fragmentTransaction.replace(R.id.container, friendsFragment);
                 fragmentTransaction.commit();
 
-                try {
-                    Logger.log("Navigation Drawer - Friends");
-                } catch (Exception e) {
-                    System.out.println("Failed to write to EventLogger.");
-                }
+                Logger.log("Navigation Drawer - Friends");
 
                 break;
             case 2: // Borrowing
@@ -93,11 +95,7 @@ public  class       MainActivity
                 fragmentTransaction.replace(R.id.container, borrowingFragment);
                 fragmentTransaction.commit();
 
-                try {
-                    Logger.log("Navigation Drawer - Borrowing");
-                } catch (Exception e) {
-                    System.out.println("Failed to write to EventLogger.");
-                }
+                Logger.log("Navigation Drawer - Borrowing");
 
                 break;
             case 3: // Settings
@@ -107,11 +105,7 @@ public  class       MainActivity
                 fragmentTransaction.replace(R.id.container, settingsFragment);
                 fragmentTransaction.commit();
 
-                try {
-                    Logger.log("Navigation Drawer - Settings");
-                } catch (Exception e) {
-                    System.out.println("Failed to write to EventLogger.");
-                }
+                Logger.log("Navigation Drawer - Settings");
 
                 break;
         }
@@ -169,12 +163,7 @@ public  class       MainActivity
 
         // Do something
 
-        try {
-            Logger.log("List Entry - Borrowing. <" + uri.toString() + ">");
-        } catch (Exception e) {
-            System.out.println("Failed to write to EventLogger.");
-        }
-
+        Logger.log("List Entry - Borrowing. <" + uri.toString() + ">");
     }
 
     @Override
@@ -182,25 +171,15 @@ public  class       MainActivity
 
         // Do something
 
-        try {
-            Logger.log("List Entry - Friends. <" + uri.toString() + ">");
-        } catch (Exception e) {
-            System.out.println("Failed to write to EventLogger.");
-        }
-
+        Logger.log("List Entry - Friends. <" + uri.toString() + ">");
     }
 
     @Override
-    public void onLibraryFragmentInteraction(Uri uri) {
+    public void onLibraryListFragmentInteraction(Uri uri) {
 
         // Do something
 
-        try {
-            Logger.log("List Entry - My Library. <" + uri.toString() + ">");
-        } catch (Exception e) {
-            System.out.println("Failed to write to EventLogger.");
-        }
-
+        Logger.log("List Entry - My Library. <" + uri.toString() + ">");
     }
 
     @Override
@@ -208,11 +187,11 @@ public  class       MainActivity
 
         // Do something
 
-        try {
-            Logger.log("List Entry - Settings. <" + uri.toString() + ">");
-        } catch (Exception e) {
-            System.out.println("Failed to write to EventLogger.");
-        }
+        Logger.log("List Entry - Settings. <" + uri.toString() + ">");
+    }
+
+    @Override
+    public void onLibraryGridFragmentInteraction(Uri uri) {
 
     }
 }

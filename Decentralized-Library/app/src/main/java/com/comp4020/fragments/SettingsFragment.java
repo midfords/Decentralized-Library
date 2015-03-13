@@ -1,14 +1,22 @@
 package com.comp4020.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Switch;
 
+import com.comp4020.adapters.LibraryGridArrayAdapter;
+import com.comp4020.decentralized_library.DetailsActivity;
 import com.comp4020.decentralized_library.R;
+import com.comp4020.utils.Data;
+import com.comp4020.utils.Globals;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +29,7 @@ import com.comp4020.decentralized_library.R;
 public class SettingsFragment extends Fragment {
 
     private SettingsFragmentCallbacks mListener;
+    private Switch viewSwitch;
 
     /**
      * Use this factory method to create a new instance of
@@ -45,8 +54,24 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        viewSwitch = (Switch) contentView.findViewById(R.id.viewSwitch);
+
+        // Persist switch position
+        viewSwitch.setChecked(Globals.gridViewType);
+
+        viewSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Globals.gridViewType = viewSwitch.isChecked();
+            }
+        });
+
+        return contentView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

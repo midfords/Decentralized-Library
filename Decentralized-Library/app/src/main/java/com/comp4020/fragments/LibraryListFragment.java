@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.comp4020.adapters.LibraryArrayAdapter;
+import com.comp4020.adapters.LibraryListArrayAdapter;
 import com.comp4020.decentralized_library.DetailsActivity;
 import com.comp4020.decentralized_library.R;
 import com.comp4020.utils.Data;
@@ -20,14 +20,14 @@ import com.comp4020.utils.Data;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LibraryFragment.LibraryFragmentCallbacks} interface
+ * {@link com.comp4020.fragments.LibraryListFragment.LibraryListFragmentCallbacks} interface
  * to handle interaction events.
- * Use the {@link LibraryFragment#newInstance} factory method to
+ * Use the {@link LibraryListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LibraryFragment extends Fragment {
+public class LibraryListFragment extends Fragment {
 
-    private LibraryFragmentCallbacks mListener;
+    private LibraryListFragmentCallbacks mListener;
     private ListView listView;
 
     private static final String ARG_TITLES = "titles";
@@ -44,9 +44,9 @@ public class LibraryFragment extends Fragment {
      *
      * @return A new instance of fragment MainFragment.
      */
-    public static LibraryFragment newInstance(String[] titles, String[] authors, String[] covers) {
+    public static LibraryListFragment newInstance(String[] titles, String[] authors, String[] covers) {
 
-        LibraryFragment fragment = new LibraryFragment();
+        LibraryListFragment fragment = new LibraryListFragment();
         Bundle args = new Bundle();
         args.putStringArray(ARG_TITLES, titles);
         args.putStringArray(ARG_AUTHORS, authors);
@@ -56,7 +56,7 @@ public class LibraryFragment extends Fragment {
         return fragment;
     }
 
-    public LibraryFragment() {
+    public LibraryListFragment() {
         // Required empty public constructor
     }
 
@@ -75,10 +75,10 @@ public class LibraryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Initialize listView items
-        View contentView = inflater.inflate(R.layout.fragment_library, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_library_list, container, false);
         listView = (ListView) contentView.findViewById(R.id.libraryListView);
 
-        final LibraryArrayAdapter adapter = new LibraryArrayAdapter(contentView.getContext(),
+        final LibraryListArrayAdapter adapter = new LibraryListArrayAdapter(contentView.getContext(),
                 R.layout.row_layout_book, titles, authors, covers);
 
         listView.setAdapter(adapter);
@@ -112,7 +112,7 @@ public class LibraryFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onLibraryFragmentInteraction(uri);
+            mListener.onLibraryListFragmentInteraction(uri);
         }
     }
 
@@ -120,7 +120,7 @@ public class LibraryFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (LibraryFragmentCallbacks) activity;
+            mListener = (LibraryListFragmentCallbacks) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -145,9 +145,9 @@ public class LibraryFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface LibraryFragmentCallbacks {
+    public interface LibraryListFragmentCallbacks {
 
-        public void onLibraryFragmentInteraction(Uri uri);
+        public void onLibraryListFragmentInteraction(Uri uri);
     }
 
 }
