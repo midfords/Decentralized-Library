@@ -301,6 +301,10 @@ public class Data {
             "On Shelf","On Shelf","On Shelf","Lent","On Shelf",
     };
 
+    private static int[] myRequested = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+
+    private static int[] myBorrowed = new int[] {45, 65, 22, 47, 58, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+
     private static final String[] friends = new String[] {
             "Toquehead",
             "Sean",
@@ -327,6 +331,92 @@ public class Data {
 
         for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
             if(myStatuss[i].equals("Requested")) {
+                rIndex[num] = i;
+                num++;
+            }
+        }
+        rTitles = new String[num];
+        rAuthors = new String[num];
+        rCovers = new String[num];
+
+        for(int i=0; i<num; i++) {
+            rTitles[i] = titles[rIndex[i]];
+            rAuthors[i] = authors[rIndex[i]];
+            rCovers[i] = covers[rIndex[i]];
+        }
+
+        b.putStringArray("titles", rTitles);
+        b.putStringArray("authors", rAuthors);
+        b.putStringArray("covers", rCovers);
+        return b;
+    }
+
+    public static Bundle getRequested() {
+        Bundle b = new Bundle();
+        String[] rTitles;
+        String[] rAuthors;
+        String[] rCovers;
+
+        int i = 0;
+        while(i < myRequested.length && myRequested[i] != -1)
+        {
+            i++;
+        }
+
+        rTitles = new String[i];
+        rAuthors = new String[i];
+        rCovers = new String[i];
+
+        for(int j=0; j<i; j++) {
+            rTitles[j] = titles[myRequested[j]];
+            rAuthors[j] = authors[myRequested[j]];
+            rCovers[j] = covers[myRequested[j]];
+        }
+
+        b.putStringArray("titles", rTitles);
+        b.putStringArray("authors", rAuthors);
+        b.putStringArray("covers", rCovers);
+        return b;
+    }
+
+    public static Bundle getBorrowed() {
+        Bundle b = new Bundle();
+        String[] rTitles;
+        String[] rAuthors;
+        String[] rCovers;
+
+        int i = 0;
+        while(i < myBorrowed.length && myBorrowed[i] != -1)
+        {
+            i++;
+        }
+
+        rTitles = new String[i];
+        rAuthors = new String[i];
+        rCovers = new String[i];
+
+        for(int j=0; j<i; j++) {
+            rTitles[j] = titles[myBorrowed[j]];
+            rAuthors[j] = authors[myBorrowed[j]];
+            rCovers[j] = covers[myBorrowed[j]];
+        }
+
+        b.putStringArray("titles", rTitles);
+        b.putStringArray("authors", rAuthors);
+        b.putStringArray("covers", rCovers);
+        return b;
+    }
+
+    public static Bundle getLent() {
+        Bundle b = new Bundle();
+        String[] rTitles;
+        String[] rAuthors;
+        String[] rCovers;
+        int num = 0;
+        int[] rIndex = new int[myLibrary.length];
+
+        for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
+            if(myStatuss[i].equals("Lent")) {
                 rIndex[num] = i;
                 num++;
             }

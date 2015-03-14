@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.comp4020.decentralized_library.R;
-import com.comp4020.fragments.BorrowingFragment;
+
+import com.comp4020.fragments.ExchangesFragment;
 import com.comp4020.fragments.FriendsFragment;
 import com.comp4020.fragments.LibraryGridFragment;
 import com.comp4020.fragments.LibraryListFragment;
@@ -27,7 +27,7 @@ public  class       MainActivity
         LibraryListFragment.LibraryListFragmentCallbacks,
         LibraryGridFragment.LibraryGridFragmentCallbacks,
         FriendsFragment.FriendsFragmentCallbacks,
-        BorrowingFragment.BorrowingFragmentCallbacks,
+        ExchangesFragment.BorrowingFragmentCallbacks,
         SettingsFragment.SettingsFragmentCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -91,7 +91,7 @@ public  class       MainActivity
                 break;
             case 2: // Borrowing
 
-                BorrowingFragment borrowingFragment = BorrowingFragment.newInstance();
+                ExchangesFragment borrowingFragment = ExchangesFragment.newInstance();
                 mViewFragment = borrowingFragment;
                 fragmentTransaction.replace(R.id.container, borrowingFragment);
                 fragmentTransaction.commit();

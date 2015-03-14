@@ -9,15 +9,6 @@
         android:layout_gravity="center"
         android:weightSum="1">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/filterField"
-            android:hint="@string/filter_action"
-            android:enabled="false"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="5dp" />
-
         <GridView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

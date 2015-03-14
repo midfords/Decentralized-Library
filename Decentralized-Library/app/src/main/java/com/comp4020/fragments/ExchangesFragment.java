@@ -7,24 +7,32 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.comp4020.decentralized_library.R;
 import com.comp4020.utils.Data;
+import com.comp4020.adapters.LibraryListArrayAdapter;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link com.comp4020.fragments.BorrowingFragment.BorrowingFragmentCallbacks} interface
+ * {@link ExchangesFragment.BorrowingFragmentCallbacks} interface
  * to handle interaction events.
- * Use the {@link BorrowingFragment#newInstance} factory method to
+ * Use the {@link ExchangesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BorrowingFragment extends Fragment {
+public class ExchangesFragment extends Fragment {
 
     private static final String ARG_TITLES = "titles";
     private static final String ARG_AUTHORS = "authors";
     private static final String ARG_COVERS = "covers";
+
+    private ListView listView;
+    private Bundle requestsBundle;
+    private Bundle requestedBundle;
+    private Bundle borrowedBundle;
+    private Bundle lentBundle;
 
     private BorrowingFragmentCallbacks mListener;
 
@@ -34,15 +42,15 @@ public class BorrowingFragment extends Fragment {
      *
      * @return A new instance of fragment BorrowingFragment.
      */
-    public static BorrowingFragment newInstance() {
+    public static ExchangesFragment newInstance() {
 
-        BorrowingFragment fragment = new BorrowingFragment();
+        ExchangesFragment fragment = new ExchangesFragment();
         Bundle args = Data.getRequests();
         fragment.setArguments(args);
-        return new BorrowingFragment();
+        return new ExchangesFragment();
     }
 
-    public BorrowingFragment() {
+    public ExchangesFragment() {
         // Required empty public constructor
     }
 
@@ -55,7 +63,23 @@ public class BorrowingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_borrowing, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_borrowing, container, false);
+
+        listView = (ListView) contentView.findViewById(R.id.exchangeListView);
+
+        //TODO how do we switch between exchanging categories/sections?
+        requestsBundle = Data.getRequests();
+        requestedBundle = Data.getRequested();
+        borrowedBundle = Data.getBorrowed();
+        lentBundle = Data.getLent();
+
+        listView.setAdapter(new LibraryListArrayAdapter(contentView.getContext(),
+                R.layout.row_layout_book,
+                requestsBundle.getStringArray("titles"),
+                requestsBundle.getStringArray("authors"),
+                requestsBundle.getStringArray("covers")));
+
+        return contentView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
