@@ -8,9 +8,11 @@ import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.*;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.comp4020.adapters.LibraryListArrayAdapter;
 import com.comp4020.fragments.ExchangesFragment;
 import com.comp4020.fragments.FriendsFragment;
 import com.comp4020.fragments.LibraryGridFragment;
@@ -136,6 +138,37 @@ public  class       MainActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
+
+    public void requestsJumpClicked(View view) {
+        exchangeSectionJump("Requests");
+    }
+
+    public void requestedJumpClicked(View view) {
+        exchangeSectionJump("Requested");
+    }
+
+    public void borrowedJumpClicked(View view) {
+        exchangeSectionJump("Borrowed");
+    }
+
+    public void lentJumpClicked(View view) {
+        exchangeSectionJump("Lent");
+    }
+
+    public void exchangeSectionJump(String section) {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        ExchangesFragment borrowingFragment = ExchangesFragment.newInstance(section);
+        mViewFragment = borrowingFragment;
+        fragmentTransaction.replace(R.id.container, borrowingFragment);
+        fragmentTransaction.commit();
+
+        Logger.log("Exchanges Section Jump to "+section);
+    }
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:text="Requests"
                 android:id="@+id/requestsJump"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:onClick="requestsJumpClicked" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -31,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:text="Requested"
                 android:id="@+id/requestedJump"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:onClick="requestedJumpClicked" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -39,14 +41,17 @@
                 android:layout_height="wrap_content"
                 android:text="Borrowed"
                 android:id="@+id/borrowedJump"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:onClick="borrowedJumpClicked" />
 
             <Button
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lent"
                 android:id="@+id/lentJump"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:onClick="lentJumpClicked" />
 
         </LinearLayout>
 

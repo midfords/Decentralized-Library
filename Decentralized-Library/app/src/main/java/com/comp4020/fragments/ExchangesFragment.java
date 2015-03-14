@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.comp4020.decentralized_library.R;
 import com.comp4020.utils.Data;
@@ -27,12 +28,13 @@ public class ExchangesFragment extends Fragment {
     private static final String ARG_TITLES = "titles";
     private static final String ARG_AUTHORS = "authors";
     private static final String ARG_COVERS = "covers";
-
+    private static final String ARG_SECTION = "section";
     private ListView listView;
-    private Bundle requestsBundle;
-    private Bundle requestedBundle;
-    private Bundle borrowedBundle;
-    private Bundle lentBundle;
+    private TextView textView;
+    private String[] titles;
+    private String[] authors;
+    private String[] covers;
+    private String section;
 
     private BorrowingFragmentCallbacks mListener;
 
@@ -46,8 +48,31 @@ public class ExchangesFragment extends Fragment {
 
         ExchangesFragment fragment = new ExchangesFragment();
         Bundle args = Data.getRequests();
+        args.putString(ARG_SECTION, "Requests");
         fragment.setArguments(args);
-        return new ExchangesFragment();
+        return fragment;
+    }
+
+    public static ExchangesFragment newInstance(String section) {
+
+        ExchangesFragment fragment = new ExchangesFragment();
+
+        Bundle args = new Bundle();
+        args.putString(ARG_SECTION, section);
+        if(section.equals("Requests")) {
+            args = Data.getRequests();
+        }
+        else if(section.equals("Requested")) {
+            args = Data.getRequested();
+        }
+        else if(section.equals("Borrowed")) {
+            args = Data.getBorrowed();
+        }
+        else if(section.equals("Lent")) {
+            args = Data.getLent();
+        }
+        fragment.setArguments(args);
+        return fragment;
     }
 
     public ExchangesFragment() {
@@ -57,27 +82,26 @@ public class ExchangesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            titles = getArguments().getStringArray(ARG_TITLES);
+            authors = getArguments().getStringArray(ARG_AUTHORS);
+            covers = getArguments().getStringArray(ARG_COVERS);
+            section = getArguments().getString(ARG_SECTION);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View contentView = inflater.inflate(R.layout.fragment_borrowing, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_exchanges, container, false);
+
+        textView = (TextView) contentView.findViewById(R.id.sectionLabel);
+        textView.setText(section);
 
         listView = (ListView) contentView.findViewById(R.id.exchangeListView);
-
-        //TODO how do we switch between exchanging categories/sections?
-        requestsBundle = Data.getRequests();
-        requestedBundle = Data.getRequested();
-        borrowedBundle = Data.getBorrowed();
-        lentBundle = Data.getLent();
-
         listView.setAdapter(new LibraryListArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_book,
-                requestsBundle.getStringArray("titles"),
-                requestsBundle.getStringArray("authors"),
-                requestsBundle.getStringArray("covers")));
+                R.layout.row_layout_book, titles, authors, covers));
 
         return contentView;
     }
