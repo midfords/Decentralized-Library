@@ -290,7 +290,7 @@ public class Data {
     //
 
     //users library
-    private static final int[] myLibrary = new int[] {0, 25};
+    private static final int[] myLibrary = new int[] {0, 15};
 
     //users library status
     private static String[] myStatuss = new String[] {
@@ -308,13 +308,13 @@ public class Data {
 
     // TODO: This can be removed since friendsLibrary contains length info
     //  leave in for now.
-    private static final int[] numBooks = new int[] { 25, 50 };
+    private static final int[] numBooks = new int[] { 15, 25 };
 
     // Too much work to write separate libraries for all friends. Instead books are referenced by id
     //  (array position). the two values are the start and end of each friend's book list
     private static int[][] friendLibrary = new int[][] {
-            {20, 45},
-            {33, 83},
+            {16, 31},
+            {33, 58},
     };
 
     public static Bundle getRequests() {
