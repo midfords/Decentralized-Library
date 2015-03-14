@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class RequestActivity extends Activity {
@@ -12,6 +14,22 @@ public class RequestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
+
+
+        Bundle b = getIntent().getExtras();
+        String bookTitle = b.getString("bookTitle");
+        String bookAuthor = b.getString("bookAuthor");
+        String bookCover = b.getString("bookCover");
+
+        TextView titleLabel = (TextView) findViewById(R.id.requestTitleLabel);
+        TextView authorLabel = (TextView) findViewById(R.id.requestAuthorLabel);
+        ImageView coverImage = (ImageView) findViewById(R.id.requestImageView);
+
+        titleLabel.setText(bookTitle);
+        authorLabel.setText(bookAuthor);
+        int resID = getResources().getIdentifier(bookCover,
+                "drawable", getPackageName());
+        coverImage.setImageResource(resID);
     }
 
 

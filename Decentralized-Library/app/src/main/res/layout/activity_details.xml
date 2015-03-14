@@ -68,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:text="Request"
                 android:id="@+id/detailStatusButton"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:onClick="requestClicked"/>
         </LinearLayout>
     </LinearLayout>
 

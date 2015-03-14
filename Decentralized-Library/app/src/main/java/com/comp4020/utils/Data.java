@@ -290,15 +290,13 @@ public class Data {
     //
 
     //users library
-    private static final int[] myLibrary = new int[] {0, 15};
+    private static final int[] myLibrary = new int[] {0, 14};
 
     //users library status
     private static String[] myStatuss = new String[] {
             "On Shelf", "Lent", "On Shelf", "Requested", "Requested",
             "On Shelf","On Shelf","On Shelf","On Shelf","On Shelf",
-            "On Shelf","Lent","On Shelf","On Shelf","On Shelf",
-            "On Shelf","On Shelf","On Shelf","On Shelf","On Shelf",
-            "On Shelf","On Shelf","On Shelf","Lent","On Shelf",
+            "On Shelf","Lent","On Shelf","On Shelf","On Shelf"
     };
 
     private static int[] myRequested = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
@@ -312,13 +310,13 @@ public class Data {
 
     // TODO: This can be removed since friendsLibrary contains length info
     //  leave in for now.
-    private static final int[] numBooks = new int[] { 15, 25 };
+    private static final int[] numBooks = new int[] { 25, 50 }; //book list lengths
 
     // Too much work to write separate libraries for all friends. Instead books are referenced by id
     //  (array position). the two values are the start and end of each friend's book list
     private static int[][] friendLibrary = new int[][] {
-            {16, 31},
-            {33, 58},
+            {15, 40},
+            {33, 83},
     };
 
     public static Bundle getRequests() {

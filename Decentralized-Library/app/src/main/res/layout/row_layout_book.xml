@@ -48,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:text="Request"
                 android:id="@+id/requestButton"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                android:onClick="requestClicked"/>
         </LinearLayout>
 
     </RelativeLayout>

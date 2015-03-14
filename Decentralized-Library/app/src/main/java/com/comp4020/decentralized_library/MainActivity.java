@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -165,6 +166,12 @@ public  class       MainActivity
         Logger.log("Exchanges Section Jump to "+section);
     }
 
+    public void requestClicked(View view) {
+        Intent i = new Intent(view.getContext(), RequestActivity.class);
+        Bundle b = new Bundle(); //TODO get specific book user clicked in here
+        i.putExtras(b);
+        startActivity(i);
+    }
 
 
 
