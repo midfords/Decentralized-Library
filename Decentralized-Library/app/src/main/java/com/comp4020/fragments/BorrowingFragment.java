@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.comp4020.decentralized_library.R;
+import com.comp4020.utils.Data;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +22,10 @@ import com.comp4020.decentralized_library.R;
  */
 public class BorrowingFragment extends Fragment {
 
+    private static final String ARG_TITLES = "titles";
+    private static final String ARG_AUTHORS = "authors";
+    private static final String ARG_COVERS = "covers";
+
     private BorrowingFragmentCallbacks mListener;
 
     /**
@@ -30,6 +36,9 @@ public class BorrowingFragment extends Fragment {
      */
     public static BorrowingFragment newInstance() {
 
+        BorrowingFragment fragment = new BorrowingFragment();
+        Bundle args = Data.getRequests();
+        fragment.setArguments(args);
         return new BorrowingFragment();
     }
 

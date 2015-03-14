@@ -23,7 +23,7 @@ public  class       FriendsLibraryActivity
 
         Bundle b = getIntent().getExtras();
         int bookOwnerPosition = b.getInt("bookOwnerPosition");
-        getActionBar().setTitle(Data.getOwnersName(bookOwnerPosition) + "'s Library");
+        getActionBar().setTitle(Data.getFriendsName(bookOwnerPosition) + "'s Library");
 
         Data data = new Data();
         Bundle friendsLibrary = data.getFriendsLibraryBundle(bookOwnerPosition);

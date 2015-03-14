@@ -80,7 +80,7 @@ public  class       MainActivity
                 break;
             case 1: // Friends
 
-                FriendsFragment friendsFragment = FriendsFragment.newInstance(Data.getOwners());
+                FriendsFragment friendsFragment = FriendsFragment.newInstance(Data.getFriends());
                 mViewFragment = friendsFragment;
                 fragmentTransaction.replace(R.id.container, friendsFragment);
                 fragmentTransaction.commit();

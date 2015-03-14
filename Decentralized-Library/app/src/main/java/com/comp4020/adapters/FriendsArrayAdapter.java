@@ -18,11 +18,11 @@ public class FriendsArrayAdapter extends ArrayAdapter<String> {
     private final int row_layout_friend_id;
 
     public FriendsArrayAdapter(Context context, int id) {
-        super(context, id, Data.getOwners());
+        super(context, id, Data.getFriends());
 
         this.row_layout_friend_id = id;
         this.context = context;
-        this.names = Data.getOwners();
+        this.names = Data.getFriends();
         this.numBooks = Data.getNumBooks();
     }
 

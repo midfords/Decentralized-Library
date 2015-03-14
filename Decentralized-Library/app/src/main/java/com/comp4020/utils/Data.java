@@ -11,166 +11,238 @@ public class Data {
     // Book data
     //
 
-    private static final String[] titles = new String[] {
-            "Dresden Files Skin Game",
-            "Watchmen",
-            "V For Vendetta",
-            "V For Vendetta1",
-            "V For Vendetta2",
-            "V For Vendetta3",
-            "V For Vendetta4",
-            "V For Vendetta5",
-            "V For Vendetta6"
+    private static final String[] titles = new String[] {"Something from the Nightside",
+            "The Man with the Golden Torc", "Blue Moon Rising", "Deathstalker War",
+            "Agents of Light and Darkness", "Just Another Judgement Day", "The Unnatural Inquirer",
+            "Deathstalker", "Drinking Midnight Wine", "Hex and the City", "Beyond the Blue Moon",
+            "The Spy Who Haunted Me", "Nightingale's Lament", "Shaper Than A Serpent's Tooth",
+            "Deathstalker Legacy", "Paths Not Taken", "Blood and Honour", "The God Killer",
+            "Shadows Fall", "Deathstalker Rebelion", "Deathstalker Coda", "Deathstalker Return",
+            "Deathstalker Destiny", "Deathstalker Honour", "Down Among the Dead Men",
+            "Guards of Haven", "Ghostworld", "Helloworld", "Hello to Pay", "Swords of Haven",
+            "Guard Against Dishonor", "A Walk on the Nightside", "Mean Streets",
+            "The Dark Heart of the Nightside", "Haunting the Nightside", "Haven of Lost Souls",
+            "Skin Game", "Storm Front", "Furies of Calderon", "Fool Moon", "First Lord's Fury",
+            "Cold Days", "Academ's Fury", "Ghost Story", "Cursor's Fury", "Dead Beat",
+            "Captain's Fury", "Grave Peril", "Princep's Fury", "Blood Rites", "White Night",
+            "Death Masks", "Summer Knight", "Proven Guilty", "Turn Coat", "Small Favor",
+            "Welcome to the Jungle", "My Big Fat Supernatural Honeymoon", "Cinder Spires 1",
+            "Changes", "Mean Streets", "The Carpet People", "The Dark Side of the Sun",
+            "The Colour of Magic", "The Light Fantastic", "Mort", "Equal Rites", "Wyrd Sisters",
+            "Sourcery", "Guards! Guards!", "Pyramids", "Truckers", "Good Omens", "Moving Pictures",
+            "Reaper Man", "Witches Abroad", "Small Gods", "Lords and Ladies", "Men at Arms",
+            "Soul Music", "Maskerade", "Hogfather", "Feet of Clay", "Jingo", "Carpe Jugulum",
+            "Thief of Time", "Night Watch", "Going Postal", "A Hat Full of Sky", "Wintersmith",
+            "Snuff"
     };
 
     private static final String[] authors = new String[] {
-            "Jim Butcher",
-            "Alan Moore",
-            "Alan Moore",
-            "Alan Moore",
-            "Alan Moore",
-            "Alan Moore",
-            "Alan Moore",
-            "Alan Moore",
-            "Alan Moore"
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
+            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene", //37, 24, 29 = 90 books
+            "Simon R. Greene","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher",
+            "Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher",
+            "Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher",
+            "Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher",
+            "Jim Butcher","Jim Butcher","Terry Pratchett","Terry Pratchett","Terry Pratchett",
+            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
+            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
+            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
+            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
+            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
+            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
+            "Terry Pratchett","Terry Pratchett"
     };
 
-    private static final String[] covers = new String[] {
-            "djskalfj",
-            "huerdiop",
-            "jowlkcui",
-            "jowlkcui",
-            "jowlkcui",
-            "jowlkcui",
-            "jowlkcui",
-            "jowlkcui",
-            "jowlkcui"
+    //TODO get .png files for all covers and name them according to this string array
+    private static final String[] covers = new String[] {"Something from the Nightside",
+            "The Man with the Golden Torc", "Blue Moon Rising", "Deathstalker War",
+            "Agents of Light and Darkness", "Just Another Judgement Day", "The Unnatural Inquirer",
+            "Deathstalker", "Drinking Midnight Wine", "Hex and the City", "Beyond the Blue Moon",
+            "The Spy Who Haunted Me", "Nightingale's Lament", "Shaper Than A Serpent's Tooth",
+            "Deathstalker Legacy", "Paths Not Taken", "Blood and Honour", "The God Killer",
+            "Shadows Fall", "Deathstalker Rebelion", "Deathstalker Coda", "Deathstalker Return",
+            "Deathstalker Destiny", "Deathstalker Honour", "Down Among the Dead Men",
+            "Guards of Haven", "Ghostworld", "Helloworld", "Hello to Pay", "Swords of Haven",
+            "Guard Against Dishonor", "A Walk on the Nightside", "Mean Streets",
+            "The Dark Heart of the Nightside", "Haunting the Nightside", "Haven of Lost Souls",
+            "Skin Game", "Storm Front", "Furies of Calderon", "Fool Moon", "First Lord's Fury",
+            "Cold Days", "Academ's Fury", "Ghost Story", "Cursor's Fury", "Dead Beat",
+            "Captain's Fury", "Grave Peril", "Princep's Fury", "Blood Rites", "White Night",
+            "Death Masks", "Summer Knight", "Proven Guilty", "Turn Coat", "Small Favor",
+            "Welcome to the Jungle", "My Big Fat Supernatural Honeymoon", "Cinder Spires 1",
+            "Changes", "Mean Streets", "The Carpet People", "The Dark Side of the Sun",
+            "The Colour of Magic", "The Light Fantastic", "Mort", "Equal Rites", "Wyrd Sisters",
+            "Sourcery", "Guards! Guards!", "Pyramids", "Truckers", "Good Omens", "Moving Pictures",
+            "Reaper Man", "Witches Abroad", "Small Gods", "Lords and Ladies", "Men at Arms",
+            "Soul Music", "Maskerade", "Hogfather", "Feet of Clay", "Jingo", "Carpe Jugulum",
+            "Thief of Time", "Night Watch", "Going Postal", "A Hat Full of Sky", "Wintersmith",
+            "Snuff"
     };
 
     private static final String[] genres = new String[] {
-            "Fantasy",
-            "Comic",
-            "Genre",
-            "Genre",
-            "Genre",
-            "Genre",
-            "Genre",
-            "Genre",
-            "Genre"
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy"
     };
 
     private static final String[] years = new String[] {
-            "2014",
-            "1986",
-            "Year",
-            "Year",
-            "Year",
-            "Year",
-            "Year",
-            "Year",
-            "Year"
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
     };
 
     private static final String[] publishers = new String[] {
-            "Publisher",
-            "DC Comics",
-            "Publisher",
-            "Publisher",
-            "Publisher",
-            "Publisher",
-            "Publisher",
-            "Publisher",
-            "Publisher"
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
     };
 
     private static final String[] synopsiss = new String[] {
-            "Harry Dresden, Chicago’s only professional wizard, is about to have a very bad day….\n" +
-                    "\n" +
-                    "Because as Winter Knight to the Queen of Air and Darkness, Harry never knows what the scheming Mab might want him to do. Usually, it’s something awful.\n" +
-                    "\n" +
-                    "He doesn’t know the half of it….\n" +
-                    "\n" +
-                    "Mab has just traded Harry’s skills to pay off one of her debts. And now he must help a group of supernatural villains—led by one of Harry’s most dreaded and despised enemies, Nicodemus Archleone—to break into the highest-security vault in town so that they can then access the highest-security vault in the Nevernever.\n" +
-                    "\n" +
-                    "It’s a smash-and-grab job to recover the literal Holy Grail from the vaults of the greatest treasure hoard in the supernatural world—which belongs to the one and only Hades, Lord of the freaking Underworld and generally unpleasant character. Worse, Dresden suspects that there is another game afoot that no one is talking about. And he’s dead certain that Nicodemus has no intention of allowing any of his crew to survive the experience. Especially Harry.\n" +
-                    "\n" +
-                    "Dresden’s always been tricky, but he’s going to have to up his backstabbing game to survive this mess—assuming his own allies don’t end up killing him before his enemies get the chance….",
-            "\"Watchmen\" is set in an alternate 1985 America in which costumed superheroes are part of the fabric of everyday society, and the \"Doomsday Clock\" -- which charts the USA's tension with the Soviet Union -- is permanently set at five minutes to midnight. When one of his former colleagues is murdered, the masked vigilante Rorschach, washed up but determined, sets out to uncover a plot to kill and discredit all past and present superheroes. As he reconnects with his former crime-fighting legion -- a ragtag group of retired superheroes, only one of whom has true powers -- Rorschach glimpses a wide-ranging and disturbing conspiracy with links to their shared past and catastrophic consequences for the future. Their mission is to watch over humanity... but who is watching the Watchmen?",
-            "Synopsis",
-            "Synopsis",
-            "Synopsis",
-            "Synopsis",
-            "Synopsis",
-            "Synopsis",
-            "Synopsis"
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
+            "Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis","Synopsis",
     };
 
     // Statusses are not final because we will change them as lending actions happen
+    //statusses are On shelf and Lent
     private static String[] statuss = new String[] {
-            "On Shelf",
-            "Lent",
-            "Lent",
-            "On Shelf",
-            "On Shelf",
-            "On Shelf",
-            "On Shelf",
-            "On Shelf",
-            "On Shelf"
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
     };
 
     //
     // Owner and friends data
     //
 
-    private static final String[] owners = new String[] {
+    //users library
+    private static final int[] myLibrary = new int[] {0, 25};
+
+    //users library status
+    private static String[] myStatuss = new String[] {
+            "On Shelf", "Lent", "On Shelf", "Requested", "Requested",
+            "On Shelf","On Shelf","On Shelf","On Shelf","On Shelf",
+            "On Shelf","Lent","On Shelf","On Shelf","On Shelf",
+            "On Shelf","On Shelf","On Shelf","On Shelf","On Shelf",
+            "On Shelf","On Shelf","On Shelf","Lent","On Shelf",
+    };
+
+    private static final String[] friends = new String[] {
+            "Toquehead",
             "Sean",
-            "Sean",
-            "Sean",
-            "Gerald",
-            "Gerald",
-            "Harriet",
-            "Harriet",
-            "Harriet",
-            "Billy Joe"
     };
 
     // TODO: This can be removed since friendsLibrary contains length info
     //  leave in for now.
-    private static final int[] numBooks = new int[] {
-            3, 6, 2, 7, 8, 3, 6, 4, 1
-    };
+    private static final int[] numBooks = new int[] { 25, 50 };
 
     // Too much work to write separate libraries for all friends. Instead books are referenced by id
-    //  (array position)
+    //  (array position). the two values are the start and end of each friend's book list
     private static int[][] friendLibrary = new int[][] {
-            {5, 7, 3},
-            {1, 3, 5, 4, 7, 8},
-            {2, 3},
-            {0, 8, 5, 4, 2, 6, 5},
-            {4, 3, 6, 5, 7, 8, 2, 0},
-            {1, 0, 5},
-            {5, 7, 6, 8, 4, 3, 2},
-            {3, 8, 0, 7},
-            {0}
+            {20, 45},
+            {41, 90},
     };
 
-    public static String getOwnersName(int i) {
-        return owners[i];
+    public static Bundle getRequests() {
+        Bundle b = new Bundle();
+        String[] rTitles;
+        String[] rAuthors;
+        String[] rCovers;
+        int num = 0;
+        int[] rIndex = new int[myLibrary.length];
+
+        for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
+            if(myStatuss[i].equals("Requested")) {
+                rIndex[num] = i;
+                num++;
+            }
+        }
+        rTitles = new String[num];
+        rAuthors = new String[num];
+        rCovers = new String[num];
+
+        for(int i=0; i<num; i++) {
+            rTitles[i] = titles[rIndex[i]];
+            rAuthors[i] = authors[rIndex[i]];
+            rCovers[i] = covers[rIndex[i]];
+        }
+
+        b.putStringArray("titles", rTitles);
+        b.putStringArray("authors", rAuthors);
+        b.putStringArray("covers", rCovers);
+        return b;
+    }
+
+    public static String getFriendsName(int i) {
+        return friends[i];
     }
 
     // Return a bundle array containing string array of book info
     public static Bundle getFriendsLibraryBundle(int friendIndex)
     {
         Bundle friendsLibraryBundle = new Bundle();
-        String[] friendTitles = new String[friendLibrary[friendIndex].length];
-        String[] friendAuthors = new String[friendLibrary[friendIndex].length];
-        String[] friendCovers = new String[friendLibrary[friendIndex].length];
+        int length = friendLibrary[friendIndex][1]-friendLibrary[friendIndex][0];
+        String[] friendTitles = new String[length];
+        String[] friendAuthors = new String[length];
+        String[] friendCovers = new String[length];
 
-        for(int i = 0; i < friendLibrary[friendIndex].length; i++)
+        for(int i = friendLibrary[friendIndex][0]; i < friendLibrary[friendIndex][1]; i++)
         {
-            friendTitles[i] = titles[friendLibrary[friendIndex][i]];
-            friendAuthors[i] = authors[friendLibrary[friendIndex][i]];
-            friendCovers[i] = covers[friendLibrary[friendIndex][i]];
+            friendTitles[i] = titles[i];
+            friendAuthors[i] = authors[i];
+            friendCovers[i] = covers[i];
         }
 
         friendsLibraryBundle.putStringArray("titles", friendTitles);
@@ -187,8 +259,9 @@ public class Data {
         b.putString("bookTitle", titles[i]);
         b.putString("bookAuthor", authors[i]);
         b.putString("bookCover", covers[i]);
-        b.putString("bookOwner", owners[i]);
+        b.putString("bookOwner", friends[i]);
         b.putString("bookDescription", synopsiss[i]);
+        b.putString("bookStatus", statuss[i]);  //TODO implement status in book detail view
         return b;
     }
 
@@ -220,8 +293,8 @@ public class Data {
         return synopsiss;
     }
 
-    public static String[] getOwners() {
-        return owners;
+    public static String[] getFriends() {
+        return friends;
     }
 
     public static int[] getNumBooks() {
