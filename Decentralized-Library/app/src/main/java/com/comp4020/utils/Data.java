@@ -362,9 +362,9 @@ public class Data {
 
         for(int i = friendLibrary[friendIndex][0]; i < friendLibrary[friendIndex][1]; i++)
         {
-            friendTitles[i] = titles[i];
-            friendAuthors[i] = authors[i];
-            friendCovers[i] = covers[i];
+            friendTitles[i-friendLibrary[friendIndex][0]] = titles[i];
+            friendAuthors[i-friendLibrary[friendIndex][0]] = authors[i];
+            friendCovers[i-friendLibrary[friendIndex][0]] = covers[i];
         }
 
         friendsLibraryBundle.putStringArray("titles", friendTitles);
@@ -381,9 +381,17 @@ public class Data {
         b.putString("bookTitle", titles[i]);
         b.putString("bookAuthor", authors[i]);
         b.putString("bookCover", covers[i]);
-        b.putString("bookOwner", friends[i]);
         b.putString("bookDescription", synopsiss[i]);
         b.putString("bookStatus", statuss[i]);  //TODO implement status in book detail view
+
+        //get owner string
+        for(int j=0; j<friendLibrary.length; j++)
+        {
+            if(friendLibrary[j][0] <= i && friendLibrary[j][1] >= i)
+            {
+                b.putString("bookOwner", friends[j]);
+            }
+        }
         return b;
     }
 
