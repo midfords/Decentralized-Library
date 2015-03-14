@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.comp4020.fragments.LibraryGridFragment;
 import com.comp4020.fragments.LibraryListFragment;
 import com.comp4020.utils.Data;
+import com.comp4020.utils.Globals;
 import com.comp4020.utils.Logger;
 
 
@@ -32,10 +34,21 @@ public  class       FriendsLibraryActivity
         String[] friendLibraryCovers = friendsLibrary.getStringArray("covers");
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(friendLibraryTitles,
-                friendLibraryAuthors, friendLibraryCovers);
-        fragmentTransaction.replace(R.id.container, libraryListFragment);
-        fragmentTransaction.commit();
+//        LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(friendLibraryTitles,
+//                friendLibraryAuthors, friendLibraryCovers);
+//        fragmentTransaction.replace(R.id.container, libraryListFragment);
+//        fragmentTransaction.commit();
+        if (!Globals.gridViewType) {
+            LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(friendLibraryTitles,
+                    friendLibraryAuthors, friendLibraryCovers);
+            fragmentTransaction.replace(R.id.container, libraryListFragment);
+            fragmentTransaction.commit();
+        } else {
+            LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance(friendLibraryTitles,
+                    friendLibraryAuthors, friendLibraryCovers);
+            fragmentTransaction.replace(R.id.container, libraryGridFragment);
+            fragmentTransaction.commit();
+        }
     }
 
 
