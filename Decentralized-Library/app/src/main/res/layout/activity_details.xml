@@ -11,7 +11,7 @@
         android:layout_height="@dimen/detail_image_height"
         android:scaleType="fitStart"
         android:id="@+id/detailImageView"
-        android:src="@drawable/djskalfj"/>
+        android:src="@drawable/jingo"/>
 
     <LinearLayout
         android:layout_width="@dimen/detail_text_width"

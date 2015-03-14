@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.comp4020.R;
 import com.comp4020.fragments.BorrowingFragment;
 import com.comp4020.fragments.FriendsFragment;
 import com.comp4020.fragments.LibraryGridFragment;
