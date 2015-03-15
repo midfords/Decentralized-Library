@@ -314,6 +314,7 @@ public class Data {
     //  leave in for now.
     private static final int[] numBooks = new int[] { 25, 50 }; //book list lengths
 
+    private static int[] userLibrary = new int[] {1, 50};
     // Too much work to write separate libraries for all friends. Instead books are referenced by id
     //  (array position). the two values are the start and end of each friend's book list
     private static int[][] friendLibrary = new int[][] {
@@ -458,17 +459,47 @@ public class Data {
         return friends[i];
     }
 
+    public static Bundle getUsersLibraryBundle()
+    {
+
+        Bundle usersLibraryBundle = new Bundle();
+        int length = userLibrary[1]-userLibrary[0];
+        if (!Globals.longLists)
+            length /= 2;
+        String[] userTitles = new String[length];
+        String[] userAuthors = new String[length];
+        String[] userCovers = new String[length];
+        String[] userStatuss = new String[length];
+
+        for(int i = userLibrary[0]; i < userLibrary[0] + length; i++)
+        {
+            userTitles[i-userLibrary[0]] = titles[i];
+            userAuthors[i-userLibrary[0]] = authors[i];
+            userCovers[i-userLibrary[0]] = covers[i];
+            userStatuss[i-userLibrary[0]] = statuss[i];
+        }
+
+        usersLibraryBundle.putStringArray("titles", userTitles);
+        usersLibraryBundle.putStringArray("authors", userAuthors);
+        usersLibraryBundle.putStringArray("covers", userCovers);
+        usersLibraryBundle.putStringArray("statuss", userStatuss);
+
+        return usersLibraryBundle;
+    }
+
     // Return a bundle array containing string array of book info
     public static Bundle getFriendsLibraryBundle(int friendIndex)
     {
         Bundle friendsLibraryBundle = new Bundle();
         int length = friendLibrary[friendIndex][1]-friendLibrary[friendIndex][0];
+        if (!Globals.longLists)
+            length /= 2;
         String[] friendTitles = new String[length];
         String[] friendAuthors = new String[length];
         String[] friendCovers = new String[length];
         String[] friendStatuss = new String[length];
 
-        for(int i = friendLibrary[friendIndex][0]; i < friendLibrary[friendIndex][1]; i++)
+        for(int i = friendLibrary[friendIndex][0]; i < friendLibrary[friendIndex][0] + length; i++)
         {
             friendTitles[i-friendLibrary[friendIndex][0]] = titles[i];
             friendAuthors[i-friendLibrary[friendIndex][0]] = authors[i];
@@ -551,6 +582,15 @@ public class Data {
     }
 
     public static int[] getNumBooks() {
+        int[] numBooks = new int[friends.length];
+        for (int i = 0; i < friends.length; i++)
+        {
+            numBooks[i] = friendLibrary[i][1]-friendLibrary[i][0];
+            if (!Globals.longLists)
+            {
+                numBooks[i]/=2;
+            }
+        }
         return numBooks;
     }
 

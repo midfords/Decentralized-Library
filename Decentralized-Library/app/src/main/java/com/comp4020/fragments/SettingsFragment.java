@@ -30,6 +30,7 @@ public class SettingsFragment extends Fragment {
 
     private SettingsFragmentCallbacks mListener;
     private Switch viewSwitch;
+    private Switch lengthSwitch;
 
     /**
      * Use this factory method to create a new instance of
@@ -70,6 +71,21 @@ public class SettingsFragment extends Fragment {
                 Globals.gridViewType = viewSwitch.isChecked();
             }
         });
+
+        lengthSwitch = (Switch) contentView.findViewById(R.id.lengthSwitch);
+
+        // Persist switch position
+        lengthSwitch.setChecked(Globals.gridViewType);
+
+        lengthSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Globals.longLists = lengthSwitch.isChecked();
+            }
+        });
+
+
 
         return contentView;
     }

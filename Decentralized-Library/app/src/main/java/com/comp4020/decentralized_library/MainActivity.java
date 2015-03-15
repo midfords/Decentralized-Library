@@ -67,15 +67,21 @@ public  class       MainActivity
 
         switch(position) {
             case 0: // My Library
+                Bundle usersLibrary = Data.getUsersLibraryBundle();
+                String[] userLibraryTitles = usersLibrary.getStringArray("titles");
+                String[] userLibraryAuthors = usersLibrary.getStringArray("authors");
+                String[] userLibraryCovers = usersLibrary.getStringArray("covers");
+                String[] userLibraryStatuss = usersLibrary.getStringArray("statuss");
+
                 if (!Globals.gridViewType) {
                     LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(
-                            Data.getTitles(), Data.getAuthors(), Data.getCovers(), Data.getStatuss());
+                            userLibraryTitles, userLibraryAuthors, userLibraryCovers, userLibraryStatuss);
                     mViewFragment = libraryListFragment;
                     fragmentTransaction.replace(R.id.container, libraryListFragment);
                     fragmentTransaction.commit();
                 } else {
                     LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance(
-                            Data.getTitles(), Data.getAuthors(), Data.getCovers());
+                            userLibraryTitles, userLibraryAuthors, userLibraryCovers);
                     mViewFragment = libraryGridFragment;
                     fragmentTransaction.replace(R.id.container, libraryGridFragment);
                     fragmentTransaction.commit();
