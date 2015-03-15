@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,12 +30,26 @@ public class DetailsActivity extends Activity {
         String bookCover = b.getString("bookCover");
         String bookOwner = b.getString("bookOwner");
         String bookDetails = b.getString("bookDetails");
+        String bookStatus = b.getString("bookStatus");
 
         TextView titleLabel = (TextView) findViewById(R.id.detailTitleLabel);
         TextView authorLabel = (TextView) findViewById(R.id.detailAuthorLabel);
         TextView ownerLabel = (TextView) findViewById(R.id.detailOwnerLabel);
         TextView detailsLabel = (TextView) findViewById(R.id.detailDetailsLabel);
         ImageView coverImage = (ImageView) findViewById(R.id.detailImageView);
+        Button requestbutton = (Button) findViewById(R.id.detailStatusButton);
+
+        if(bookStatus == null || bookStatus.equals("My Shelf"))
+            requestbutton.setVisibility(View.INVISIBLE);
+        else if(bookStatus.equals("My Lent"))
+            requestbutton.setText("Set To Returned");
+        else if(bookStatus.equals("Lent"))
+        {
+            requestbutton.setText(bookStatus);
+            requestbutton.setEnabled(false);
+        }
+        else if(bookStatus.equals("On Shelf"))
+            requestbutton.setText("Request");
 
         titleLabel.setText(bookTitle);
         authorLabel.setText(bookAuthor);

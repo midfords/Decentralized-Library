@@ -75,7 +75,7 @@ public  class       MainActivity
 
                 if (!Globals.gridViewType) {
                     LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(
-                            userLibraryTitles, userLibraryAuthors, userLibraryCovers, userLibraryStatuss);
+                            userLibraryTitles, userLibraryAuthors, userLibraryCovers, null);
                     mViewFragment = libraryListFragment;
                     fragmentTransaction.replace(R.id.container, libraryListFragment);
                     fragmentTransaction.commit();

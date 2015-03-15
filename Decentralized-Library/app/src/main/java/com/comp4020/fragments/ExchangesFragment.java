@@ -34,6 +34,7 @@ public class ExchangesFragment extends Fragment {
     private String[] titles;
     private String[] authors;
     private String[] covers;
+    private String[] statuss;
     private String section;
 
     private BorrowingFragmentCallbacks mListener;
@@ -105,7 +106,7 @@ public class ExchangesFragment extends Fragment {
 
         listView = (ListView) contentView.findViewById(R.id.exchangeListView);
         listView.setAdapter(new LibraryListArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_book, titles, authors, covers));
+                R.layout.row_layout_book, titles, authors, covers, null));
 
         return contentView;
     }

@@ -38,6 +38,7 @@ public class LibraryListFragment extends Fragment {
     private String[] titles;
     private String[] authors;
     private String[] covers;
+    private String[] statuss;
 
     /**
      * Use this factory method to create a new instance of
@@ -69,6 +70,7 @@ public class LibraryListFragment extends Fragment {
             titles = getArguments().getStringArray(ARG_TITLES);
             authors = getArguments().getStringArray(ARG_AUTHORS);
             covers = getArguments().getStringArray(ARG_COVERS);
+            statuss = getArguments().getStringArray(ARG_STATUSS);
         }
     }
 
@@ -81,7 +83,7 @@ public class LibraryListFragment extends Fragment {
         listView = (ListView) contentView.findViewById(R.id.libraryListView);
 
         final LibraryListArrayAdapter adapter = new LibraryListArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_book, titles, authors, covers);
+                R.layout.row_layout_book, titles, authors, covers, statuss);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

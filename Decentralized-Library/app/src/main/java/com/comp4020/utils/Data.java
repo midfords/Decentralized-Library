@@ -271,18 +271,18 @@ public class Data {
     };
 
     // Statusses are not final because we will change them as lending actions happen
-    //statusses are On shelf and Lent
+    //statusses are On Shelf and Lent
     private static String[] statuss = new String[] {
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
-            "On shelf","Lent","Lent","On shelf","On shelf","Lent","Lent","On shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
     };
 
     //
@@ -523,7 +523,7 @@ public class Data {
         b.putString("bookAuthor", authors[i]);
         b.putString("bookCover", covers[i]);
         b.putString("bookDescription", synopsiss[i]);
-        b.putString("bookStatus", statuss[i]);  //TODO implement status in book detail view
+        b.putString("bookStatus", statuss[i]);
 
         //get owner string
         for(int j=0; j<friendLibrary.length; j++)
