@@ -61,15 +61,19 @@ public class ExchangesFragment extends Fragment {
         args.putString(ARG_SECTION, section);
         if(section.equals("Requests")) {
             args = Data.getRequests();
+            args.putString(ARG_SECTION, "Requests");
         }
         else if(section.equals("Requested")) {
             args = Data.getRequested();
+            args.putString(ARG_SECTION, "Requested");
         }
         else if(section.equals("Borrowed")) {
             args = Data.getBorrowed();
+            args.putString(ARG_SECTION, "Borrowed");
         }
         else if(section.equals("Lent")) {
             args = Data.getLent();
+            args.putString(ARG_SECTION, "Lent");
         }
         fragment.setArguments(args);
         return fragment;
