@@ -100,7 +100,6 @@ public class ExchangesFragment extends Fragment {
         // Inflate the layout for this fragment
         View contentView = inflater.inflate(R.layout.fragment_exchanges, container, false);
 
-        //TODO somehow the sectionLabel disappears when new sections are loaded. FIX IT!
         textView = (TextView) contentView.findViewById(R.id.sectionLabel);
         textView.setText(section);
 
