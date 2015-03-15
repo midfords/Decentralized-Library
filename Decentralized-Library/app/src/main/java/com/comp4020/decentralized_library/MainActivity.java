@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.*;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -67,7 +69,7 @@ public  class       MainActivity
             case 0: // My Library
                 if (!Globals.gridViewType) {
                     LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(
-                            Data.getTitles(), Data.getAuthors(), Data.getCovers());
+                            Data.getTitles(), Data.getAuthors(), Data.getCovers(), Data.getStatuss());
                     mViewFragment = libraryListFragment;
                     fragmentTransaction.replace(R.id.container, libraryListFragment);
                     fragmentTransaction.commit();
@@ -167,15 +169,22 @@ public  class       MainActivity
     }
 
     public void requestClicked(View view) {
-        Intent i = new Intent(view.getContext(), RequestActivity.class);
-        Bundle b = new Bundle(); //TODO get specific book user clicked in here
+        Intent i = new Intent(MainActivity.this, RequestActivity.class);
+        View parent = (View) view.getParent();
+        TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
+        Bundle b = Data.getBookBundle(tv.getText().toString());
         i.putExtras(b);
-        startActivity(i);
+        MainActivity.this.startActivity(i);
     }
 
+    public void listItemClicked(View view) {
+        Intent i = new Intent(view.getContext(), DetailsActivity.class);
+        String title = ((TextView)(view.findViewById(R.id.bookLayout_BookTitle))).getText().toString();
+        Bundle b = Data.getBookBundle(title);
+        i.putExtras(b);
 
-
-
+        startActivity(i);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

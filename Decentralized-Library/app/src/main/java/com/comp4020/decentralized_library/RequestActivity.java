@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.comp4020.utils.Data;
 
 
 public class RequestActivity extends Activity {
@@ -14,7 +18,6 @@ public class RequestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
-
 
         Bundle b = getIntent().getExtras();
         String bookTitle = b.getString("bookTitle");
@@ -27,11 +30,26 @@ public class RequestActivity extends Activity {
 
         titleLabel.setText(bookTitle);
         authorLabel.setText(bookAuthor);
-        int resID = getResources().getIdentifier(bookCover,
-                "drawable", getPackageName());
+        int resID = getResources().getIdentifier(bookCover, "drawable", getPackageName());
         coverImage.setImageResource(resID);
     }
 
+    public void requestOK(View view) {
+        View parent = (View) view.getParent().getParent();
+        TextView title = (TextView) parent.findViewById(R.id.requestTitleLabel);
+        EditText tLocation = (EditText) parent.findViewById(R.id.locationEditText);
+        EditText tDate = (EditText) parent.findViewById(R.id.dateEditText);
+        EditText tMessage = (EditText) parent.findViewById(R.id.messageEditText);
+
+        Data.addRequest(title.getText().toString(), tLocation.getText().toString(),
+                tDate.getText().toString(), tMessage.getText().toString());
+
+        finish();
+    }
+
+    public void requestCancel(View view) {
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

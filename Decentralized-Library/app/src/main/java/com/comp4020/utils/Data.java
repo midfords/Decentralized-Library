@@ -299,7 +299,9 @@ public class Data {
             "On Shelf","Lent","On Shelf","On Shelf","On Shelf"
     };
 
-    private static int[] myRequested = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    private static int[] myRequestedBookIndex = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+
+    private static String[][] myRequestedDetails = new String[myRequestedBookIndex.length][3];
 
     private static int[] myBorrowed = new int[] {45, 65, 22, 47, 58, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
@@ -318,6 +320,23 @@ public class Data {
             {15, 40},
             {33, 83},
     };
+
+    public static void addRequest(String title, String location, String date, String message) {
+
+        int bookIndex = 0;
+        int insertAt = 0;
+
+        //find index values
+        while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
+        while(bookIndex < titles.length && !titles[bookIndex].equals(title)) { bookIndex++; }
+
+        if(insertAt < myRequestedBookIndex.length && bookIndex < titles.length) {
+            myRequestedBookIndex[insertAt] = bookIndex;
+            myRequestedDetails[insertAt][0] = location;
+            myRequestedDetails[insertAt][1] = date;
+            myRequestedDetails[insertAt][2] = message;
+        }
+    }
 
     public static Bundle getRequests() {
         Bundle b = new Bundle();
@@ -356,7 +375,7 @@ public class Data {
         String[] rCovers;
 
         int i = 0;
-        while(i < myRequested.length && myRequested[i] != -1)
+        while(i < myRequestedBookIndex.length && myRequestedBookIndex[i] != -1)
         {
             i++;
         }
@@ -366,9 +385,9 @@ public class Data {
         rCovers = new String[i];
 
         for(int j=0; j<i; j++) {
-            rTitles[j] = titles[myRequested[j]];
-            rAuthors[j] = authors[myRequested[j]];
-            rCovers[j] = covers[myRequested[j]];
+            rTitles[j] = titles[myRequestedBookIndex[j]];
+            rAuthors[j] = authors[myRequestedBookIndex[j]];
+            rCovers[j] = covers[myRequestedBookIndex[j]];
         }
 
         b.putStringArray("titles", rTitles);
@@ -447,17 +466,20 @@ public class Data {
         String[] friendTitles = new String[length];
         String[] friendAuthors = new String[length];
         String[] friendCovers = new String[length];
+        String[] friendStatuss = new String[length];
 
         for(int i = friendLibrary[friendIndex][0]; i < friendLibrary[friendIndex][1]; i++)
         {
             friendTitles[i-friendLibrary[friendIndex][0]] = titles[i];
             friendAuthors[i-friendLibrary[friendIndex][0]] = authors[i];
             friendCovers[i-friendLibrary[friendIndex][0]] = covers[i];
+            friendStatuss[i-friendLibrary[friendIndex][0]] = statuss[i];
         }
 
         friendsLibraryBundle.putStringArray("titles", friendTitles);
         friendsLibraryBundle.putStringArray("authors", friendAuthors);
         friendsLibraryBundle.putStringArray("covers", friendCovers);
+        friendsLibraryBundle.putStringArray("statuss", friendStatuss);
 
         return friendsLibraryBundle;
     }
@@ -480,6 +502,19 @@ public class Data {
                 b.putString("bookOwner", friends[j]);
             }
         }
+        return b;
+    }
+
+    public static Bundle getBookBundle(String title)
+    {
+        Bundle b = null;
+        int i = 0;
+        while(i < titles.length && !titles[i].equals(title)) { i++; }
+
+        if(i < titles.length) {
+            b = getBookBundle(i);
+        }
+
         return b;
     }
 

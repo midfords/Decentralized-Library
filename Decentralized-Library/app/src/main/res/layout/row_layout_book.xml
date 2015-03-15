@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="100dp"
-    android:padding="6dip" >
+    android:padding="6dip"
+    android:onClick="listItemClicked">
 
     <ImageView
         android:id="@+id/bookLayout_BookCover"
