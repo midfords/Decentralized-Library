@@ -11,14 +11,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.comp4020.fragments.LibraryGridFragment;
 import com.comp4020.fragments.LibraryListFragment;
 import com.comp4020.utils.Data;
+import com.comp4020.utils.Globals;
 import com.comp4020.utils.Logger;
 
 
 public  class       FriendsLibraryActivity
         extends     Activity
-        implements LibraryListFragment.LibraryListFragmentCallbacks {
+        implements LibraryListFragment.LibraryListFragmentCallbacks,
+        LibraryGridFragment.LibraryGridFragmentCallbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +39,17 @@ public  class       FriendsLibraryActivity
         String[] friendLibraryStatuss = friendsLibrary.getStringArray("statuss");
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(friendLibraryTitles,
-                friendLibraryAuthors, friendLibraryCovers, friendLibraryStatuss);
-        fragmentTransaction.replace(R.id.container, libraryListFragment);
-        fragmentTransaction.commit();
+        if (!Globals.gridViewType) {
+            LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(friendLibraryTitles,
+                    friendLibraryAuthors, friendLibraryCovers, friendLibraryStatuss);
+            fragmentTransaction.replace(R.id.container, libraryListFragment);
+            fragmentTransaction.commit();
+        } else {
+            LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance(friendLibraryTitles,
+                    friendLibraryAuthors, friendLibraryCovers);
+            fragmentTransaction.replace(R.id.container, libraryGridFragment);
+            fragmentTransaction.commit();
+        }
     }
 
     public void requestClicked(View view) {
@@ -84,5 +94,13 @@ public  class       FriendsLibraryActivity
         // Do something
 
         Logger.log("List Entry - My Library. <" + uri.toString() + ">");
+    }
+
+    @Override
+    public void onLibraryGridFragmentInteraction(Uri uri) {
+
+        // Do something
+
+        Logger.log("Grid Entry - My Library. <" + uri.toString() + ">");
     }
 }
