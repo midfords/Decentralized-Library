@@ -75,7 +75,7 @@ public class SettingsFragment extends Fragment {
         lengthSwitch = (Switch) contentView.findViewById(R.id.lengthSwitch);
 
         // Persist switch position
-        lengthSwitch.setChecked(Globals.gridViewType);
+        lengthSwitch.setChecked(Globals.longLists);
 
         lengthSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
