@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +51,8 @@ public  class       FriendsLibraryActivity
             fragmentTransaction.replace(R.id.container, libraryGridFragment);
             fragmentTransaction.commit();
         }
+
+        Log.i("xpmt", "friendsLibraryActivity onCreate");
     }
 
     public void requestClicked(View view) {
@@ -58,6 +61,7 @@ public  class       FriendsLibraryActivity
         TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
         Bundle b = Data.getBookBundle(tv.getText().toString());
         i.putExtras(b);
+        Log.i("xpmt", "Friends book button clicked: "+tv.getText().toString());
         FriendsLibraryActivity.this.startActivity(i);
     }
 
@@ -66,7 +70,7 @@ public  class       FriendsLibraryActivity
         String title = ((TextView)(view.findViewById(R.id.bookLayout_BookTitle))).getText().toString();
         Bundle b = Data.getBookBundle(title);
         i.putExtras(b);
-
+        Log.i("xpmt", "Friends book listItem selected: "+title);
         startActivity(i);
     }
 
@@ -93,7 +97,7 @@ public  class       FriendsLibraryActivity
 
         // Do something
 
-        Logger.log("List Entry - My Library. <" + uri.toString() + ">");
+        Log.i("xpmt", "List Entry - My Library. <" + uri.toString() + ">");
     }
 
     @Override
@@ -101,6 +105,6 @@ public  class       FriendsLibraryActivity
 
         // Do something
 
-        Logger.log("Grid Entry - My Library. <" + uri.toString() + ">");
+        Log.i("xpmt", "Grid Entry - My Library. <" + uri.toString() + ">"); //TODO make all logs like this (second string is message)
     }
 }

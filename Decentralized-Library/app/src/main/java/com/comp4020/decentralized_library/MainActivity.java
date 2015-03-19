@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.*;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -58,6 +59,7 @@ public  class       MainActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        Log.i("xpmt", "main onCreate");
     }
 
     @Override
@@ -89,7 +91,7 @@ public  class       MainActivity
                     fragmentTransaction.commit();
                 }
 
-                Logger.log("Navigation Drawer - My Library");
+                Log.i("xpmt", "Nav Drawer to My Library");
 
                 break;
             case 1: // Friends
@@ -98,8 +100,7 @@ public  class       MainActivity
                 mViewFragment = friendsFragment;
                 fragmentTransaction.replace(R.id.container, friendsFragment);
                 fragmentTransaction.commit();
-
-                Logger.log("Navigation Drawer - Friends");
+                Log.i("xpmt", "Nav Drawer to Friends List");
 
                 break;
             case 2: // Borrowing
@@ -109,7 +110,7 @@ public  class       MainActivity
                 fragmentTransaction.replace(R.id.container, borrowingFragment);
                 fragmentTransaction.commit();
 
-                Logger.log("Navigation Drawer - Borrowing");
+                Log.i("xpmt", "Nav Drawer to Borrowing");;
 
                 break;
             case 3: // Settings
@@ -119,7 +120,7 @@ public  class       MainActivity
                 fragmentTransaction.replace(R.id.container, settingsFragment);
                 fragmentTransaction.commit();
 
-                Logger.log("Navigation Drawer - Settings");
+                Log.i("xpmt", "Nav Drawer to Settings");
 
                 break;
         }
@@ -174,7 +175,7 @@ public  class       MainActivity
         fragmentTransaction.replace(R.id.container, borrowingFragment);
         fragmentTransaction.commit();
 
-        Logger.log("Exchanges Section Jump to "+section);
+        Log.i("xpmt", "Exchanges Section Jump to"+section);
     }
     //TODO make this implement all different book button tasks based on button.getText()
     public void requestClicked(View view) {
@@ -221,8 +222,7 @@ public  class       MainActivity
     public void onBorrowingFragmentInteraction(Uri uri) {
 
         // Do something
-
-        Logger.log("List Entry - Borrowing. <" + uri.toString() + ">");
+        Log.i("xpmt", "List Entry - Borrowing. <" + uri.toString() + ">");
     }
 
     @Override
@@ -230,7 +230,7 @@ public  class       MainActivity
 
         // Do something
 
-        Logger.log("List Entry - Friends. <" + uri.toString() + ">");
+        Log.i("xpmt", "List Entry - Friends. <" + uri.toString() + ">");
     }
 
     @Override
@@ -238,7 +238,7 @@ public  class       MainActivity
 
         // Do something
 
-        Logger.log("List Entry - My Library. <" + uri.toString() + ">");
+        Log.i("xpmt", "List Entry - My Library. <" + uri.toString() + ">");
     }
 
     @Override
@@ -246,7 +246,7 @@ public  class       MainActivity
 
         // Do something
 
-        Logger.log("List Entry - Settings. <" + uri.toString() + ">");
+        Log.i("xpmt", "List Entry - Settings. <" + uri.toString() + ">");
     }
 
     @Override
