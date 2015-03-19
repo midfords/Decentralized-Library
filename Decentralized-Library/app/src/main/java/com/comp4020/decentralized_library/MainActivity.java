@@ -1,5 +1,7 @@
 package com.comp4020.decentralized_library;
 
+//TODO create activities for dummy help and about us pages. link through nav drawer
+
 import android.app.Activity;
 
 import android.app.ActionBar;
@@ -123,6 +125,7 @@ public  class       MainActivity
         }
     }
 
+    //TODO add about us and help
     public void onSectionAttached(int number) {
 
         switch (number) {
@@ -173,7 +176,7 @@ public  class       MainActivity
 
         Logger.log("Exchanges Section Jump to "+section);
     }
-
+    //TODO make this implement all different book button tasks based on button.getText()
     public void requestClicked(View view) {
         Intent i = new Intent(MainActivity.this, RequestActivity.class);
         View parent = (View) view.getParent();

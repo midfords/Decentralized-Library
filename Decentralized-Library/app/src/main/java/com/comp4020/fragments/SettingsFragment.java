@@ -68,7 +68,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Globals.gridViewType = viewSwitch.isChecked();
+                Globals.gridViewType = viewSwitch.isChecked(); //TODO doesn't work on Jeff's phone
             }
         });
 
@@ -81,7 +81,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Globals.longLists = lengthSwitch.isChecked();
+                Globals.longLists = lengthSwitch.isChecked(); //TODO doesn't work on Jeff's phone
             }
         });
 

@@ -50,6 +50,8 @@ public class LibraryListArrayAdapter extends ArrayAdapter<String> {
 
         textViewTitle.setText(titles[position]);
         textViewAuthor.setText(authors[position]);
+
+        //TODO test these conditions to make sure they work properly
         String bookStatus;
         if(this.statuss == null) {
             requestButton.setVisibility(View.INVISIBLE);

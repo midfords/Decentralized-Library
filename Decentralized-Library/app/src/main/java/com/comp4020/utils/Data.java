@@ -539,7 +539,7 @@ public class Data {
 
     private static int[] myRequestedBookIndex = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-    
+    //TODO get requested details to populate editable fields when user selects book from requested page
     private static String[][] myRequestedDetails = new String[myRequestedBookIndex.length][3];
 
     private static int[] myBorrowed = new int[] {45, 65, 22, 47, 58, -1, -1, -1, -1, -1, -1, -1, -1, -1};
@@ -566,6 +566,7 @@ public class Data {
             {100, 150},
     };
 
+    //TODO make this work so that requested books show up in borrowing section
     public static void addRequest(String title, String location, String date, String message) {
 
         int bookIndex = 0;

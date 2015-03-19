@@ -19,7 +19,7 @@ public class DetailsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); //TODO record parent activity so that user can go back one step instead of to root
         setContentView(R.layout.activity_details);
 
         // Setup details info
@@ -29,7 +29,7 @@ public class DetailsActivity extends Activity {
         String bookAuthor = b.getString("bookAuthor");
         String bookCover = b.getString("bookCover");
         String bookOwner = b.getString("bookOwner");
-        String bookDetails = b.getString("bookDetails");
+        String bookDetails = b.getString("bookDetails"); //TODO show the book synopsis on the detail page (I think bookDetails is the synopsis)
         String bookStatus = b.getString("bookStatus");
 
         TextView titleLabel = (TextView) findViewById(R.id.detailTitleLabel);
@@ -39,6 +39,7 @@ public class DetailsActivity extends Activity {
         ImageView coverImage = (ImageView) findViewById(R.id.detailImageView);
         Button requestbutton = (Button) findViewById(R.id.detailStatusButton);
 
+        //TODO test these conditions to make sure they work properly
         if(bookStatus == null || bookStatus.equals("My Shelf"))
             requestbutton.setVisibility(View.INVISIBLE);
         else if(bookStatus.equals("My Lent"))

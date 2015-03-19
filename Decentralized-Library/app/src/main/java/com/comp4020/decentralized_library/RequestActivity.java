@@ -34,6 +34,7 @@ public class RequestActivity extends Activity {
         coverImage.setImageResource(resID);
     }
 
+    //TODO make this store requests properly so they can be accessed from borrowing section
     public void requestOK(View view) {
         View parent = (View) view.getParent().getParent();
         TextView title = (TextView) parent.findViewById(R.id.requestTitleLabel);
