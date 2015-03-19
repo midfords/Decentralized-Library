@@ -673,7 +673,7 @@ public class Data {
         String[] rAuthors = new String[requested.size()];
         String[] rCovers = new String[requested.size()];
 
-        for (int i=0;i<requests.size(); i++)
+        for (int i=0;i<requested.size(); i++)
         {
             rTitles[i] = titles[requested.get(i)];
             rAuthors[i] = authors[requested.get(i)];
@@ -708,7 +708,7 @@ public class Data {
         String[] rAuthors = new String[borrowed.size()];
         String[] rCovers = new String[borrowed.size()];
 
-        for (int i=0;i<requests.size(); i++)
+        for (int i=0;i<borrowed.size(); i++)
         {
             rTitles[i] = titles[borrowed.get(i)];
             rAuthors[i] = authors[borrowed.get(i)];
@@ -743,7 +743,7 @@ public class Data {
         String[] rAuthors = new String[lent.size()];
         String[] rCovers = new String[lent.size()];
 
-        for (int i=0;i<requests.size(); i++)
+        for (int i=0;i<lent.size(); i++)
         {
             rTitles[i] = titles[lent.get(i)];
             rAuthors[i] = authors[lent.get(i)];
