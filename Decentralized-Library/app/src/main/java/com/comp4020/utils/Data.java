@@ -582,6 +582,51 @@ public class Data {
         }
     }
 
+    public static void addRequest(int index)
+    {
+        requests.add(index);
+        Collections.sort(requests);
+    }
+
+    public static void acceptRequest(int index)
+    {
+        addLent(requests.get(index));
+        requests.remove(index);
+    }
+
+    public static void rejectRequest(int index)
+    {
+        requests.remove(index);
+    }
+
+    public static void addRequested(int index)
+    {
+        requested.add(index);
+        Collections.sort(requests);
+    }
+
+    public static void cancelRequested(int index)
+    {
+        requested.remove(index);
+    }
+
+    public static void addBorrowed(int index)
+    {
+        borrowed.add(index);
+        Collections.sort(requests);
+    }
+
+    public static void addLent(int index)
+    {
+        lent.add(index);
+        Collections.sort(requests);
+    }
+
+    public static void unLend(int index)
+    {
+        lent.remove(index);
+    }
+
     public static Bundle getRequests() {
         Bundle b = new Bundle();
         String[] rTitles = new String[requests.size()];
