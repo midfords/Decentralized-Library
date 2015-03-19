@@ -4,6 +4,7 @@ package com.comp4020.utils;
  * Created by jeff on 15-03-11.
  */
 import android.os.Bundle;
+import java.util.*;
 
 public class Data {
 
@@ -542,6 +543,11 @@ public class Data {
 
     private static int[] myBorrowed = new int[] {45, 65, 22, 47, 58, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
+    private static ArrayList<Integer> requests = new ArrayList<Integer>();
+    private static ArrayList<Integer> requested = new ArrayList<Integer>();
+    private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22, 47, 58));
+    private static ArrayList<Integer> lent = new ArrayList<Integer>();
+
     private static final String[] friends = new String[] {
             "Toquehead",
             "Sean",
@@ -578,27 +584,35 @@ public class Data {
 
     public static Bundle getRequests() {
         Bundle b = new Bundle();
-        String[] rTitles;
-        String[] rAuthors;
-        String[] rCovers;
-        int num = 0;
-        int[] rIndex = new int[myLibrary.length];
+        String[] rTitles = new String[requests.size()];
+        String[] rAuthors = new String[requests.size()];
+        String[] rCovers = new String[requests.size()];
 
-        for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
-            if(myStatuss[i].equals("Requested")) {
-                rIndex[num] = i;
-                num++;
-            }
+        for (int i=0;i<requests.size(); i++)
+        {
+            rTitles[i] = titles[requests.get(i)];
+            rAuthors[i] = authors[requests.get(i)];
+            rCovers[i] = covers[requests.get(i)];
         }
-        rTitles = new String[num];
-        rAuthors = new String[num];
-        rCovers = new String[num];
 
-        for(int i=0; i<num; i++) {
-            rTitles[i] = titles[rIndex[i]];
-            rAuthors[i] = authors[rIndex[i]];
-            rCovers[i] = covers[rIndex[i]];
-        }
+//        int num = 0;
+//        int[] rIndex = new int[myLibrary.length];
+//
+//        for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
+//            if(myStatuss[i].equals("Requested")) {
+//                rIndex[num] = i;
+//                num++;
+//            }
+//        }
+//        rTitles = new String[num];
+//        rAuthors = new String[num];
+//        rCovers = new String[num];
+//
+//        for(int i=0; i<num; i++) {
+//            rTitles[i] = titles[rIndex[i]];
+//            rAuthors[i] = authors[rIndex[i]];
+//            rCovers[i] = covers[rIndex[i]];
+//        }
 
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
@@ -608,25 +622,32 @@ public class Data {
 
     public static Bundle getRequested() {
         Bundle b = new Bundle();
-        String[] rTitles;
-        String[] rAuthors;
-        String[] rCovers;
+        String[] rTitles = new String[requested.size()];
+        String[] rAuthors = new String[requested.size()];
+        String[] rCovers = new String[requested.size()];
 
-        int i = 0;
-        while(i < myRequestedBookIndex.length && myRequestedBookIndex[i] != -1)
+        for (int i=0;i<requests.size(); i++)
         {
-            i++;
+            rTitles[i] = titles[requested.get(i)];
+            rAuthors[i] = authors[requested.get(i)];
+            rCovers[i] = covers[requested.get(i)];
         }
 
-        rTitles = new String[i];
-        rAuthors = new String[i];
-        rCovers = new String[i];
-
-        for(int j=0; j<i; j++) {
-            rTitles[j] = titles[myRequestedBookIndex[j]];
-            rAuthors[j] = authors[myRequestedBookIndex[j]];
-            rCovers[j] = covers[myRequestedBookIndex[j]];
-        }
+//        int i = 0;
+//        while(i < myRequestedBookIndex.length && myRequestedBookIndex[i] != -1)
+//        {
+//            i++;
+//        }
+//
+//        rTitles = new String[i];
+//        rAuthors = new String[i];
+//        rCovers = new String[i];
+//
+//        for(int j=0; j<i; j++) {
+//            rTitles[j] = titles[myRequestedBookIndex[j]];
+//            rAuthors[j] = authors[myRequestedBookIndex[j]];
+//            rCovers[j] = covers[myRequestedBookIndex[j]];
+//        }
 
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
@@ -636,25 +657,32 @@ public class Data {
 
     public static Bundle getBorrowed() {
         Bundle b = new Bundle();
-        String[] rTitles;
-        String[] rAuthors;
-        String[] rCovers;
+        String[] rTitles = new String[borrowed.size()];
+        String[] rAuthors = new String[borrowed.size()];
+        String[] rCovers = new String[borrowed.size()];
 
-        int i = 0;
-        while(i < myBorrowed.length && myBorrowed[i] != -1)
+        for (int i=0;i<requests.size(); i++)
         {
-            i++;
+            rTitles[i] = titles[borrowed.get(i)];
+            rAuthors[i] = authors[borrowed.get(i)];
+            rCovers[i] = covers[borrowed.get(i)];
         }
 
-        rTitles = new String[i];
-        rAuthors = new String[i];
-        rCovers = new String[i];
-
-        for(int j=0; j<i; j++) {
-            rTitles[j] = titles[myBorrowed[j]];
-            rAuthors[j] = authors[myBorrowed[j]];
-            rCovers[j] = covers[myBorrowed[j]];
-        }
+//        int i = 0;
+//        while(i < myBorrowed.length && myBorrowed[i] != -1)
+//        {
+//            i++;
+//        }
+//
+//        rTitles = new String[i];
+//        rAuthors = new String[i];
+//        rCovers = new String[i];
+//
+//        for(int j=0; j<i; j++) {
+//            rTitles[j] = titles[myBorrowed[j]];
+//            rAuthors[j] = authors[myBorrowed[j]];
+//            rCovers[j] = covers[myBorrowed[j]];
+//        }
 
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
@@ -664,27 +692,35 @@ public class Data {
 
     public static Bundle getLent() {
         Bundle b = new Bundle();
-        String[] rTitles;
-        String[] rAuthors;
-        String[] rCovers;
-        int num = 0;
-        int[] rIndex = new int[myLibrary.length];
+        String[] rTitles = new String[lent.size()];
+        String[] rAuthors = new String[lent.size()];
+        String[] rCovers = new String[lent.size()];
 
-        for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
-            if(myStatuss[i].equals("Lent")) {
-                rIndex[num] = i;
-                num++;
-            }
+        for (int i=0;i<requests.size(); i++)
+        {
+            rTitles[i] = titles[lent.get(i)];
+            rAuthors[i] = authors[lent.get(i)];
+            rCovers[i] = covers[lent.get(i)];
         }
-        rTitles = new String[num];
-        rAuthors = new String[num];
-        rCovers = new String[num];
 
-        for(int i=0; i<num; i++) {
-            rTitles[i] = titles[rIndex[i]];
-            rAuthors[i] = authors[rIndex[i]];
-            rCovers[i] = covers[rIndex[i]];
-        }
+//        int num = 0;
+//        int[] rIndex = new int[myLibrary.length];
+//
+//        for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
+//            if(myStatuss[i].equals("Lent")) {
+//                rIndex[num] = i;
+//                num++;
+//            }
+//        }
+//        rTitles = new String[num];
+//        rAuthors = new String[num];
+//        rCovers = new String[num];
+//
+//        for(int i=0; i<num; i++) {
+//            rTitles[i] = titles[rIndex[i]];
+//            rAuthors[i] = authors[rIndex[i]];
+//            rCovers[i] = covers[rIndex[i]];
+//        }
 
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
