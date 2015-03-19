@@ -544,7 +544,7 @@ public class Data {
 
     private static int[] myBorrowed = new int[] {45, 65, 22, 47, 58, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-    private static ArrayList<Integer> requests = new ArrayList<Integer>();
+    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(3, "Ha", "Ho", "Hu")));
     private static ArrayList<Integer> requested = new ArrayList<Integer>();
     private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22, 47, 58));
     private static ArrayList<Integer> lent = new ArrayList<Integer>();
@@ -573,26 +573,23 @@ public class Data {
         int insertAt = 0;
 
         //find index values
-        while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
+        //while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
         while(bookIndex < titles.length && !titles[bookIndex].equals(title)) { bookIndex++; }
-
-        if(insertAt < myRequestedBookIndex.length && bookIndex < titles.length) {
-            myRequestedBookIndex[insertAt] = bookIndex;
-            myRequestedDetails[insertAt][0] = location;
-            myRequestedDetails[insertAt][1] = date;
-            myRequestedDetails[insertAt][2] = message;
-        }
-    }
-
-    public static void addRequest(int index)
-    {
-        requests.add(index);
+        if (bookIndex < titles.length)
+            requests.add(new Request(bookIndex, location, date, message));
         Collections.sort(requests);
+
+//        if(insertAt < myRequestedBookIndex.length && bookIndex < titles.length) {
+//            myRequestedBookIndex[insertAt] = bookIndex;
+//            myRequestedDetails[insertAt][0] = location;
+//            myRequestedDetails[insertAt][1] = date;
+//            myRequestedDetails[insertAt][2] = message;
+//        }
     }
 
     public static void acceptRequest(int index)
     {
-        addLent(requests.get(index));
+        addLent(requests.get(index).bookIndex);
         requests.remove(index);
     }
 
@@ -604,7 +601,7 @@ public class Data {
     public static void addRequested(int index)
     {
         requested.add(index);
-        Collections.sort(requests);
+        Collections.sort(requested);
     }
 
     public static void cancelRequested(int index)
@@ -629,6 +626,11 @@ public class Data {
         lent.remove(index);
     }
 
+    public static Request getRequest(int index)
+    {
+        return requests.get(index);
+    }
+
     public static Bundle getRequests() {
         Bundle b = new Bundle();
         String[] rTitles = new String[requests.size()];
@@ -637,9 +639,9 @@ public class Data {
 
         for (int i=0;i<requests.size(); i++)
         {
-            rTitles[i] = titles[requests.get(i)];
-            rAuthors[i] = authors[requests.get(i)];
-            rCovers[i] = covers[requests.get(i)];
+            rTitles[i] = titles[requests.get(i).bookIndex];
+            rAuthors[i] = authors[requests.get(i).bookIndex];
+            rCovers[i] = covers[requests.get(i).bookIndex];
         }
 
 //        int num = 0;
