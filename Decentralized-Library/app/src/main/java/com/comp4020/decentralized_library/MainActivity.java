@@ -59,7 +59,6 @@ public  class       MainActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-        Log.i("xpmt", "main onCreate");
     }
 
     @Override
@@ -175,7 +174,7 @@ public  class       MainActivity
         fragmentTransaction.replace(R.id.container, borrowingFragment);
         fragmentTransaction.commit();
 
-        Log.i("xpmt", "Exchanges Section Jump to"+section);
+        Log.i("xpmt", "Exchanges Section Jump to: "+section);
     }
     //TODO make this implement all different book button tasks based on button.getText()
     public void requestClicked(View view) {
@@ -184,6 +183,7 @@ public  class       MainActivity
         TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
         Bundle b = Data.getBookBundle(tv.getText().toString());
         i.putExtras(b);
+        Log.i("xpmt", "My Library Book Button Clicked: "+b.getString("bookTitle"));
         MainActivity.this.startActivity(i);
     }
 
@@ -192,7 +192,7 @@ public  class       MainActivity
         String title = ((TextView)(view.findViewById(R.id.bookLayout_BookTitle))).getText().toString();
         Bundle b = Data.getBookBundle(title);
         i.putExtras(b);
-
+        Log.i("xpmt", "My Library ListItem Clicked: "+title);
         startActivity(i);
     }
 
@@ -214,7 +214,6 @@ public  class       MainActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -251,6 +250,6 @@ public  class       MainActivity
 
     @Override
     public void onLibraryGridFragmentInteraction(Uri uri) {
-
+        Log.i("xpmt", "onLibraryGridFragmentInteraction (What is this?)"); //TODO what is this for?
     }
 }

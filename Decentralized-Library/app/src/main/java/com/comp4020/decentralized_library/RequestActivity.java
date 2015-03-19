@@ -2,6 +2,7 @@ package com.comp4020.decentralized_library;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +46,10 @@ public class RequestActivity extends Activity {
         Data.addRequest(title.getText().toString(), tLocation.getText().toString(),
                 tDate.getText().toString(), tMessage.getText().toString());
 
+        Log.i("xpmt", "RequestOK clicked: "+title.getText().toString()+
+                "; Location: "+tLocation.getText().toString()+
+                ", Date: "+tDate.getText().toString()+
+                ", Message: "+tMessage.getText().toString());
         finish();
     }
 
@@ -65,7 +70,6 @@ public class RequestActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

@@ -31,7 +31,8 @@ public  class       FriendsLibraryActivity
 
         Bundle b = getIntent().getExtras();
         int bookOwnerPosition = b.getInt("bookOwnerPosition");
-        getActionBar().setTitle(Data.getFriendsName(bookOwnerPosition) + "'s Library");
+        String name = Data.getFriendsName(bookOwnerPosition);
+        getActionBar().setTitle(name + "'s Library");
 
         Bundle friendsLibrary = Data.getFriendsLibraryBundle(bookOwnerPosition);
         String[] friendLibraryTitles = friendsLibrary.getStringArray("titles");
@@ -52,7 +53,7 @@ public  class       FriendsLibraryActivity
             fragmentTransaction.commit();
         }
 
-        Log.i("xpmt", "friendsLibraryActivity onCreate");
+        Log.i("xpmt", "Friends Library: "+name);
     }
 
     public void requestClicked(View view) {
@@ -61,7 +62,7 @@ public  class       FriendsLibraryActivity
         TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
         Bundle b = Data.getBookBundle(tv.getText().toString());
         i.putExtras(b);
-        Log.i("xpmt", "Friends book button clicked: "+tv.getText().toString());
+        Log.i("xpmt", "Friends Library: book button clicked: "+tv.getText().toString());
         FriendsLibraryActivity.this.startActivity(i);
     }
 
@@ -70,7 +71,7 @@ public  class       FriendsLibraryActivity
         String title = ((TextView)(view.findViewById(R.id.bookLayout_BookTitle))).getText().toString();
         Bundle b = Data.getBookBundle(title);
         i.putExtras(b);
-        Log.i("xpmt", "Friends book listItem selected: "+title);
+        Log.i("xpmt", "Friends Library: book listItem selected: "+title);
         startActivity(i);
     }
 

@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,6 +70,7 @@ public class DetailsActivity extends Activity {
         TextView tv = (TextView) parent.findViewById(R.id.detailTitleLabel);
         Bundle b = Data.getBookBundle(tv.getText().toString());
         i.putExtras(b);
+        Log.i("xpmt", "Details book button clicked: "+tv.getText().toString());
         DetailsActivity.this.startActivity(i);
     }
 
@@ -84,7 +86,6 @@ public class DetailsActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         return super.onOptionsItemSelected(item);
     }
 }
