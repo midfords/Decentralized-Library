@@ -50,18 +50,25 @@ public class LibraryListArrayAdapter extends ArrayAdapter<String> {
 
         textViewTitle.setText(titles[position]);
         textViewAuthor.setText(authors[position]);
-
-        if(this.statuss == null)
+        String bookStatus;
+        if(this.statuss == null) {
             requestButton.setVisibility(View.INVISIBLE);
-        else if (statuss[position].equals("On Shelf"))
-            requestButton.setText("Request");
-        else if (statuss[position].equals("Lent"))
-        {
-            requestButton.setText("Lent");
-            requestButton.setEnabled(false);
+            bookStatus = null;
         }
         else
-            requestButton.setText(statuss[position]);
+            bookStatus = this.statuss[position];
+
+        if(bookStatus == null || bookStatus.equals("My Shelf"))
+            requestButton.setVisibility(View.INVISIBLE);
+        else if(bookStatus.equals("My Lent"))
+            requestButton.setText("Set To Returned");
+        else if(bookStatus.equals("Lent"))
+        {
+            requestButton.setText(bookStatus);
+            requestButton.setEnabled(false);
+        }
+        else if(bookStatus.equals("On Shelf"))
+            requestButton.setText("Request");
 
         int resID = context.getResources().getIdentifier(covers[position],
                 "drawable", context.getPackageName());

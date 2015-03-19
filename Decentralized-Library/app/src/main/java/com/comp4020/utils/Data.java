@@ -495,8 +495,8 @@ public class Data {
     // Statusses are not final because we will change them as lending actions happen
     //statusses are On Shelf and Lent
     private static String[] statuss = new String[] {
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+            "My Shelf","My Lent","My Lent","My Shelf","My My Shelf","My Lent","My Lent","My Shelf","My Lent",
+            "My Shelf","My Lent","My Lent","My Shelf","My Shelf","My Lent","Lent","On Shelf","Lent",
             "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
             "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
             "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
@@ -539,6 +539,7 @@ public class Data {
 
     private static int[] myRequestedBookIndex = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
+    
     private static String[][] myRequestedDetails = new String[myRequestedBookIndex.length][3];
 
     private static int[] myBorrowed = new int[] {45, 65, 22, 47, 58, -1, -1, -1, -1, -1, -1, -1, -1, -1};
