@@ -20,7 +20,7 @@ public class Request implements Comparable {
     @Override
     public int compareTo(Object another) {
         if (another instanceof Request)
-            return ((Request)another).bookIndex = bookIndex;
+            return ((Request)another).bookIndex - bookIndex;
         return 0;
     }
 }
