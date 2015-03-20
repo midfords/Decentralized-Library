@@ -66,7 +66,7 @@ public class ExchangesFragment extends Fragment {
             args.putString(ARG_SECTION, "Requests");
         }
         else if(section.equals("Requested")) {
-            args = Data.getRequested(); //TODO make this actually load requested books (no idea whether it does right now)
+            args = Data.getRequested();
             args.putString(ARG_SECTION, "Requested");
         }
         else if(section.equals("Borrowed")) {

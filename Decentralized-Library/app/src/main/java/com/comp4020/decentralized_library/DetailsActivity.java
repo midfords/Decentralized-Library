@@ -13,10 +13,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.comp4020.utils.BookStatus;
 import com.comp4020.utils.Data;
 
 
 public class DetailsActivity extends Activity {
+    private BookStatus status;
+    private String bookTitle;
+    private Button requestbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,7 @@ public class DetailsActivity extends Activity {
         // Setup details info
 
         Bundle b = getIntent().getExtras();
-        String bookTitle = b.getString("bookTitle");
+        bookTitle = b.getString("bookTitle");
         String bookAuthor = b.getString("bookAuthor");
         String bookCover = b.getString("bookCover");
         String bookOwner = b.getString("bookOwner");
@@ -38,20 +42,23 @@ public class DetailsActivity extends Activity {
         TextView ownerLabel = (TextView) findViewById(R.id.detailOwnerLabel);
         TextView detailsLabel = (TextView) findViewById(R.id.detailDetailsLabel);
         ImageView coverImage = (ImageView) findViewById(R.id.detailImageView);
-        Button requestbutton = (Button) findViewById(R.id.detailStatusButton);
+        requestbutton = (Button) findViewById(R.id.detailStatusButton);
 
         //TODO test these conditions to make sure they work properly
-        if(bookStatus == null || bookStatus.equals("My Shelf"))
-            requestbutton.setVisibility(View.INVISIBLE);
-        else if(bookStatus.equals("My Lent"))
-            requestbutton.setText("Set To Returned");
-        else if(bookStatus.equals("Lent"))
-        {
-            requestbutton.setText(bookStatus);
-            requestbutton.setEnabled(false);
-        }
-        else if(bookStatus.equals("On Shelf"))
-            requestbutton.setText("Request");
+//        if(bookStatus == null || bookStatus.equals("My Shelf"))
+//            requestbutton.setVisibility(View.INVISIBLE);
+//        else if(bookStatus.equals("My Lent"))
+//            requestbutton.setText("Set To Returned");
+//        else if(bookStatus.equals("Lent"))
+//        {
+//            requestbutton.setText(bookStatus);
+//            requestbutton.setEnabled(false);
+//        }
+//        else if(bookStatus.equals("On Shelf"))
+//            requestbutton.setText("Request");
+
+        setButtonText();
+
 
         titleLabel.setText(bookTitle);
         authorLabel.setText(bookAuthor);
@@ -64,14 +71,67 @@ public class DetailsActivity extends Activity {
 
     }
 
+    private void setButtonText()
+    {
+        status = Data.getStatus(bookTitle);
+
+        switch (status)
+        {
+            case MyLibrary:
+//            requestbutton.setVisibility(View.INVISIBLE);
+                requestbutton.setText("Lend");
+                break;
+            case OnShelf:
+                requestbutton.setText("Request");
+                break;
+            case InRequests:
+                requestbutton.setText("Accept Request");
+                break;
+            case Requested:
+                requestbutton.setText("Cancel Request");
+                break;
+            case Borrowed:
+                //requestbutton.setText("Set To Returned");
+                requestbutton.setVisibility(View.INVISIBLE);
+                break;
+            case Lent:
+                requestbutton.setText("Unlend");
+//                requestbutton.setEnabled(false);
+                break;
+        }
+    }
+
     public void requestClicked(View view) {
-        Intent i = new Intent(DetailsActivity.this, RequestActivity.class);
-        View parent = (View) view.getParent().getParent();
-        TextView tv = (TextView) parent.findViewById(R.id.detailTitleLabel);
-        Bundle b = Data.getBookBundle(tv.getText().toString());
-        i.putExtras(b);
-        Log.i("xpmt", "Details book button clicked: "+tv.getText().toString());
-        DetailsActivity.this.startActivity(i);
+        switch (status)
+        {
+            case MyLibrary:
+                Data.addLent(Data.getBookID(bookTitle));
+                setButtonText();
+            break;
+            case OnShelf:
+                Intent i = new Intent(DetailsActivity.this, RequestActivity.class);
+                View parent = (View) view.getParent().getParent();
+                TextView tv = (TextView) parent.findViewById(R.id.detailTitleLabel);
+                Bundle b = Data.getBookBundle(tv.getText().toString());
+                i.putExtras(b);
+                Log.i("xpmt", "Details request book button clicked: "+tv.getText().toString());
+                DetailsActivity.this.startActivity(i);
+            break;
+            case InRequests:
+                Data.acceptRequest(Data.getBookID(bookTitle));
+                setButtonText();
+            break;
+            case Requested:
+                Data.cancelRequested(Data.getBookID(bookTitle));
+                setButtonText();
+            break;
+            case Borrowed:
+            break;
+            case Lent:
+                Data.unLend(Data.getBookID(bookTitle));
+                setButtonText();
+            break;
+        }
     }
 
 

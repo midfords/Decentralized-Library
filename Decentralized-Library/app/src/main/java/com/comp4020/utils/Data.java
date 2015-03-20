@@ -698,6 +698,81 @@ public class Data {
     };
 
     //
+    // Book status identifiers
+    //
+
+    public static BookStatus getStatus(String title)
+    {
+        BookStatus status = BookStatus.OnShelf;
+
+        if (isBookLent(title))
+            status = BookStatus.Lent;
+        else if (isBookBorrowed(title))
+            status = BookStatus.Borrowed;
+        else if (isBookRequested(title))
+            status = BookStatus.Requested;
+        else if (isBookInRequests(title))
+            status = BookStatus.InRequests;
+        else if (getBookID(title) < 50)
+            status = BookStatus.MyLibrary;
+
+        return status;
+    }
+
+    public static int getBookID(String title)
+    {
+        int bookIndex = 0;
+
+        while(bookIndex < titles.length && !titles[bookIndex].equals(title)) { bookIndex++; }
+
+        return bookIndex;
+    }
+
+    public static boolean isBookInRequests(String title)
+    {
+        int book = getBookID(title);
+        boolean result = false;
+        for (int i = 0; i < requests.size() && !result; i++)
+        {
+            result = requests.get(i).bookIndex == book;
+        }
+        return result;
+    }
+
+    public static boolean isBookRequested(String title)
+    {
+        int book = getBookID(title);
+        boolean result = false;
+        for (int i = 0; i < requested.size() && !result; i++)
+        {
+            result = requested.get(i).bookIndex == book;
+        }
+        return result;
+    }
+
+    public static boolean isBookBorrowed(String title)
+    {
+        int book = getBookID(title);
+        boolean result = false;
+        for (int i = 0; i < borrowed.size() && !result; i++)
+        {
+            result = borrowed.get(i) == book;
+        }
+        return result;
+    }
+
+    public static boolean isBookLent(String title)
+    {
+        int book = getBookID(title);
+        boolean result = false;
+        for (int i = 0; i < lent.size() && !result; i++)
+        {
+            result = lent.get(i) == book;
+        }
+        return result;
+    }
+
+    //
     // Owner and friends data
     //
 
@@ -743,12 +818,11 @@ public class Data {
     //TODO make this work so that requested books show up in borrowing section
     public static void addRequest(String title, String name, String location, String date, String message) {
 
-        int bookIndex = 0;
+        int bookIndex = getBookID(title);
         //int insertAt = 0;
 
         //find index values
         //while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
-        while(bookIndex < titles.length && !titles[bookIndex].equals(title)) { bookIndex++; }
         if (bookIndex < titles.length)
             requests.add(new Request(bookIndex, name, location, date, message));
         Collections.sort(requests);
@@ -761,25 +835,40 @@ public class Data {
 //        }
     }
 
+    public static int getIndex(ArrayList<Request> arr, int index)
+    {
+        int result = -1;
+        boolean done = false;
+        for (int i=0;i<arr.size() && !done;i++)
+        {
+            if (arr.get(i).bookIndex == index)
+            {
+                result = i;
+                done = true;
+            }
+        }
+        return result;
+    }
+
     public static void acceptRequest(int index)
     {
-        addLent(requests.get(index).bookIndex);
-        requests.remove(index);
+        int i = getIndex(requests, index);
+        addLent(requests.get(i).bookIndex);
+        requests.remove(i);
     }
 
     public static void rejectRequest(int index)
     {
-        requests.remove(index);
+        requests.remove(getIndex(requests, index));
     }
 
     public static void addRequested(String title, String location, String date, String message) {
 
-        int bookIndex = 0;
+        int bookIndex = getBookID(title);
         //int insertAt = 0;
 
         //find index values
         //while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
-        while(bookIndex < titles.length && !titles[bookIndex].equals(title)) { bookIndex++; }
         if (bookIndex < titles.length)
             requested.add(new Request(bookIndex,"User", location, date, message));
         Collections.sort(requested);
@@ -787,7 +876,7 @@ public class Data {
 
     public static void cancelRequested(int index)
     {
-        requested.remove(index);
+        requested.remove(getIndex(requests, index));
     }
 
     public static void addBorrowed(int index)
@@ -804,7 +893,7 @@ public class Data {
 
     public static void unLend(int index)
     {
-        lent.remove(index);
+        lent.remove(lent.indexOf(index));
     }
 
     public static Request getRequest(int index)
