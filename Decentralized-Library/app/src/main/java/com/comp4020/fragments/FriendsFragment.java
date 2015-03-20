@@ -85,22 +85,15 @@ public class FriendsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     final int position, long id) {
 
-                view.animate().setDuration(20).alpha(0).withEndAction(
-                        new Runnable() {
+            // Show friend's library
+            Intent i = new Intent(view.getContext(), FriendsLibraryActivity.class);
 
-                            @Override
-                            public void run() {
+            Bundle b = new Bundle();
+            b.putInt("bookOwnerPosition", position);
+            i.putExtras(b);
 
-                                // Show friend's library
-                                Intent i = new Intent(view.getContext(), FriendsLibraryActivity.class);
+            startActivity(i);
 
-                                Bundle b = new Bundle();
-                                b.putInt("bookOwnerPosition", position);
-                                i.putExtras(b);
-
-                                startActivity(i);
-                            }
-                        });
             }
 
         });
