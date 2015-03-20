@@ -30,7 +30,7 @@ public class DetailsActivity extends Activity {
         String bookAuthor = b.getString("bookAuthor");
         String bookCover = b.getString("bookCover");
         String bookOwner = b.getString("bookOwner");
-        String bookDetails = b.getString("bookDetails"); //TODO show the book synopsis on the detail page (I think bookDetails is the synopsis)
+        String bookDetails = b.getString("bookSynopsis");
         String bookStatus = b.getString("bookStatus");
 
         TextView titleLabel = (TextView) findViewById(R.id.detailTitleLabel);

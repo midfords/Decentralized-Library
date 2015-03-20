@@ -19,8 +19,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.comp4020.adapters.LibraryListArrayAdapter;
+import com.comp4020.fragments.AboutUsFragment;
 import com.comp4020.fragments.ExchangesFragment;
 import com.comp4020.fragments.FriendsFragment;
+import com.comp4020.fragments.HelpFragment;
 import com.comp4020.fragments.LibraryGridFragment;
 import com.comp4020.fragments.LibraryListFragment;
 import com.comp4020.fragments.NavigationDrawerFragment;
@@ -36,7 +38,9 @@ public  class       MainActivity
         LibraryGridFragment.LibraryGridFragmentCallbacks,
         FriendsFragment.FriendsFragmentCallbacks,
         ExchangesFragment.BorrowingFragmentCallbacks,
-        SettingsFragment.SettingsFragmentCallbacks {
+        SettingsFragment.SettingsFragmentCallbacks,
+        HelpFragment.OnFragmentInteractionListener,
+        AboutUsFragment.OnFragmentInteractionListener {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Fragment mViewFragment = null;
@@ -122,6 +126,25 @@ public  class       MainActivity
                 Log.i("xpmt", "Nav Drawer to Settings");
 
                 break;
+            case 4: // Help
+                HelpFragment hf = HelpFragment.newInstance();
+                mViewFragment = hf;
+                fragmentTransaction.replace(R.id.container, hf);
+                fragmentTransaction.commit();
+
+                Log.i("xpmt", "Nav Drawer to Help");
+
+                break;
+            case 5: // About Us
+
+                AboutUsFragment auf = AboutUsFragment.newInstance();
+                mViewFragment = auf;
+                fragmentTransaction.replace(R.id.container, auf);
+                fragmentTransaction.commit();
+
+                Log.i("xpmt", "Nav Drawer to About Us");
+
+                break;
         }
     }
 
@@ -140,6 +163,12 @@ public  class       MainActivity
                 break;
             case 4:
                 mTitle = getString(R.string.title_section4);
+                break;
+            case 5:
+                mTitle = getString(R.string.title_section5);
+                break;
+            case 6:
+                mTitle = getString(R.string.title_section6);
                 break;
         }
     }
@@ -250,6 +279,11 @@ public  class       MainActivity
 
     @Override
     public void onLibraryGridFragmentInteraction(Uri uri) {
-        Log.i("xpmt", "onLibraryGridFragmentInteraction (What is this?)"); //TODO what is this for?
+        Log.i("xpmt", "onLibraryGridFragmentInteraction (What is this?)");
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        Log.i("xpmt", "About us or Help");
     }
 }

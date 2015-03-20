@@ -1025,7 +1025,7 @@ public class Data {
         b.putString("bookTitle", titles[i]);
         b.putString("bookAuthor", authors[i]);
         b.putString("bookCover", covers[i]);
-        b.putString("bookDescription", synopsiss[i]);
+        b.putString("bookSynopsis", synopsiss[i]);
         b.putString("bookStatus", statuss[i]);
 
         //get owner string

@@ -106,6 +106,6 @@ public  class       FriendsLibraryActivity
 
         // Do something
 
-        Log.i("xpmt", "Grid Entry - My Library. <" + uri.toString() + ">"); //TODO make all logs like this (second string is message)
+        Log.i("xpmt", "Grid Entry - My Library. <" + uri.toString() + ">");
     }
 }
