@@ -4,6 +4,9 @@ package com.comp4020.utils;
  * Created by jeff on 15-03-11.
  */
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import java.util.*;
 
 public class Data {
@@ -815,6 +818,35 @@ public class Data {
             {100, 150},
     };
 
+    public static void setButtonText(BookStatus status, Button requestButton)
+    {
+        switch (status)
+        {
+            case MyLibrary:
+//            requestbutton.setVisibility(View.INVISIBLE);
+                requestButton.setText("Lend");
+
+                break;
+            case OnShelf:
+                requestButton.setText("Request");
+                break;
+            case InRequests:
+                requestButton.setText("Accept Request");
+                break;
+            case Requested:
+                requestButton.setText("Cancel Request");
+                break;
+            case Borrowed:
+                //requestbutton.setText("Set To Returned");
+                requestButton.setVisibility(View.INVISIBLE);
+                break;
+            case Lent:
+                requestButton.setText("Unlend");
+//                requestbutton.setEnabled(false);
+                break;
+        }
+    }
+
     //TODO make this work so that requested books show up in borrowing section
     public static void addRequest(String title, String name, String location, String date, String message) {
 
@@ -823,9 +855,10 @@ public class Data {
 
         //find index values
         //while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
-        if (bookIndex < titles.length)
+        if (bookIndex < titles.length && getIndex(requests, bookIndex) == -1) {
             requests.add(new Request(bookIndex, name, location, date, message));
-        Collections.sort(requests);
+            Collections.sort(requests);
+        }
 
 //        if(insertAt < myRequestedBookIndex.length && bookIndex < titles.length) {
 //            myRequestedBookIndex[insertAt] = bookIndex;
@@ -876,7 +909,7 @@ public class Data {
 
     public static void cancelRequested(int index)
     {
-        requested.remove(getIndex(requests, index));
+        requested.remove(getIndex(requested, index));
     }
 
     public static void addBorrowed(int index)
@@ -898,7 +931,7 @@ public class Data {
 
     public static Request getRequest(int index)
     {
-        return requests.get(index);
+        return requests.get(getIndex(requests, index));
     }
 
     public static Bundle getRequests() {

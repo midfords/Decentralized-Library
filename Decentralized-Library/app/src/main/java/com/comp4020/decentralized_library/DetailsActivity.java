@@ -21,6 +21,8 @@ public class DetailsActivity extends Activity {
     private BookStatus status;
     private String bookTitle;
     private Button requestbutton;
+    private TextView ownerLabel;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class DetailsActivity extends Activity {
 
         TextView titleLabel = (TextView) findViewById(R.id.detailTitleLabel);
         TextView authorLabel = (TextView) findViewById(R.id.detailAuthorLabel);
-        TextView ownerLabel = (TextView) findViewById(R.id.detailOwnerLabel);
+        ownerLabel = (TextView) findViewById(R.id.detailOwnerLabel);
         TextView detailsLabel = (TextView) findViewById(R.id.detailDetailsLabel);
         ImageView coverImage = (ImageView) findViewById(R.id.detailImageView);
         requestbutton = (Button) findViewById(R.id.detailStatusButton);
@@ -57,7 +59,8 @@ public class DetailsActivity extends Activity {
 //        else if(bookStatus.equals("On Shelf"))
 //            requestbutton.setText("Request");
 
-        setButtonText();
+        status = Data.getStatus(bookTitle);
+        Data.setButtonText(status, requestbutton);
 
 
         titleLabel.setText(bookTitle);
@@ -71,42 +74,16 @@ public class DetailsActivity extends Activity {
 
     }
 
-    private void setButtonText()
-    {
-        status = Data.getStatus(bookTitle);
 
-        switch (status)
-        {
-            case MyLibrary:
-//            requestbutton.setVisibility(View.INVISIBLE);
-                requestbutton.setText("Lend");
-                break;
-            case OnShelf:
-                requestbutton.setText("Request");
-                break;
-            case InRequests:
-                requestbutton.setText("Accept Request");
-                break;
-            case Requested:
-                requestbutton.setText("Cancel Request");
-                break;
-            case Borrowed:
-                //requestbutton.setText("Set To Returned");
-                requestbutton.setVisibility(View.INVISIBLE);
-                break;
-            case Lent:
-                requestbutton.setText("Unlend");
-//                requestbutton.setEnabled(false);
-                break;
-        }
-    }
 
     public void requestClicked(View view) {
         switch (status)
         {
             case MyLibrary:
                 Data.addLent(Data.getBookID(bookTitle));
-                setButtonText();
+                status = Data.getStatus(bookTitle);
+                Log.i("xpmt", "Details lend book button clicked: "+bookTitle);
+                Data.setButtonText(status, requestbutton);
             break;
             case OnShelf:
                 Intent i = new Intent(DetailsActivity.this, RequestActivity.class);
@@ -119,17 +96,23 @@ public class DetailsActivity extends Activity {
             break;
             case InRequests:
                 Data.acceptRequest(Data.getBookID(bookTitle));
-                setButtonText();
+                status = Data.getStatus(bookTitle);
+                Log.i("xpmt", "Details accept request book button clicked: "+bookTitle);
+                Data.setButtonText(status, requestbutton);
             break;
             case Requested:
                 Data.cancelRequested(Data.getBookID(bookTitle));
-                setButtonText();
+                status = Data.getStatus(bookTitle);
+                Log.i("xpmt", "Details cancel requested book button clicked: "+bookTitle);
+                Data.setButtonText(status, requestbutton);
             break;
             case Borrowed:
             break;
             case Lent:
                 Data.unLend(Data.getBookID(bookTitle));
-                setButtonText();
+                status = Data.getStatus(bookTitle);
+                Log.i("xpmt", "Details unlend book button clicked: "+bookTitle);
+                Data.setButtonText(status, requestbutton);
             break;
         }
     }
