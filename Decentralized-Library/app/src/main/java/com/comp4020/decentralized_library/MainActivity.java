@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.*;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import com.comp4020.fragments.LibraryGridFragment;
 import com.comp4020.fragments.LibraryListFragment;
 import com.comp4020.fragments.NavigationDrawerFragment;
 import com.comp4020.fragments.SettingsFragment;
+import com.comp4020.utils.BookStatus;
 import com.comp4020.utils.Data;
 import com.comp4020.utils.Globals;
 import com.comp4020.utils.Logger;
@@ -203,17 +205,56 @@ public  class       MainActivity
         fragmentTransaction.replace(R.id.container, borrowingFragment);
         fragmentTransaction.commit();
 
-        Log.i("xpmt", "Exchanges Section Jump to: "+section);
+        Log.i("xpmt", "Exchanges Section Jump to: " + section);
     }
     //TODO make this implement all different book button tasks based on button.getText()
     public void requestClicked(View view) {
-        Intent i = new Intent(MainActivity.this, RequestActivity.class);
+
+
         View parent = (View) view.getParent();
-        TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
-        Bundle b = Data.getBookBundle(tv.getText().toString());
-        i.putExtras(b);
-        Log.i("xpmt", "My Library Book Button Clicked: "+b.getString("bookTitle"));
-        MainActivity.this.startActivity(i);
+        Button requestButton = (Button) parent.findViewById(R.id.requestButton);
+        TextView title = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
+        String bookTitle = title.getText().toString();
+        BookStatus status = Data.getStatus(bookTitle);
+
+        switch (status)
+        {
+            case MyLibrary:
+                Data.addLent(Data.getBookID(bookTitle));
+                status = Data.getStatus(bookTitle);
+                Log.i("xpmt", "My Library lend book button clicked: "+bookTitle);
+                Data.setButtonText(status, requestButton);
+                break;
+            case OnShelf:
+                Intent i = new Intent(MainActivity.this, RequestActivity.class);
+                //View parent = (View) view.getParent();
+                TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
+                Bundle b = Data.getBookBundle(tv.getText().toString());
+                i.putExtras(b);
+                Log.i("xpmt", "My Library Book Button Clicked: "+b.getString("bookTitle"));
+                MainActivity.this.startActivity(i);
+                break;
+            case InRequests:
+                Data.acceptRequest(Data.getBookID(bookTitle));
+                status = Data.getStatus(bookTitle);
+                Log.i("xpmt", "My Library accept request book button clicked: "+bookTitle);
+                Data.setButtonText(status, requestButton);
+                break;
+            case Requested:
+                Data.cancelRequested(Data.getBookID(bookTitle));
+                status = Data.getStatus(bookTitle);
+                Log.i("xpmt", "My Library cancel requested book button clicked: "+bookTitle);
+                Data.setButtonText(status, requestButton);
+                break;
+            case Borrowed:
+                break;
+            case Lent:
+                Data.unLend(Data.getBookID(bookTitle));
+                status = Data.getStatus(bookTitle);
+                Log.i("xpmt", "My Library unlend book button clicked: "+bookTitle);
+                Data.setButtonText(status, requestButton);
+                break;
+        }
     }
 
     public void listItemClicked(View view) {
@@ -221,7 +262,7 @@ public  class       MainActivity
         String title = ((TextView)(view.findViewById(R.id.bookLayout_BookTitle))).getText().toString();
         Bundle b = Data.getBookBundle(title);
         i.putExtras(b);
-        Log.i("xpmt", "My Library ListItem Clicked: "+title);
+        Log.i("xpmt", "My Library ListItem Clicked: " + title);
         startActivity(i);
     }
 

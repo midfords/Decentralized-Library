@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.comp4020.decentralized_library.R;
+import com.comp4020.utils.BookStatus;
 import com.comp4020.utils.Data;
 
 public class LibraryListArrayAdapter extends ArrayAdapter<String> {
@@ -53,24 +54,47 @@ public class LibraryListArrayAdapter extends ArrayAdapter<String> {
 
         //TODO test these conditions to make sure they work properly
         String bookStatus;
-        if(this.statuss == null) {
-            requestButton.setVisibility(View.INVISIBLE);
-            bookStatus = null;
-        }
-        else
-            bookStatus = this.statuss[position];
+//        if(this.statuss == null) {
+//            requestButton.setVisibility(View.INVISIBLE);
+//            bookStatus = null;
+//        }
+//        else
+//            bookStatus = this.statuss[position];
+//
+//        if(bookStatus == null || bookStatus.equals("My Shelf"))
+//            requestButton.setVisibility(View.INVISIBLE);
+//        else if(bookStatus.equals("My Lent"))
+//            requestButton.setText("Set To Returned");
+//        else if(bookStatus.equals("Lent"))
+//        {
+//            requestButton.setText(bookStatus);
+//            requestButton.setEnabled(false);
+//        }
+//        else if(bookStatus.equals("On Shelf"))
+//            requestButton.setText("Request");
+        BookStatus status = Data.getStatus(titles[position]);
 
-        if(bookStatus == null || bookStatus.equals("My Shelf"))
-            requestButton.setVisibility(View.INVISIBLE);
-        else if(bookStatus.equals("My Lent"))
-            requestButton.setText("Set To Returned");
-        else if(bookStatus.equals("Lent"))
+        switch (status)
         {
-            requestButton.setText(bookStatus);
-            requestButton.setEnabled(false);
+            case MyLibrary:
+                requestButton.setText("Lend");
+            break;
+            case OnShelf:
+                requestButton.setText("Request");
+            break;
+            case InRequests:
+                requestButton.setText("Accept Request");
+            break;
+            case Requested:
+                requestButton.setText("Cancel Request");
+            break;
+            case Borrowed:
+                requestButton.setVisibility(View.INVISIBLE);
+            break;
+            case Lent:
+                requestButton.setText("Unlend");
+            break;
         }
-        else if(bookStatus.equals("On Shelf"))
-            requestButton.setText("Request");
 
         int resID = context.getResources().getIdentifier(covers[position],
                 "drawable", context.getPackageName());
