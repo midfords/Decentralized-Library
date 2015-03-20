@@ -718,8 +718,8 @@ public class Data {
 
     private static int[] myBorrowed = new int[] {45, 65, 22, 47, 58, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 
-    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(3, "Ha", "Ho", "Hu")));
-    private static ArrayList<Integer> requested = new ArrayList<Integer>();
+    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(3, "Sean", "Ha", "Ho", "Hu")));
+    private static ArrayList<Request> requested = new ArrayList<Request>();
     private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22, 47, 58));
     private static ArrayList<Integer> lent = new ArrayList<Integer>();
 
@@ -741,16 +741,16 @@ public class Data {
     };
 
     //TODO make this work so that requested books show up in borrowing section
-    public static void addRequest(String title, String location, String date, String message) {
+    public static void addRequest(String title, String name, String location, String date, String message) {
 
         int bookIndex = 0;
-        int insertAt = 0;
+        //int insertAt = 0;
 
         //find index values
         //while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
         while(bookIndex < titles.length && !titles[bookIndex].equals(title)) { bookIndex++; }
         if (bookIndex < titles.length)
-            requests.add(new Request(bookIndex, location, date, message));
+            requests.add(new Request(bookIndex, name, location, date, message));
         Collections.sort(requests);
 
 //        if(insertAt < myRequestedBookIndex.length && bookIndex < titles.length) {
@@ -772,9 +772,16 @@ public class Data {
         requests.remove(index);
     }
 
-    public static void addRequested(int index)
-    {
-        requested.add(index);
+    public static void addRequested(String title, String location, String date, String message) {
+
+        int bookIndex = 0;
+        //int insertAt = 0;
+
+        //find index values
+        //while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
+        while(bookIndex < titles.length && !titles[bookIndex].equals(title)) { bookIndex++; }
+        if (bookIndex < titles.length)
+            requested.add(new Request(bookIndex,"User", location, date, message));
         Collections.sort(requested);
     }
 
@@ -786,13 +793,13 @@ public class Data {
     public static void addBorrowed(int index)
     {
         borrowed.add(index);
-        Collections.sort(requests);
+        Collections.sort(borrowed);
     }
 
     public static void addLent(int index)
     {
         lent.add(index);
-        Collections.sort(requests);
+        Collections.sort(lent);
     }
 
     public static void unLend(int index)
@@ -851,9 +858,9 @@ public class Data {
 
         for (int i=0;i<requested.size(); i++)
         {
-            rTitles[i] = titles[requested.get(i)];
-            rAuthors[i] = authors[requested.get(i)];
-            rCovers[i] = covers[requested.get(i)];
+            rTitles[i] = titles[requested.get(i).bookIndex];
+            rAuthors[i] = authors[requested.get(i).bookIndex];
+            rCovers[i] = covers[requested.get(i).bookIndex];
         }
 
 //        int i = 0;

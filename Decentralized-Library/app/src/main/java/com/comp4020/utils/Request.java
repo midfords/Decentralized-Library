@@ -5,13 +5,15 @@ package com.comp4020.utils;
  */
 public class Request implements Comparable {
     public int bookIndex;
+    public String requester;
     public String location;
     public String date;
     public String message;
 
-    public Request(int bookIndex, String location, String date, String message)
+    public Request(int bookIndex, String requester, String location, String date, String message)
     {
         this.bookIndex = bookIndex;
+        this.requester = requester;
         this.location = location;
         this.date = date;
         this.message = message;

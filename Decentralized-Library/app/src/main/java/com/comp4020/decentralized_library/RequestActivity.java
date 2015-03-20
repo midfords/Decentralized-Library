@@ -43,7 +43,7 @@ public class RequestActivity extends Activity {
         EditText tDate = (EditText) parent.findViewById(R.id.dateEditText);
         EditText tMessage = (EditText) parent.findViewById(R.id.messageEditText);
 
-        Data.addRequest(title.getText().toString(), tLocation.getText().toString(),
+        Data.addRequested(title.getText().toString(), tLocation.getText().toString(),
                 tDate.getText().toString(), tMessage.getText().toString());
 
         Log.i("xpmt", "RequestOK clicked: "+title.getText().toString()+
