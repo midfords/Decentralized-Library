@@ -732,10 +732,6 @@ public class Data {
         return lent.indexOf(getBookID(title)) != -1;
     }
 
-    // TODO: This can be removed since friendsLibrary contains length info
-    //  leave in for now.
-    private static final int[] numBooks = new int[]{25, 50}; //book list lengths
-
     private static int[] userLibrary = new int[]{0, 50};
     // Too much work to write separate libraries for all friends. Instead books are referenced by id
     //  (array position). the two values are the start and end of each friend's book list
