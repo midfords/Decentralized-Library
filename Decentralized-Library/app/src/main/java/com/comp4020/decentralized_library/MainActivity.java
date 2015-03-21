@@ -209,7 +209,7 @@ public  class       MainActivity
 
     public void requestClicked(View view) {
         View parent = (View) view.getParent();
-        Button requestButton = (Button) parent.findViewById(R.id.requestButton);
+        final Button requestButton = (Button) parent.findViewById(R.id.requestButton);
         TextView title = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
         final String bookTitle = title.getText().toString();
         BookStatus status = Data.getStatus(bookTitle);
@@ -235,12 +235,18 @@ public  class       MainActivity
                 acceptOrReject.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        if(item.toString().equals(R.string.acceptRequest)) {
+                        String clicked = item.getTitle().toString();
+
+                        if(clicked.equals(getString(R.string.acceptRequest))) {
                             Data.acceptRequest(Data.getBookID(bookTitle));
+                            Log.i("xpmt", "Request accepted");
                         }
-                        else if(item.toString().equals(R.string.rejectRequest)) {
+                        else if(clicked.equals(getString(R.string.rejectRequest))) {
                             Data.rejectRequest(Data.getBookID(bookTitle));
+                            Log.i("xpmt", "Request rejected");
                         }
+
+                        Data.setButtonText(Data.getStatus(bookTitle), requestButton);
                         return false;
                     }
                 });

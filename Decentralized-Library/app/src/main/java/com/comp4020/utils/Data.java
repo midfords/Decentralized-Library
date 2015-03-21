@@ -672,10 +672,10 @@ public class Data {
     //
     // Owner and friends data
     //
-    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(67, "Sean", "Ha", "Ho", "Hu")));
+    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(3, "Sean", "Ha", "Ho", "Hu")));
     private static ArrayList<Request> requested = new ArrayList<Request>();
-    private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22, 47, 58));
-    private static ArrayList<Integer> lent = new ArrayList<Integer>(Arrays.asList(0, 4, 2));
+    private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22));
+    private static ArrayList<Integer> lent = new ArrayList<Integer>(Arrays.asList(0, 4));
 
     private static final String[] friends = new String[]{
             "Toquehead",
