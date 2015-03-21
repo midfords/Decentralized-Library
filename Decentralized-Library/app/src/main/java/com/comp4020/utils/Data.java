@@ -760,8 +760,8 @@ public class Data {
                 requestButton.setText("Cancel Request");
                 break;
             case Borrowed:
-                //requestbutton.setText("Set To Returned");
-                requestButton.setVisibility(View.INVISIBLE);
+                requestButton.setText("You are Borrowing");
+                requestButton.setEnabled(false);
                 break;
             case Lent:
                 requestButton.setText("Unlend");
@@ -942,7 +942,6 @@ public class Data {
         String[] friendTitles = new String[length];
         String[] friendAuthors = new String[length];
         String[] friendCovers = new String[length];
-        String[] friendStatuss = new String[length];
 
         for (int i = friendLibrary[friendIndex][0]; i < friendLibrary[friendIndex][0] + length; i++) {
             friendTitles[i - friendLibrary[friendIndex][0]] = titles[i];
@@ -953,7 +952,6 @@ public class Data {
         friendsLibraryBundle.putStringArray("titles", friendTitles);
         friendsLibraryBundle.putStringArray("authors", friendAuthors);
         friendsLibraryBundle.putStringArray("covers", friendCovers);
-        friendsLibraryBundle.putStringArray("statuss", friendStatuss);
 
         return friendsLibraryBundle;
     }

@@ -80,11 +80,10 @@ public  class       MainActivity
                 String[] userLibraryTitles = usersLibrary.getStringArray("titles");
                 String[] userLibraryAuthors = usersLibrary.getStringArray("authors");
                 String[] userLibraryCovers = usersLibrary.getStringArray("covers");
-                String[] userLibraryStatuss = usersLibrary.getStringArray("statuss");
 
                 if (!Globals.gridViewType) {
                     LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(
-                            userLibraryTitles, userLibraryAuthors, userLibraryCovers, userLibraryStatuss);
+                            userLibraryTitles, userLibraryAuthors, userLibraryCovers);
                     mViewFragment = libraryListFragment;
                     fragmentTransaction.replace(R.id.container, libraryListFragment);
                     fragmentTransaction.commit();
