@@ -266,6 +266,18 @@ public  class       MainActivity
         startActivity(i);
     }
 
+    public void lengthSwitched(View view)
+    {
+        Globals.longLists = !Globals.longLists;
+        Log.i("xpmt", "List Length Switched to: " + Globals.longLists);
+    }
+
+    public void viewSwitched(View view)
+    {
+        Globals.gridViewType = !Globals.gridViewType;
+        Log.i("xpmt", "View Type Switched to: " + Globals.gridViewType);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
