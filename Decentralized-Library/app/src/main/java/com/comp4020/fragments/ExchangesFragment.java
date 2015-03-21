@@ -34,8 +34,8 @@ public class ExchangesFragment extends Fragment {
     private TextView textView;
     private String[] titles;
     private String[] authors;
+    private String[] requestFrom;
     private String[] covers;
-    private String[] statuss;
     private String section;
 
     private BorrowingFragmentCallbacks mListener;
@@ -93,6 +93,10 @@ public class ExchangesFragment extends Fragment {
             authors = getArguments().getStringArray(ARG_AUTHORS);
             covers = getArguments().getStringArray(ARG_COVERS);
             section = getArguments().getString(ARG_SECTION);
+
+            if(section.equals("Requests")) {
+                authors = getArguments().getStringArray("requestFrom");
+            }
         }
     }
 

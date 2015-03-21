@@ -689,7 +689,7 @@ public class Data {
             new Request(34, "Sean", "Ha", "Ho", "Hu")
     ));
     private static ArrayList<Request> requested = new ArrayList<Request>();
-    private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22));
+    private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(105, 65, 134));
     private static ArrayList<Integer> lent = new ArrayList<Integer>(Arrays.asList(0, 4));
 
     private static final String[] friends = new String[]{
@@ -844,18 +844,22 @@ public class Data {
 
     public static Bundle getRequests() {
         Bundle b = new Bundle();
+        Collections.sort(requests);
         String[] rTitles = new String[requests.size()];
         String[] rAuthors = new String[requests.size()];
+        String[] rRequesters = new String[requests.size()];
         String[] rCovers = new String[requests.size()];
 
         for (int i = 0; i < requests.size(); i++) {
             rTitles[i] = titles[requests.get(i).bookIndex];
             rAuthors[i] = authors[requests.get(i).bookIndex];
+            rRequesters[i] = "Requested from: " + requests.get(i).requester;
             rCovers[i] = covers[requests.get(i).bookIndex];
         }
 
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
+        b.putStringArray("requestFrom", rRequesters);
         b.putStringArray("covers", rCovers);
         return b;
     }
