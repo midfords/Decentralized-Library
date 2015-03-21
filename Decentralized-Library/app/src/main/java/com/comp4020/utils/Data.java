@@ -672,7 +672,22 @@ public class Data {
     //
     // Owner and friends data
     //
-    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(3, "Sean", "Ha", "Ho", "Hu")));
+
+    //Requests according to PM3 Task Appendix
+    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(
+            new Request(44, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(14, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(3, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(17, "Toquehead", "Ha", "Ho", "Hu"), //TODO make location, date, and message data for requests
+            new Request(22, "Sean", "Ha", "Ho", "Hu"),
+            new Request(26, "Sean", "Ha", "Ho", "Hu"),
+            new Request(29, "Sean", "Ha", "Ho", "Hu"),
+            new Request(33, "Sean", "Ha", "Ho", "Hu"),
+            new Request(50, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(47, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(41, "Sean", "Ha", "Ho", "Hu"),
+            new Request(34, "Sean", "Ha", "Ho", "Hu")
+    ));
     private static ArrayList<Request> requested = new ArrayList<Request>();
     private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22));
     private static ArrayList<Integer> lent = new ArrayList<Integer>(Arrays.asList(0, 4));
