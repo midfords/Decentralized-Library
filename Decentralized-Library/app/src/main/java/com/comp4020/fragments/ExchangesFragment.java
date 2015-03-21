@@ -107,7 +107,7 @@ public class ExchangesFragment extends Fragment {
 
         listView = (ListView) contentView.findViewById(R.id.exchangeListView);
         listView.setAdapter(new LibraryListArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_book, titles, authors, covers, null));
+                R.layout.row_layout_book, titles, authors, covers));
 
         return contentView;
     }
