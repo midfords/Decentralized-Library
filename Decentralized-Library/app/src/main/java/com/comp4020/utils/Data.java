@@ -4,6 +4,7 @@ package com.comp4020.utils;
  * Created by jeff on 15-03-11.
  */
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -671,10 +672,10 @@ public class Data {
     //
     // Owner and friends data
     //
-    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(3, "Sean", "Ha", "Ho", "Hu")));
+    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(67, "Sean", "Ha", "Ho", "Hu")));
     private static ArrayList<Request> requested = new ArrayList<Request>();
     private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22, 47, 58));
-    private static ArrayList<Integer> lent = new ArrayList<Integer>();
+    private static ArrayList<Integer> lent = new ArrayList<Integer>(Arrays.asList(0, 4, 2));
 
     private static final String[] friends = new String[]{
             "Toquehead",
@@ -703,7 +704,6 @@ public class Data {
             status = BookStatus.InRequests;
         else if (getBookID(title) < 50)
             status = BookStatus.MyLibrary;
-
         return status;
     }
 
@@ -718,11 +718,23 @@ public class Data {
     }
 
     public static boolean isBookInRequests(String title) {
-        return requests.indexOf(new Request(getBookID(title), null, null, null, null)) != -1;
+        boolean isIt = false;
+        Request compTo = new Request(getBookID(title), null, null, null, null);
+        for(int i=0; i<requests.size() && !isIt; i++) {
+            if(requests.get(i).compareTo(compTo) == 0)
+                isIt = true;
+        }
+        return isIt;
     }
 
     public static boolean isBookRequested(String title) {
-        return requested.indexOf(new Request(getBookID(title), null, null, null, null)) != -1;
+        boolean isIt = false;
+        Request compTo = new Request(getBookID(title), null, null, null, null);
+        for(int i=0; i<requested.size() && !isIt; i++) {
+            if(requested.get(i).compareTo(compTo) == 0)
+                isIt = true;
+        }
+        return isIt;
     }
 
     public static boolean isBookBorrowed(String title) {

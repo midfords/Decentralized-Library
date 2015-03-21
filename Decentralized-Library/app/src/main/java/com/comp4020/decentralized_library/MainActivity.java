@@ -17,6 +17,7 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.comp4020.adapters.LibraryListArrayAdapter;
@@ -205,12 +206,12 @@ public  class       MainActivity
 
         Log.i("xpmt", "Exchanges Section Jump to: " + section);
     }
-    //TODO make this implement all different book button tasks based on button.getText()
+
     public void requestClicked(View view) {
         View parent = (View) view.getParent();
         Button requestButton = (Button) parent.findViewById(R.id.requestButton);
         TextView title = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
-        String bookTitle = title.getText().toString();
+        final String bookTitle = title.getText().toString();
         BookStatus status = Data.getStatus(bookTitle);
 
         switch (status)
@@ -229,10 +230,25 @@ public  class       MainActivity
                 MainActivity.this.startActivity(i);
                 break;
             case InRequests:
-                Data.acceptRequest(Data.getBookID(bookTitle));
+                PopupMenu acceptOrReject = new PopupMenu(MainActivity.this, view);
+                acceptOrReject.inflate(R.menu.menu_accept_or_reject);
+                acceptOrReject.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if(item.toString().equals(R.string.acceptRequest)) {
+                            Data.acceptRequest(Data.getBookID(bookTitle));
+                        }
+                        else if(item.toString().equals(R.string.rejectRequest)) {
+                            Data.rejectRequest(Data.getBookID(bookTitle));
+                        }
+                        return false;
+                    }
+                });
+                acceptOrReject.show();
+
                 status = Data.getStatus(bookTitle);
-                Log.i("xpmt", "My Library accept request book button clicked: "+bookTitle);
                 Data.setButtonText(status, requestButton);
+                Log.i("xpmt", "My Library accept or reject request book button clicked: "+bookTitle);
                 break;
             case Requested:
                 Data.cancelRequested(Data.getBookID(bookTitle));
