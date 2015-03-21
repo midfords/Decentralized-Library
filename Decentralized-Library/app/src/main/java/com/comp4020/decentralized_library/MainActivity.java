@@ -149,7 +149,6 @@ public  class       MainActivity
         }
     }
 
-    //TODO add about us and help
     public void onSectionAttached(int number) {
 
         switch (number) {
@@ -208,8 +207,6 @@ public  class       MainActivity
     }
     //TODO make this implement all different book button tasks based on button.getText()
     public void requestClicked(View view) {
-
-
         View parent = (View) view.getParent();
         Button requestButton = (Button) parent.findViewById(R.id.requestButton);
         TextView title = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
@@ -226,11 +223,9 @@ public  class       MainActivity
                 break;
             case OnShelf:
                 Intent i = new Intent(MainActivity.this, RequestActivity.class);
-                //View parent = (View) view.getParent();
-                TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
-                Bundle b = Data.getBookBundle(tv.getText().toString());
+                Bundle b = Data.getBookBundle(bookTitle);
                 i.putExtras(b);
-                Log.i("xpmt", "My Library Book Button Clicked: "+b.getString("bookTitle"));
+                Log.i("xpmt", "My Library Book Button Clicked: "+bookTitle);
                 MainActivity.this.startActivity(i);
                 break;
             case InRequests:

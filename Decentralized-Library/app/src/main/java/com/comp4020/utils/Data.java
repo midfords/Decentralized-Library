@@ -671,10 +671,6 @@ public class Data {
     //
     // Owner and friends data
     //
-
-    //users library
-    private static final int[] myLibrary = new int[]{0, 14};
-
     private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(3, "Sean", "Ha", "Ho", "Hu")));
     private static ArrayList<Request> requested = new ArrayList<Request>();
     private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22, 47, 58));
@@ -684,6 +680,11 @@ public class Data {
             "Toquehead",
             "Sean",
     };
+
+    private static int[] userLibrary = new int[]{0, 50};
+    // Too much work to write separate libraries for all friends. Instead books are referenced by id
+    //  (array position). the two values are the start and end of each friend's book list
+    private static int[][] friendLibrary = new int[][]{ {50, 100}, {100, 150} };
 
     //
     // Book status identifiers
@@ -717,11 +718,11 @@ public class Data {
     }
 
     public static boolean isBookInRequests(String title) {
-        return requests.indexOf(getBookID(title)) != -1;
+        return requests.indexOf(new Request(getBookID(title), null, null, null, null)) != -1;
     }
 
     public static boolean isBookRequested(String title) {
-        return requested.indexOf(getBookID(title)) != -1;
+        return requested.indexOf(new Request(getBookID(title), null, null, null, null)) != -1;
     }
 
     public static boolean isBookBorrowed(String title) {
@@ -732,25 +733,16 @@ public class Data {
         return lent.indexOf(getBookID(title)) != -1;
     }
 
-    private static int[] userLibrary = new int[]{0, 50};
-    // Too much work to write separate libraries for all friends. Instead books are referenced by id
-    //  (array position). the two values are the start and end of each friend's book list
-    private static int[][] friendLibrary = new int[][]{
-            {50, 100},
-            {100, 150},
-    };
-
     public static void setButtonText(BookStatus status, Button requestButton) {
         switch (status) {
             case MyLibrary:
                 requestButton.setText("Lend");
-
                 break;
             case OnShelf:
                 requestButton.setText("Request");
                 break;
             case InRequests:
-                requestButton.setText("Accept Request");
+                requestButton.setText("Accept or Reject Request");
                 break;
             case Requested:
                 requestButton.setText("Cancel Request");
@@ -766,14 +758,10 @@ public class Data {
         }
     }
 
-    //TODO make this work so that requested books show up in borrowing section
     public static void addRequest(String title, String name, String location, String date, String message) {
-
         int bookIndex = getBookID(title);
-        if (bookIndex < titles.length && getIndex(requests, bookIndex) == -1) {
-            requests.add(new Request(bookIndex, name, location, date, message));
-            Collections.sort(requests);
-        }
+        requests.add(new Request(bookIndex, name, location, date, message));
+        Collections.sort(requests);
     }
 
     public static int getIndex(ArrayList<Request> arr, int index) {
@@ -799,7 +787,6 @@ public class Data {
     }
 
     public static void addRequested(String title, String location, String date, String message) {
-
         int bookIndex = getBookID(title);
         if (bookIndex < titles.length)
             requested.add(new Request(bookIndex, "User", location, date, message));

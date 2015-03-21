@@ -109,10 +109,11 @@ public class ExchangesFragment extends Fragment {
         listView.setAdapter(new LibraryListArrayAdapter(contentView.getContext(),
                 R.layout.row_layout_book, titles, authors, covers));
 
+
+
         return contentView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onBorrowingFragmentInteraction(uri);

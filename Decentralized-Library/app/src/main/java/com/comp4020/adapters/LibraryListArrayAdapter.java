@@ -48,28 +48,7 @@ public class LibraryListArrayAdapter extends ArrayAdapter<String> {
         textViewAuthor.setText(authors[position]);
 
         BookStatus status = Data.getStatus(titles[position]);
-
-        switch (status)
-        {
-            case MyLibrary:
-                requestButton.setText("Lend");
-            break;
-            case OnShelf:
-                requestButton.setText("Request");
-            break;
-            case InRequests:
-                requestButton.setText("Accept Request");
-            break;
-            case Requested:
-                requestButton.setText("Cancel Request");
-            break;
-            case Borrowed:
-                requestButton.setVisibility(View.INVISIBLE);
-            break;
-            case Lent:
-                requestButton.setText("Unlend");
-            break;
-        }
+        Data.setButtonText(status, requestButton);
 
         int resID = context.getResources().getIdentifier(covers[position],
                 "drawable", context.getPackageName());
