@@ -40,12 +40,11 @@ public  class       FriendsLibraryActivity
         String[] friendLibraryTitles = friendsLibrary.getStringArray("titles");
         String[] friendLibraryAuthors = friendsLibrary.getStringArray("authors");
         String[] friendLibraryCovers = friendsLibrary.getStringArray("covers");
-        String[] friendLibraryStatuss = friendsLibrary.getStringArray("statuss");
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         if (!Globals.gridViewType) {
             LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(friendLibraryTitles,
-                    friendLibraryAuthors, friendLibraryCovers, friendLibraryStatuss);
+                    friendLibraryAuthors, friendLibraryCovers);
             fragmentTransaction.replace(R.id.container, libraryListFragment);
             fragmentTransaction.commit();
         } else {

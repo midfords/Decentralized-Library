@@ -32,4 +32,6 @@
     <string name="title_activity_help">HelpActivity</string>
     <string name="title_activity_about_us">AboutUsActivity</string>
 
+    <string name="acceptRequest">Accept</string>
+    <string name="rejectRequest">Reject</string>
 </resources>

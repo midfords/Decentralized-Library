@@ -34,8 +34,8 @@ public class ExchangesFragment extends Fragment {
     private TextView textView;
     private String[] titles;
     private String[] authors;
+    private String[] requestFrom;
     private String[] covers;
-    private String[] statuss;
     private String section;
 
     private BorrowingFragmentCallbacks mListener;
@@ -93,6 +93,10 @@ public class ExchangesFragment extends Fragment {
             authors = getArguments().getStringArray(ARG_AUTHORS);
             covers = getArguments().getStringArray(ARG_COVERS);
             section = getArguments().getString(ARG_SECTION);
+
+            if(section.equals("Requests")) {
+                authors = getArguments().getStringArray("requestFrom");
+            }
         }
     }
 
@@ -107,12 +111,13 @@ public class ExchangesFragment extends Fragment {
 
         listView = (ListView) contentView.findViewById(R.id.exchangeListView);
         listView.setAdapter(new LibraryListArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_book, titles, authors, covers, null));
+                R.layout.row_layout_book, titles, authors, covers));
+
+
 
         return contentView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onBorrowingFragmentInteraction(uri);

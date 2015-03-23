@@ -17,6 +17,7 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.comp4020.adapters.LibraryListArrayAdapter;
@@ -80,11 +81,10 @@ public  class       MainActivity
                 String[] userLibraryTitles = usersLibrary.getStringArray("titles");
                 String[] userLibraryAuthors = usersLibrary.getStringArray("authors");
                 String[] userLibraryCovers = usersLibrary.getStringArray("covers");
-                String[] userLibraryStatuss = usersLibrary.getStringArray("statuss");
 
                 if (!Globals.gridViewType) {
                     LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(
-                            userLibraryTitles, userLibraryAuthors, userLibraryCovers, userLibraryStatuss);
+                            userLibraryTitles, userLibraryAuthors, userLibraryCovers);
                     mViewFragment = libraryListFragment;
                     fragmentTransaction.replace(R.id.container, libraryListFragment);
                     fragmentTransaction.commit();
@@ -150,7 +150,6 @@ public  class       MainActivity
         }
     }
 
-    //TODO add about us and help
     public void onSectionAttached(int number) {
 
         switch (number) {
@@ -207,14 +206,12 @@ public  class       MainActivity
 
         Log.i("xpmt", "Exchanges Section Jump to: " + section);
     }
-    //TODO make this implement all different book button tasks based on button.getText()
+
     public void requestClicked(View view) {
-
-
         View parent = (View) view.getParent();
-        Button requestButton = (Button) parent.findViewById(R.id.requestButton);
+        final Button requestButton = (Button) parent.findViewById(R.id.requestButton);
         TextView title = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
-        String bookTitle = title.getText().toString();
+        final String bookTitle = title.getText().toString();
         BookStatus status = Data.getStatus(bookTitle);
 
         switch (status)
@@ -227,18 +224,37 @@ public  class       MainActivity
                 break;
             case OnShelf:
                 Intent i = new Intent(MainActivity.this, RequestActivity.class);
-                //View parent = (View) view.getParent();
-                TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
-                Bundle b = Data.getBookBundle(tv.getText().toString());
+                Bundle b = Data.getBookBundle(bookTitle);
                 i.putExtras(b);
-                Log.i("xpmt", "My Library Book Button Clicked: "+b.getString("bookTitle"));
+                Log.i("xpmt", "My Library Book Button Clicked: "+bookTitle);
                 MainActivity.this.startActivity(i);
                 break;
             case InRequests:
-                Data.acceptRequest(Data.getBookID(bookTitle));
+                PopupMenu acceptOrReject = new PopupMenu(MainActivity.this, view);
+                acceptOrReject.inflate(R.menu.menu_accept_or_reject);
+                acceptOrReject.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        String clicked = item.getTitle().toString();
+
+                        if(clicked.equals(getString(R.string.acceptRequest))) {
+                            Data.acceptRequest(Data.getBookID(bookTitle));
+                            Log.i("xpmt", "Request accepted");
+                        }
+                        else if(clicked.equals(getString(R.string.rejectRequest))) {
+                            Data.rejectRequest(Data.getBookID(bookTitle));
+                            Log.i("xpmt", "Request rejected");
+                        }
+
+                        Data.setButtonText(Data.getStatus(bookTitle), requestButton);
+                        return false;
+                    }
+                });
+                acceptOrReject.show();
+
                 status = Data.getStatus(bookTitle);
-                Log.i("xpmt", "My Library accept request book button clicked: "+bookTitle);
                 Data.setButtonText(status, requestButton);
+                Log.i("xpmt", "My Library accept or reject request book button clicked: "+bookTitle);
                 break;
             case Requested:
                 Data.cancelRequested(Data.getBookID(bookTitle));
@@ -264,6 +280,18 @@ public  class       MainActivity
         i.putExtras(b);
         Log.i("xpmt", "My Library ListItem Clicked: " + title);
         startActivity(i);
+    }
+
+    public void lengthSwitched(View view)
+    {
+        Globals.longLists = !Globals.longLists;
+        Log.i("xpmt", "List Length Switched to: " + Globals.longLists);
+    }
+
+    public void viewSwitched(View view)
+    {
+        Globals.gridViewType = !Globals.gridViewType;
+        Log.i("xpmt", "View Type Switched to: " + Globals.gridViewType);
     }
 
     @Override

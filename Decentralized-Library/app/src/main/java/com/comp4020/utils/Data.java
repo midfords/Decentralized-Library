@@ -4,6 +4,7 @@ package com.comp4020.utils;
  * Created by jeff on 15-03-11.
  */
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,7 +16,7 @@ public class Data {
     // Book data
     //
 
-    private static final String[] titles = new String[] {
+    private static final String[] titles = new String[]{
             "1984",
             "Academ's Fury",
             "Across the Universe",
@@ -171,55 +172,55 @@ public class Data {
             "Wyrd Sisters"
     };
 
-    private static final String[] authors = new String[] {
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene",
-            "Simon R. Greene","Simon R. Greene","Simon R. Greene","Simon R. Greene", //37, 24, 29 = 90 books
-            "Simon R. Greene","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher",
-            "Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher",
-            "Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher",
-            "Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher","Jim Butcher",
-            "Jim Butcher","Jim Butcher","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett","Terry Pratchett","Terry Pratchett",
-            "Terry Pratchett","Terry Pratchett",
+    private static final String[] authors = new String[]{
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene",
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene",
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene",
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene",
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene",
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene",
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene",
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene",
+            "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", "Simon R. Greene", //37, 24, 29 = 90 books
+            "Simon R. Greene", "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher",
+            "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher",
+            "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher",
+            "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher", "Jim Butcher",
+            "Jim Butcher", "Jim Butcher", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett", "Terry Pratchett", "Terry Pratchett",
+            "Terry Pratchett", "Terry Pratchett",
     };
 
-    private static final String[] covers = new String[] {
+    private static final String[] covers = new String[]{
 
             "a1984",
             "academsfury",
@@ -375,97 +376,97 @@ public class Data {
             "wyrdsisters",
     };
 
-    private static final String[] genres = new String[] {
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
-            "Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy","Fantasy",
+    private static final String[] genres = new String[]{
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
+            "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy", "Fantasy",
     };
 
-    private static final String[] years = new String[] {
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
-            "Year","Year","Year","Year","Year","Year","Year","Year","Year","Year",
+    private static final String[] years = new String[]{
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
+            "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year", "Year",
     };
 
-    private static final String[] publishers = new String[] {
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
-            "Publisher","Publisher","Publisher","Publisher","Publisher","Publisher","Publisher",
+    private static final String[] publishers = new String[]{
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
+            "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher", "Publisher",
     };
 
-    private static final String[] synopsiss = new String[] {
+    private static final String[] synopsiss = new String[]{
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -666,46 +667,46 @@ public class Data {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-
     };
 
-    // Statusses are not final because we will change them as lending actions happen
-    //statusses are On Shelf and Lent
-    private static String[] statuss = new String[] {
-            "My Shelf","My Lent","My Lent","My Shelf","My My Shelf","My Lent","My Lent","My Shelf","My Lent",
-            "My Shelf","My Lent","My Lent","My Shelf","My Shelf","My Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
-            "On Shelf","Lent","Lent","On Shelf","On Shelf","Lent","Lent","On Shelf","Lent",
+    //
+    // Owner and friends data
+    //
+
+    //Requests according to PM3 Task Appendix
+    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(
+            new Request(44, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(14, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(3, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(17, "Toquehead", "Ha", "Ho", "Hu"), //TODO make location, date, and message data for requests
+            new Request(22, "Sean", "Ha", "Ho", "Hu"),
+            new Request(26, "Sean", "Ha", "Ho", "Hu"),
+            new Request(29, "Sean", "Ha", "Ho", "Hu"),
+            new Request(33, "Sean", "Ha", "Ho", "Hu"),
+            new Request(50, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(47, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(41, "Sean", "Ha", "Ho", "Hu"),
+            new Request(34, "Sean", "Ha", "Ho", "Hu")
+    ));
+    private static ArrayList<Request> requested = new ArrayList<Request>();
+    private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(105, 65, 134));
+    private static ArrayList<Integer> lent = new ArrayList<Integer>(Arrays.asList(0, 4));
+
+    private static final String[] friends = new String[]{
+            "Toquehead",
+            "Sean",
     };
+
+    private static int[] userLibrary = new int[]{0, 50};
+    // Too much work to write separate libraries for all friends. Instead books are referenced by id
+    //  (array position). the two values are the start and end of each friend's book list
+    private static int[][] friendLibrary = new int[][]{ {50, 100}, {100, 150} };
 
     //
     // Book status identifiers
     //
 
-    public static BookStatus getStatus(String title)
-    {
+    public static BookStatus getStatus(String title) {
         BookStatus status = BookStatus.OnShelf;
 
         if (isBookLent(title))
@@ -718,127 +719,64 @@ public class Data {
             status = BookStatus.InRequests;
         else if (getBookID(title) < 50)
             status = BookStatus.MyLibrary;
-
         return status;
     }
 
-    public static int getBookID(String title)
-    {
+    public static int getBookID(String title) {
         int bookIndex = 0;
 
-        while(bookIndex < titles.length && !titles[bookIndex].equals(title)) { bookIndex++; }
+        while (bookIndex < titles.length && !titles[bookIndex].equals(title)) {
+            bookIndex++;
+        }
 
         return bookIndex;
     }
 
-    public static boolean isBookInRequests(String title)
-    {
-        int book = getBookID(title);
-        boolean result = false;
-        for (int i = 0; i < requests.size() && !result; i++)
-        {
-            result = requests.get(i).bookIndex == book;
+    public static boolean isBookInRequests(String title) {
+        boolean isIt = false;
+        Request compTo = new Request(getBookID(title), null, null, null, null);
+        for(int i=0; i<requests.size() && !isIt; i++) {
+            if(requests.get(i).compareTo(compTo) == 0)
+                isIt = true;
         }
-        return result;
+        return isIt;
     }
 
-    public static boolean isBookRequested(String title)
-    {
-        int book = getBookID(title);
-        boolean result = false;
-        for (int i = 0; i < requested.size() && !result; i++)
-        {
-            result = requested.get(i).bookIndex == book;
+    public static boolean isBookRequested(String title) {
+        boolean isIt = false;
+        Request compTo = new Request(getBookID(title), null, null, null, null);
+        for(int i=0; i<requested.size() && !isIt; i++) {
+            if(requested.get(i).compareTo(compTo) == 0)
+                isIt = true;
         }
-        return result;
+        return isIt;
     }
 
-    public static boolean isBookBorrowed(String title)
-    {
-        int book = getBookID(title);
-        boolean result = false;
-        for (int i = 0; i < borrowed.size() && !result; i++)
-        {
-            result = borrowed.get(i) == book;
-        }
-        return result;
+    public static boolean isBookBorrowed(String title) {
+        return borrowed.indexOf(getBookID(title)) != -1;
     }
 
-    public static boolean isBookLent(String title)
-    {
-        int book = getBookID(title);
-        boolean result = false;
-        for (int i = 0; i < lent.size() && !result; i++)
-        {
-            result = lent.get(i) == book;
-        }
-        return result;
+    public static boolean isBookLent(String title) {
+        return lent.indexOf(getBookID(title)) != -1;
     }
 
-    //
-    // Owner and friends data
-    //
-
-    //users library
-    private static final int[] myLibrary = new int[] {0, 14};
-
-    //users library status
-    private static String[] myStatuss = new String[] {
-            "On Shelf", "Lent", "On Shelf", "Requested", "Requested",
-            "On Shelf","On Shelf","On Shelf","On Shelf","On Shelf",
-            "On Shelf","Lent","On Shelf","On Shelf","On Shelf"
-    };
-
-    private static int[] myRequestedBookIndex = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-
-    //TODO get requested details to populate editable fields when user selects book from requested page
-    private static String[][] myRequestedDetails = new String[myRequestedBookIndex.length][3];
-
-    private static int[] myBorrowed = new int[] {45, 65, 22, 47, 58, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-
-    private static ArrayList<Request> requests = new ArrayList<Request>(Arrays.asList(new Request(3, "Sean", "Ha", "Ho", "Hu")));
-    private static ArrayList<Request> requested = new ArrayList<Request>();
-    private static ArrayList<Integer> borrowed = new ArrayList<Integer>(Arrays.asList(45, 65, 22, 47, 58));
-    private static ArrayList<Integer> lent = new ArrayList<Integer>();
-
-    private static final String[] friends = new String[] {
-            "Toquehead",
-            "Sean",
-    };
-
-    // TODO: This can be removed since friendsLibrary contains length info
-    //  leave in for now.
-    private static final int[] numBooks = new int[] { 25, 50 }; //book list lengths
-
-    private static int[] userLibrary = new int[] {0, 50};
-    // Too much work to write separate libraries for all friends. Instead books are referenced by id
-    //  (array position). the two values are the start and end of each friend's book list
-    private static int[][] friendLibrary = new int[][] {
-            {50, 100},
-            {100, 150},
-    };
-
-    public static void setButtonText(BookStatus status, Button requestButton)
-    {
-        switch (status)
-        {
+    public static void setButtonText(BookStatus status, Button requestButton) {
+        switch (status) {
             case MyLibrary:
-//            requestbutton.setVisibility(View.INVISIBLE);
                 requestButton.setText("Lend");
-
                 break;
             case OnShelf:
                 requestButton.setText("Request");
                 break;
             case InRequests:
-                requestButton.setText("Accept Request");
+                requestButton.setText("Accept or Reject Request");
                 break;
             case Requested:
                 requestButton.setText("Cancel Request");
                 break;
             case Borrowed:
-                //requestbutton.setText("Set To Returned");
-                requestButton.setVisibility(View.INVISIBLE);
+                requestButton.setText("You are Borrowing");
+                requestButton.setEnabled(false);
                 break;
             case Lent:
                 requestButton.setText("Unlend");
@@ -847,35 +785,17 @@ public class Data {
         }
     }
 
-    //TODO make this work so that requested books show up in borrowing section
     public static void addRequest(String title, String name, String location, String date, String message) {
-
         int bookIndex = getBookID(title);
-        //int insertAt = 0;
-
-        //find index values
-        //while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
-        if (bookIndex < titles.length && getIndex(requests, bookIndex) == -1) {
-            requests.add(new Request(bookIndex, name, location, date, message));
-            Collections.sort(requests);
-        }
-
-//        if(insertAt < myRequestedBookIndex.length && bookIndex < titles.length) {
-//            myRequestedBookIndex[insertAt] = bookIndex;
-//            myRequestedDetails[insertAt][0] = location;
-//            myRequestedDetails[insertAt][1] = date;
-//            myRequestedDetails[insertAt][2] = message;
-//        }
+        requests.add(new Request(bookIndex, name, location, date, message));
+        Collections.sort(requests);
     }
 
-    public static int getIndex(ArrayList<Request> arr, int index)
-    {
+    public static int getIndex(ArrayList<Request> arr, int index) {
         int result = -1;
         boolean done = false;
-        for (int i=0;i<arr.size() && !done;i++)
-        {
-            if (arr.get(i).bookIndex == index)
-            {
+        for (int i = 0; i < arr.size() && !done; i++) {
+            if (arr.get(i).bookIndex == index) {
                 result = i;
                 done = true;
             }
@@ -883,91 +803,63 @@ public class Data {
         return result;
     }
 
-    public static void acceptRequest(int index)
-    {
+    public static void acceptRequest(int index) {
         int i = getIndex(requests, index);
         addLent(requests.get(i).bookIndex);
         requests.remove(i);
     }
 
-    public static void rejectRequest(int index)
-    {
+    public static void rejectRequest(int index) {
         requests.remove(getIndex(requests, index));
     }
 
     public static void addRequested(String title, String location, String date, String message) {
-
         int bookIndex = getBookID(title);
-        //int insertAt = 0;
-
-        //find index values
-        //while(insertAt < myRequestedBookIndex.length && myRequestedBookIndex[insertAt] == -1) { insertAt++; }
         if (bookIndex < titles.length)
-            requested.add(new Request(bookIndex,"User", location, date, message));
+            requested.add(new Request(bookIndex, "User", location, date, message));
         Collections.sort(requested);
     }
 
-    public static void cancelRequested(int index)
-    {
+    public static void cancelRequested(int index) {
         requested.remove(getIndex(requested, index));
     }
 
-    public static void addBorrowed(int index)
-    {
+    public static void addBorrowed(int index) {
         borrowed.add(index);
         Collections.sort(borrowed);
     }
 
-    public static void addLent(int index)
-    {
+    public static void addLent(int index) {
         lent.add(index);
         Collections.sort(lent);
     }
 
-    public static void unLend(int index)
-    {
+    public static void unLend(int index) {
         lent.remove(lent.indexOf(index));
     }
 
-    public static Request getRequest(int index)
-    {
+    public static Request getRequest(int index) {
         return requests.get(getIndex(requests, index));
     }
 
     public static Bundle getRequests() {
         Bundle b = new Bundle();
+        Collections.sort(requests);
         String[] rTitles = new String[requests.size()];
         String[] rAuthors = new String[requests.size()];
+        String[] rRequesters = new String[requests.size()];
         String[] rCovers = new String[requests.size()];
 
-        for (int i=0;i<requests.size(); i++)
-        {
+        for (int i = 0; i < requests.size(); i++) {
             rTitles[i] = titles[requests.get(i).bookIndex];
             rAuthors[i] = authors[requests.get(i).bookIndex];
+            rRequesters[i] = "Requested from: " + requests.get(i).requester;
             rCovers[i] = covers[requests.get(i).bookIndex];
         }
 
-//        int num = 0;
-//        int[] rIndex = new int[myLibrary.length];
-//
-//        for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
-//            if(myStatuss[i].equals("Requested")) {
-//                rIndex[num] = i;
-//                num++;
-//            }
-//        }
-//        rTitles = new String[num];
-//        rAuthors = new String[num];
-//        rCovers = new String[num];
-//
-//        for(int i=0; i<num; i++) {
-//            rTitles[i] = titles[rIndex[i]];
-//            rAuthors[i] = authors[rIndex[i]];
-//            rCovers[i] = covers[rIndex[i]];
-//        }
-
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
+        b.putStringArray("requestFrom", rRequesters);
         b.putStringArray("covers", rCovers);
         return b;
     }
@@ -978,28 +870,11 @@ public class Data {
         String[] rAuthors = new String[requested.size()];
         String[] rCovers = new String[requested.size()];
 
-        for (int i=0;i<requested.size(); i++)
-        {
+        for (int i = 0; i < requested.size(); i++) {
             rTitles[i] = titles[requested.get(i).bookIndex];
             rAuthors[i] = authors[requested.get(i).bookIndex];
             rCovers[i] = covers[requested.get(i).bookIndex];
         }
-
-//        int i = 0;
-//        while(i < myRequestedBookIndex.length && myRequestedBookIndex[i] != -1)
-//        {
-//            i++;
-//        }
-//
-//        rTitles = new String[i];
-//        rAuthors = new String[i];
-//        rCovers = new String[i];
-//
-//        for(int j=0; j<i; j++) {
-//            rTitles[j] = titles[myRequestedBookIndex[j]];
-//            rAuthors[j] = authors[myRequestedBookIndex[j]];
-//            rCovers[j] = covers[myRequestedBookIndex[j]];
-//        }
 
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
@@ -1013,28 +888,11 @@ public class Data {
         String[] rAuthors = new String[borrowed.size()];
         String[] rCovers = new String[borrowed.size()];
 
-        for (int i=0;i<borrowed.size(); i++)
-        {
+        for (int i = 0; i < borrowed.size(); i++) {
             rTitles[i] = titles[borrowed.get(i)];
             rAuthors[i] = authors[borrowed.get(i)];
             rCovers[i] = covers[borrowed.get(i)];
         }
-
-//        int i = 0;
-//        while(i < myBorrowed.length && myBorrowed[i] != -1)
-//        {
-//            i++;
-//        }
-//
-//        rTitles = new String[i];
-//        rAuthors = new String[i];
-//        rCovers = new String[i];
-//
-//        for(int j=0; j<i; j++) {
-//            rTitles[j] = titles[myBorrowed[j]];
-//            rAuthors[j] = authors[myBorrowed[j]];
-//            rCovers[j] = covers[myBorrowed[j]];
-//        }
 
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
@@ -1048,31 +906,11 @@ public class Data {
         String[] rAuthors = new String[lent.size()];
         String[] rCovers = new String[lent.size()];
 
-        for (int i=0;i<lent.size(); i++)
-        {
+        for (int i = 0; i < lent.size(); i++) {
             rTitles[i] = titles[lent.get(i)];
             rAuthors[i] = authors[lent.get(i)];
             rCovers[i] = covers[lent.get(i)];
         }
-
-//        int num = 0;
-//        int[] rIndex = new int[myLibrary.length];
-//
-//        for(int i=myLibrary[0]; i<myLibrary[1]; i++) {
-//            if(myStatuss[i].equals("Lent")) {
-//                rIndex[num] = i;
-//                num++;
-//            }
-//        }
-//        rTitles = new String[num];
-//        rAuthors = new String[num];
-//        rCovers = new String[num];
-//
-//        for(int i=0; i<num; i++) {
-//            rTitles[i] = titles[rIndex[i]];
-//            rAuthors[i] = authors[rIndex[i]];
-//            rCovers[i] = covers[rIndex[i]];
-//        }
 
         b.putStringArray("titles", rTitles);
         b.putStringArray("authors", rAuthors);
@@ -1084,11 +922,10 @@ public class Data {
         return friends[i];
     }
 
-    public static Bundle getUsersLibraryBundle()
-    {
+    public static Bundle getUsersLibraryBundle() {
 
         Bundle usersLibraryBundle = new Bundle();
-        int length = userLibrary[1]-userLibrary[0];
+        int length = userLibrary[1] - userLibrary[0];
         if (!Globals.longLists)
             length /= 2;
         String[] userTitles = new String[length];
@@ -1096,12 +933,10 @@ public class Data {
         String[] userCovers = new String[length];
         String[] userStatuss = new String[length];
 
-        for(int i = userLibrary[0]; i < userLibrary[0] + length; i++)
-        {
-            userTitles[i-userLibrary[0]] = titles[i];
-            userAuthors[i-userLibrary[0]] = authors[i];
-            userCovers[i-userLibrary[0]] = covers[i];
-            userStatuss[i-userLibrary[0]] = statuss[i];
+        for (int i = userLibrary[0]; i < userLibrary[0] + length; i++) {
+            userTitles[i - userLibrary[0]] = titles[i];
+            userAuthors[i - userLibrary[0]] = authors[i];
+            userCovers[i - userLibrary[0]] = covers[i];
         }
 
         usersLibraryBundle.putStringArray("titles", userTitles);
@@ -1113,93 +948,57 @@ public class Data {
     }
 
     // Return a bundle array containing string array of book info
-    public static Bundle getFriendsLibraryBundle(int friendIndex)
-    {
+    public static Bundle getFriendsLibraryBundle(int friendIndex) {
         Bundle friendsLibraryBundle = new Bundle();
-        int length = friendLibrary[friendIndex][1]-friendLibrary[friendIndex][0];
+        int length = friendLibrary[friendIndex][1] - friendLibrary[friendIndex][0];
         if (!Globals.longLists)
             length /= 2;
         String[] friendTitles = new String[length];
         String[] friendAuthors = new String[length];
         String[] friendCovers = new String[length];
-        String[] friendStatuss = new String[length];
 
-        for(int i = friendLibrary[friendIndex][0]; i < friendLibrary[friendIndex][0] + length; i++)
-        {
-            friendTitles[i-friendLibrary[friendIndex][0]] = titles[i];
-            friendAuthors[i-friendLibrary[friendIndex][0]] = authors[i];
-            friendCovers[i-friendLibrary[friendIndex][0]] = covers[i];
-            friendStatuss[i-friendLibrary[friendIndex][0]] = statuss[i];
+        for (int i = friendLibrary[friendIndex][0]; i < friendLibrary[friendIndex][0] + length; i++) {
+            friendTitles[i - friendLibrary[friendIndex][0]] = titles[i];
+            friendAuthors[i - friendLibrary[friendIndex][0]] = authors[i];
+            friendCovers[i - friendLibrary[friendIndex][0]] = covers[i];
         }
 
         friendsLibraryBundle.putStringArray("titles", friendTitles);
         friendsLibraryBundle.putStringArray("authors", friendAuthors);
         friendsLibraryBundle.putStringArray("covers", friendCovers);
-        friendsLibraryBundle.putStringArray("statuss", friendStatuss);
 
         return friendsLibraryBundle;
     }
 
     // This is used to retrieve complete data for DetailActivity
-    public static Bundle getBookBundle(int i)
-    {
+    public static Bundle getBookBundle(int i) {
         Bundle b = new Bundle();
         b.putString("bookTitle", titles[i]);
         b.putString("bookAuthor", authors[i]);
         b.putString("bookCover", covers[i]);
         b.putString("bookSynopsis", synopsiss[i]);
-        b.putString("bookStatus", statuss[i]);
 
         //get owner string
-        for(int j=0; j<friendLibrary.length; j++)
-        {
-            if(friendLibrary[j][0] <= i && friendLibrary[j][1] >= i)
-            {
+        for (int j = 0; j < friendLibrary.length; j++) {
+            if (friendLibrary[j][0] <= i && friendLibrary[j][1] >= i) {
                 b.putString("bookOwner", friends[j]);
             }
         }
         return b;
     }
 
-    public static Bundle getBookBundle(String title)
-    {
+    public static Bundle getBookBundle(String title) {
         Bundle b = null;
         int i = 0;
-        while(i < titles.length && !titles[i].equals(title)) { i++; }
+        while (i < titles.length && !titles[i].equals(title)) {
+            i++;
+        }
 
-        if(i < titles.length) {
+        if (i < titles.length) {
             b = getBookBundle(i);
         }
 
         return b;
-    }
-
-    public static String[] getTitles() {
-        return titles;
-    }
-
-    public static String[] getAuthors() {
-        return authors;
-    }
-
-    public static String[] getCovers() {
-        return covers;
-    }
-
-    public static String[] getGenres() {
-        return genres;
-    }
-
-    public static String[] getYears() {
-        return years;
-    }
-
-    public static String[] getPublishers() {
-        return publishers;
-    }
-
-    public static String[] getSynopsiss() {
-        return synopsiss;
     }
 
     public static String[] getFriends() {
@@ -1208,22 +1007,12 @@ public class Data {
 
     public static int[] getNumBooks() {
         int[] numBooks = new int[friends.length];
-        for (int i = 0; i < friends.length; i++)
-        {
-            numBooks[i] = friendLibrary[i][1]-friendLibrary[i][0];
-            if (!Globals.longLists)
-            {
-                numBooks[i]/=2;
+        for (int i = 0; i < friends.length; i++) {
+            numBooks[i] = friendLibrary[i][1] - friendLibrary[i][0];
+            if (!Globals.longLists) {
+                numBooks[i] /= 2;
             }
         }
         return numBooks;
     }
-
-    public static String[] getStatuss() {
-        return statuss;
-    }
-
-    //public String[][] getListViewItems() { //Title Author Cover Status are needed for listview
-    //    return new String[][]{titles, authors, covers, statuss};
-    //}
 }

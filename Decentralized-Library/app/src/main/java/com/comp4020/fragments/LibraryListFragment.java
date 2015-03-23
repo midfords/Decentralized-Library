@@ -33,12 +33,10 @@ public class LibraryListFragment extends Fragment {
     private static final String ARG_TITLES = "titles";
     private static final String ARG_AUTHORS = "authors";
     private static final String ARG_COVERS = "covers";
-    private static final String ARG_STATUSS = "statuss";
 
     private String[] titles;
     private String[] authors;
     private String[] covers;
-    private String[] statuss;
 
     /**
      * Use this factory method to create a new instance of
@@ -46,14 +44,13 @@ public class LibraryListFragment extends Fragment {
      *
      * @return A new instance of fragment MainFragment.
      */
-    public static LibraryListFragment newInstance(String[] titles, String[] authors, String[] covers, String[] statuss) {
+    public static LibraryListFragment newInstance(String[] titles, String[] authors, String[] covers) {
 
         LibraryListFragment fragment = new LibraryListFragment();
         Bundle args = new Bundle();
         args.putStringArray(ARG_TITLES, titles);
         args.putStringArray(ARG_AUTHORS, authors);
         args.putStringArray(ARG_COVERS, covers);
-        args.putStringArray(ARG_STATUSS, statuss);
         fragment.setArguments(args);
 
         return fragment;
@@ -70,7 +67,6 @@ public class LibraryListFragment extends Fragment {
             titles = getArguments().getStringArray(ARG_TITLES);
             authors = getArguments().getStringArray(ARG_AUTHORS);
             covers = getArguments().getStringArray(ARG_COVERS);
-            statuss = getArguments().getStringArray(ARG_STATUSS);
         }
     }
 
@@ -83,7 +79,7 @@ public class LibraryListFragment extends Fragment {
         listView = (ListView) contentView.findViewById(R.id.libraryListView);
 
         final LibraryListArrayAdapter adapter = new LibraryListArrayAdapter(contentView.getContext(),
-                R.layout.row_layout_book, titles, authors, covers, statuss);
+                R.layout.row_layout_book, titles, authors, covers);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

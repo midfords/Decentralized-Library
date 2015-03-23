@@ -37,7 +37,6 @@ public class DetailsActivity extends Activity {
         String bookCover = b.getString("bookCover");
         String bookOwner = b.getString("bookOwner");
         String bookDetails = b.getString("bookSynopsis");
-        String bookStatus = b.getString("bookStatus");
 
         TextView titleLabel = (TextView) findViewById(R.id.detailTitleLabel);
         TextView authorLabel = (TextView) findViewById(R.id.detailAuthorLabel);
@@ -45,19 +44,6 @@ public class DetailsActivity extends Activity {
         TextView detailsLabel = (TextView) findViewById(R.id.detailDetailsLabel);
         ImageView coverImage = (ImageView) findViewById(R.id.detailImageView);
         requestbutton = (Button) findViewById(R.id.detailStatusButton);
-
-        //TODO test these conditions to make sure they work properly
-//        if(bookStatus == null || bookStatus.equals("My Shelf"))
-//            requestbutton.setVisibility(View.INVISIBLE);
-//        else if(bookStatus.equals("My Lent"))
-//            requestbutton.setText("Set To Returned");
-//        else if(bookStatus.equals("Lent"))
-//        {
-//            requestbutton.setText(bookStatus);
-//            requestbutton.setEnabled(false);
-//        }
-//        else if(bookStatus.equals("On Shelf"))
-//            requestbutton.setText("Request");
 
         status = Data.getStatus(bookTitle);
         Data.setButtonText(status, requestbutton);
