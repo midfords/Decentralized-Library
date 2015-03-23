@@ -89,11 +89,9 @@ public class LibraryGridFragment extends Fragment {
 
                 Intent i = new Intent(view.getContext(), DetailsActivity.class);
 
-<<<<<<< HEAD
-                Bundle b = Data.getBookBundle(position);
-=======
+
                 Bundle b = Data.getBookBundle(titles[position]);
->>>>>>> NewStatusSystem
+
                 i.putExtras(b);
 
                 startActivity(i);
