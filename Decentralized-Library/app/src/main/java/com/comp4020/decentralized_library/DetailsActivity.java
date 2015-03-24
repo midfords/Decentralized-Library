@@ -103,7 +103,11 @@ public class DetailsActivity extends Activity {
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("xpmt", "Back Pressed");
+    }
 
 
     @Override

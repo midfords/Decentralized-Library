@@ -295,6 +295,12 @@ public  class       MainActivity
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("xpmt", "Back Pressed");
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen

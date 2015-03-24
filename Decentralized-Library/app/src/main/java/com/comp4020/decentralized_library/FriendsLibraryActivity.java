@@ -113,6 +113,11 @@ public  class       FriendsLibraryActivity
         startActivity(i);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("xpmt", "Back Pressed");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
