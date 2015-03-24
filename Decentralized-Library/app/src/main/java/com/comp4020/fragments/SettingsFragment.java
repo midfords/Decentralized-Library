@@ -63,7 +63,7 @@ public class SettingsFragment extends Fragment {
 
         // Persist switch position
         viewSwitch.setChecked(Globals.gridViewType);
-
+/*
         viewSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +71,21 @@ public class SettingsFragment extends Fragment {
                 Globals.gridViewType = viewSwitch.isChecked();
             }
         });
+*/
+        lengthSwitch = (Switch) contentView.findViewById(R.id.lengthSwitch);
+
+        // Persist switch position
+        lengthSwitch.setChecked(Globals.longLists);
+/*
+        lengthSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Globals.longLists = lengthSwitch.isChecked();
+            }
+        });
+*/
+
 
         lengthSwitch = (Switch) contentView.findViewById(R.id.lengthSwitch);
 
@@ -90,12 +105,6 @@ public class SettingsFragment extends Fragment {
         return contentView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onSettingsFragmentInteraction(uri);
-//        }
-//    }
 
     @Override
     public void onAttach(Activity activity) {

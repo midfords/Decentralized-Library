@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,10 @@ public class LibraryGridFragment extends Fragment {
     private GridView gridView;
 
     private static final String ARG_COVERS = "covers";
+    private static final String ARG_TITLES = "titles";
 
     private String[] covers;
+    private String[] titles;
 
     /**
      * Use this factory method to create a new instance of
@@ -46,6 +49,7 @@ public class LibraryGridFragment extends Fragment {
 
         Bundle args = new Bundle();
         args.putStringArray(ARG_COVERS, covers);
+        args.putStringArray(ARG_TITLES, titles);
         fragment.setArguments(args);
 
         return fragment;
@@ -59,6 +63,7 @@ public class LibraryGridFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            titles = getArguments().getStringArray(ARG_TITLES);
             covers = getArguments().getStringArray(ARG_COVERS);
         }
     }
@@ -75,26 +80,21 @@ public class LibraryGridFragment extends Fragment {
                 R.layout.row_layout_cover, covers);
 
         gridView.setAdapter(adapter);
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     final int position, long id) {
 
-                view.animate().setDuration(20).alpha(0).withEndAction(
-                        new Runnable() {
+                Intent i = new Intent(view.getContext(), DetailsActivity.class);
 
-                            @Override
-                            public void run() {
 
-                                Intent i = new Intent(view.getContext(), DetailsActivity.class);
+                Bundle b = Data.getBookBundle(titles[position]);
 
-                                Bundle b = Data.getBookBundle(position);
-                                i.putExtras(b);
+                i.putExtras(b);
 
-                                startActivity(i);
-                            }
-                        });
+                startActivity(i);
             }
 
         });

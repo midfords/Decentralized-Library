@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+<<<<<<< HEAD
+=======
+import android.util.Log;
+>>>>>>> origin/Development
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +37,10 @@ public class ExchangesFragment extends Fragment {
     private TextView textView;
     private String[] titles;
     private String[] authors;
+<<<<<<< HEAD
+=======
+    private String[] requestFrom;
+>>>>>>> origin/Development
     private String[] covers;
     private String section;
 
@@ -91,6 +99,13 @@ public class ExchangesFragment extends Fragment {
             authors = getArguments().getStringArray(ARG_AUTHORS);
             covers = getArguments().getStringArray(ARG_COVERS);
             section = getArguments().getString(ARG_SECTION);
+<<<<<<< HEAD
+=======
+
+            if(section.equals("Requests")) {
+                authors = getArguments().getStringArray("requestFrom");
+            }
+>>>>>>> origin/Development
         }
     }
 
@@ -107,10 +122,18 @@ public class ExchangesFragment extends Fragment {
         listView.setAdapter(new LibraryListArrayAdapter(contentView.getContext(),
                 R.layout.row_layout_book, titles, authors, covers));
 
+<<<<<<< HEAD
         return contentView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+=======
+
+
+        return contentView;
+    }
+
+>>>>>>> origin/Development
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onBorrowingFragmentInteraction(uri);

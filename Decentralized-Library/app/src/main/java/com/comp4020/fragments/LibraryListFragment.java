@@ -92,12 +92,12 @@ public class LibraryListFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     final int position, long id) {
 
-                view.animate().setDuration(20).alpha(0).withEndAction(
-                        new Runnable() {
+                Intent i = new Intent(view.getContext(), DetailsActivity.class);
 
-                            @Override
-                            public void run() {
+                Bundle b = Data.getBookBundle(position);
+                i.putExtras(b);
 
+<<<<<<< HEAD
                                 Intent i = new Intent(view.getContext(), DetailsActivity.class);
 
                                 Bundle b = Data.getBookBundle(position);
@@ -107,6 +107,9 @@ public class LibraryListFragment extends Fragment {
                             }
                         }
                 );
+=======
+                startActivity(i);
+>>>>>>> origin/Development
             }
 
         });

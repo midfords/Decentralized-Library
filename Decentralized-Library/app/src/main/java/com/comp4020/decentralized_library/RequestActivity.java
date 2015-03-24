@@ -2,6 +2,10 @@ package com.comp4020.decentralized_library;
 
 import android.app.Activity;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.util.Log;
+>>>>>>> origin/Development
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +38,10 @@ public class RequestActivity extends Activity {
         coverImage.setImageResource(resID);
     }
 
+<<<<<<< HEAD
+=======
+    //TODO make this store requests properly so they can be accessed from borrowing section
+>>>>>>> origin/Development
     public void requestOK(View view) {
         View parent = (View) view.getParent().getParent();
         TextView title = (TextView) parent.findViewById(R.id.requestTitleLabel);
@@ -41,9 +49,19 @@ public class RequestActivity extends Activity {
         EditText tDate = (EditText) parent.findViewById(R.id.dateEditText);
         EditText tMessage = (EditText) parent.findViewById(R.id.messageEditText);
 
+<<<<<<< HEAD
         Data.addRequest(title.getText().toString(), tLocation.getText().toString(),
                 tDate.getText().toString(), tMessage.getText().toString());
 
+=======
+        Data.addRequested(title.getText().toString(), tLocation.getText().toString(),
+                tDate.getText().toString(), tMessage.getText().toString());
+
+        Log.i("xpmt", "RequestOK clicked: "+title.getText().toString()+
+                "; Location: "+tLocation.getText().toString()+
+                ", Date: "+tDate.getText().toString()+
+                ", Message: "+tMessage.getText().toString());
+>>>>>>> origin/Development
         finish();
     }
 
@@ -52,6 +70,14 @@ public class RequestActivity extends Activity {
     }
 
     @Override
+<<<<<<< HEAD
+=======
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("xpmt", "Back Pressed");
+    }
+    @Override
+>>>>>>> origin/Development
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_request, menu);
@@ -64,7 +90,10 @@ public class RequestActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Development
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

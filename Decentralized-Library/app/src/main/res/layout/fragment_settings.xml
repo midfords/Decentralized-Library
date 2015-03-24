@@ -36,7 +36,8 @@
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/viewSwitch" />
+                android:id="@+id/viewSwitch"
+                android:onClick="viewSwitched" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,7 +63,12 @@
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:id="@+id/lengthSwitch" />
+=======
+                android:id="@+id/lengthSwitch"
+                android:onClick="lengthSwitched" />
+>>>>>>> origin/Development
 
             <TextView
                 android:layout_width="wrap_content"
