@@ -5,12 +5,18 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
-import android.view.MenuItem;
-import com.comp4020.fragments.BorrowingFragment;
+import android.view.*;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.comp4020.adapters.LibraryListArrayAdapter;
+import com.comp4020.fragments.ExchangesFragment;
 import com.comp4020.fragments.FriendsFragment;
 import com.comp4020.fragments.LibraryGridFragment;
 import com.comp4020.fragments.LibraryListFragment;
@@ -26,7 +32,7 @@ public  class       MainActivity
         LibraryListFragment.LibraryListFragmentCallbacks,
         LibraryGridFragment.LibraryGridFragmentCallbacks,
         FriendsFragment.FriendsFragmentCallbacks,
-        BorrowingFragment.BorrowingFragmentCallbacks,
+        ExchangesFragment.BorrowingFragmentCallbacks,
         SettingsFragment.SettingsFragmentCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -61,15 +67,21 @@ public  class       MainActivity
 
         switch(position) {
             case 0: // My Library
+                Bundle usersLibrary = Data.getUsersLibraryBundle();
+                String[] userLibraryTitles = usersLibrary.getStringArray("titles");
+                String[] userLibraryAuthors = usersLibrary.getStringArray("authors");
+                String[] userLibraryCovers = usersLibrary.getStringArray("covers");
+                String[] userLibraryStatuss = usersLibrary.getStringArray("statuss");
+
                 if (!Globals.gridViewType) {
                     LibraryListFragment libraryListFragment = LibraryListFragment.newInstance(
-                            Data.getTitles(), Data.getAuthors(), Data.getCovers());
+                            userLibraryTitles, userLibraryAuthors, userLibraryCovers, userLibraryStatuss);
                     mViewFragment = libraryListFragment;
                     fragmentTransaction.replace(R.id.container, libraryListFragment);
                     fragmentTransaction.commit();
                 } else {
                     LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance(
-                            Data.getTitles(), Data.getAuthors(), Data.getCovers());
+                            userLibraryTitles, userLibraryAuthors, userLibraryCovers);
                     mViewFragment = libraryGridFragment;
                     fragmentTransaction.replace(R.id.container, libraryGridFragment);
                     fragmentTransaction.commit();
@@ -80,7 +92,7 @@ public  class       MainActivity
                 break;
             case 1: // Friends
 
-                FriendsFragment friendsFragment = FriendsFragment.newInstance(Data.getOwners());
+                FriendsFragment friendsFragment = FriendsFragment.newInstance(Data.getFriends());
                 mViewFragment = friendsFragment;
                 fragmentTransaction.replace(R.id.container, friendsFragment);
                 fragmentTransaction.commit();
@@ -90,7 +102,7 @@ public  class       MainActivity
                 break;
             case 2: // Borrowing
 
-                BorrowingFragment borrowingFragment = BorrowingFragment.newInstance();
+                ExchangesFragment borrowingFragment = ExchangesFragment.newInstance();
                 mViewFragment = borrowingFragment;
                 fragmentTransaction.replace(R.id.container, borrowingFragment);
                 fragmentTransaction.commit();
@@ -134,6 +146,50 @@ public  class       MainActivity
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
+    }
+
+    public void requestsJumpClicked(View view) {
+        exchangeSectionJump("Requests");
+    }
+
+    public void requestedJumpClicked(View view) {
+        exchangeSectionJump("Requested");
+    }
+
+    public void borrowedJumpClicked(View view) {
+        exchangeSectionJump("Borrowed");
+    }
+
+    public void lentJumpClicked(View view) {
+        exchangeSectionJump("Lent");
+    }
+
+    public void exchangeSectionJump(String section) {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        ExchangesFragment borrowingFragment = ExchangesFragment.newInstance(section);
+        mViewFragment = borrowingFragment;
+        fragmentTransaction.replace(R.id.container, borrowingFragment);
+        fragmentTransaction.commit();
+
+        Logger.log("Exchanges Section Jump to "+section);
+    }
+
+    public void requestClicked(View view) {
+        Intent i = new Intent(MainActivity.this, RequestActivity.class);
+        View parent = (View) view.getParent();
+        TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
+        Bundle b = Data.getBookBundle(tv.getText().toString());
+        i.putExtras(b);
+        MainActivity.this.startActivity(i);
+    }
+
+    public void listItemClicked(View view) {
+        Intent i = new Intent(view.getContext(), DetailsActivity.class);
+        String title = ((TextView)(view.findViewById(R.id.bookLayout_BookTitle))).getText().toString();
+        Bundle b = Data.getBookBundle(title);
+        i.putExtras(b);
+
+        startActivity(i);
     }
 
     @Override

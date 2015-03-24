@@ -7,4 +7,5 @@ public class Globals {
 
     // Toggle for gridView vs listView
     public static boolean gridViewType = false;
+    public static boolean longLists = false;
 }

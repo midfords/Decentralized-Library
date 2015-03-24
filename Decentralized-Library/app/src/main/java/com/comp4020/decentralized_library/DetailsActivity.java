@@ -2,11 +2,16 @@ package com.comp4020.decentralized_library;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.comp4020.utils.Data;
 
 
 public class DetailsActivity extends Activity {
@@ -41,6 +46,17 @@ public class DetailsActivity extends Activity {
         coverImage.setImageResource(resID);
 
     }
+
+    public void requestClicked(View view) {
+        Intent i = new Intent(DetailsActivity.this, RequestActivity.class);
+        View parent = (View) view.getParent().getParent();
+        TextView tv = (TextView) parent.findViewById(R.id.detailTitleLabel);
+        Bundle b = Data.getBookBundle(tv.getText().toString());
+        i.putExtras(b);
+        DetailsActivity.this.startActivity(i);
+    }
+
+
 
 
     @Override
