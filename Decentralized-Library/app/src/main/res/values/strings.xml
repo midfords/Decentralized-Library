@@ -5,6 +5,8 @@
     <string name="title_section2">Friends</string>
     <string name="title_section3">Borrowing</string>
     <string name="title_section4">Settings</string>
+    <string name="title_section5">Help</string>
+    <string name="title_section6">About Us</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,6 +14,8 @@
     <string name="search_action">Search</string>
     <string name="filter_action">Filter</string>
     <string name="request_action">Request</string>
+
+    <string name="title_activity_request">Request Form</string>
 
     <string name="requests_label">Requests</string>
     <string name="requested_label">Requested</string>
@@ -23,7 +27,11 @@
 
     <string name="title_activity_friends_library">Friend\'s Library</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="title_activity_about_us">AboutUsActivity</string>
 
+    <string name="acceptRequest">Accept</string>
+    <string name="rejectRequest">Reject</string>
 </resources>

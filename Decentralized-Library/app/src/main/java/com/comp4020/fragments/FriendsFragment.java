@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,37 +77,32 @@ public class FriendsFragment extends Fragment {
                 R.layout.row_layout_friend);
 
         listView.setAdapter(adapter);
+
+        //TODO fix this animation
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     final int position, long id) {
 
-                view.animate().setDuration(20).alpha(0).withEndAction(
-                        new Runnable() {
+            // Show friend's library
+            Intent i = new Intent(view.getContext(), FriendsLibraryActivity.class);
 
-                            @Override
-                            public void run() {
+            Bundle b = new Bundle();
+            b.putInt("bookOwnerPosition", position);
+            i.putExtras(b);
 
-                                // Show friend's library
-                                Intent i = new Intent(view.getContext(), FriendsLibraryActivity.class);
+            startActivity(i);
 
-                                Bundle b = new Bundle();
-                                b.putInt("bookOwnerPosition", position);
-                                i.putExtras(b);
-
-                                startActivity(i);
-                            }
-                        });
             }
 
         });
+
 
         return contentView;
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFriendsFragmentInteraction(uri);

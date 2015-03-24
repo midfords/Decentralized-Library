@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.comp4020.decentralized_library.R;
+import com.comp4020.utils.BookStatus;
 import com.comp4020.utils.Data;
 
 public class LibraryListArrayAdapter extends ArrayAdapter<String> {
@@ -40,9 +42,13 @@ public class LibraryListArrayAdapter extends ArrayAdapter<String> {
         TextView textViewTitle = (TextView) rowView.findViewById(R.id.bookLayout_BookTitle);
         TextView textViewAuthor = (TextView) rowView.findViewById(R.id.bookLayout_BookAuthor);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.bookLayout_BookCover);
+        Button requestButton = (Button) rowView.findViewById(R.id.requestButton);
 
         textViewTitle.setText(titles[position]);
         textViewAuthor.setText(authors[position]);
+
+        BookStatus status = Data.getStatus(titles[position]);
+        Data.setButtonText(status, requestButton);
 
         int resID = context.getResources().getIdentifier(covers[position],
                 "drawable", context.getPackageName());

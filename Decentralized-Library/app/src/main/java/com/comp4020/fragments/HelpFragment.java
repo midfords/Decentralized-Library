@@ -13,27 +13,33 @@ import com.comp4020.decentralized_library.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link com.comp4020.fragments.BorrowingFragment.BorrowingFragmentCallbacks} interface
+ * {@link HelpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BorrowingFragment#newInstance} factory method to
+ * Use the {@link HelpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BorrowingFragment extends Fragment {
+public class HelpFragment extends Fragment {
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-    private BorrowingFragmentCallbacks mListener;
+
+    private OnFragmentInteractionListener mListener;
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment BorrowingFragment.
+     * @return A new instance of fragment HelpFragment.
      */
-    public static BorrowingFragment newInstance() {
-
-        return new BorrowingFragment();
+    public static HelpFragment newInstance() {
+        HelpFragment fragment = new HelpFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
     }
 
-    public BorrowingFragment() {
+    public HelpFragment() {
         // Required empty public constructor
     }
 
@@ -46,13 +52,12 @@ public class BorrowingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_borrowing, container, false);
+        return inflater.inflate(R.layout.fragment_help, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onBorrowingFragmentInteraction(uri);
+            mListener.onFragmentInteraction(uri);
         }
     }
 
@@ -60,7 +65,7 @@ public class BorrowingFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (BorrowingFragmentCallbacks) activity;
+            mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -83,9 +88,8 @@ public class BorrowingFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface BorrowingFragmentCallbacks {
-
-        public void onBorrowingFragmentInteraction(Uri uri);
+    public interface OnFragmentInteractionListener {
+        public void onFragmentInteraction(Uri uri);
     }
 
 }
