@@ -86,11 +86,13 @@ public class LibraryGridFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     final int position, long id) {
+                String title;
 
                 Intent i = new Intent(view.getContext(), DetailsActivity.class);
 
-
-                Bundle b = Data.getBookBundle(titles[position]);
+                title = titles[position];
+                Bundle b = Data.getBookBundle(title);
+                Log.i("xpmt", "book gridItem selected: "+title);
 
                 i.putExtras(b);
 
