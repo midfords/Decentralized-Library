@@ -26,6 +26,8 @@ public  class       FriendsLibraryActivity
         implements LibraryListFragment.LibraryListFragmentCallbacks,
         LibraryGridFragment.LibraryGridFragmentCallbacks {
 
+    private String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,7 @@ public  class       FriendsLibraryActivity
 
         Bundle b = getIntent().getExtras();
         int bookOwnerPosition = b.getInt("bookOwnerPosition");
-        String name = Data.getFriendsName(bookOwnerPosition);
+        name = Data.getFriendsName(bookOwnerPosition);
         getActionBar().setTitle(name + "'s Library");
 
         Bundle friendsLibrary = Data.getFriendsLibraryBundle(bookOwnerPosition);
@@ -48,7 +50,7 @@ public  class       FriendsLibraryActivity
             fragmentTransaction.replace(R.id.container, libraryListFragment);
             fragmentTransaction.commit();
         } else {
-            LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance(friendLibraryTitles,
+            LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance(name, friendLibraryTitles,
                     friendLibraryAuthors, friendLibraryCovers);
             fragmentTransaction.replace(R.id.container, libraryGridFragment);
             fragmentTransaction.commit();
@@ -69,7 +71,7 @@ public  class       FriendsLibraryActivity
             case MyLibrary:
                 Data.addLent(Data.getBookID(bookTitle));
                 status = Data.getStatus(bookTitle);
-                Log.i("xpmt", "Friend's Library lend book button clicked: "+bookTitle);
+                Log.i("xpmt", name + "'s Library lend book button clicked: "+bookTitle);
                 Data.setButtonText(status, requestButton);
                 break;
             case OnShelf:
@@ -78,19 +80,19 @@ public  class       FriendsLibraryActivity
                 TextView tv = (TextView) parent.findViewById(R.id.bookLayout_BookTitle);
                 Bundle b = Data.getBookBundle(tv.getText().toString());
                 i.putExtras(b);
-                Log.i("xpmt", "Friend's Library: book button clicked: " + tv.getText().toString());
+                Log.i("xpmt", name + "'s Library: book button clicked: " + tv.getText().toString());
                 FriendsLibraryActivity.this.startActivity(i);
                 break;
             case InRequests:
                 Data.acceptRequest(Data.getBookID(bookTitle));
                 status = Data.getStatus(bookTitle);
-                Log.i("xpmt", "Friend's Library accept request book button clicked: "+bookTitle);
+                Log.i("xpmt", name + "'s Library accept request book button clicked: "+bookTitle);
                 Data.setButtonText(status, requestButton);
                 break;
             case Requested:
                 Data.cancelRequested(Data.getBookID(bookTitle));
                 status = Data.getStatus(bookTitle);
-                Log.i("xpmt", "Friend's Library cancel requested book button clicked: "+bookTitle);
+                Log.i("xpmt", name + "'s Library cancel requested book button clicked: "+bookTitle);
                 Data.setButtonText(status, requestButton);
                 break;
             case Borrowed:
@@ -98,7 +100,7 @@ public  class       FriendsLibraryActivity
             case Lent:
                 Data.unLend(Data.getBookID(bookTitle));
                 status = Data.getStatus(bookTitle);
-                Log.i("xpmt", "Friend's Library unlend book button clicked: "+bookTitle);
+                Log.i("xpmt", name + "'s Library unlend book button clicked: "+bookTitle);
                 Data.setButtonText(status, requestButton);
                 break;
         }
@@ -109,7 +111,7 @@ public  class       FriendsLibraryActivity
         String title = ((TextView)(view.findViewById(R.id.bookLayout_BookTitle))).getText().toString();
         Bundle b = Data.getBookBundle(title);
         i.putExtras(b);
-        Log.i("xpmt", "Friends Library: book listItem selected: "+title);
+        Log.i("xpmt", name + "'s Library: book listItem selected: "+title);
         startActivity(i);
     }
 

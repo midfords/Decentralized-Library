@@ -89,7 +89,7 @@ public  class       MainActivity
                     fragmentTransaction.replace(R.id.container, libraryListFragment);
                     fragmentTransaction.commit();
                 } else {
-                    LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance(
+                    LibraryGridFragment libraryGridFragment = LibraryGridFragment.newInstance("User",
                             userLibraryTitles, userLibraryAuthors, userLibraryCovers);
                     mViewFragment = libraryGridFragment;
                     fragmentTransaction.replace(R.id.container, libraryGridFragment);

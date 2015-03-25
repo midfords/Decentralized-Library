@@ -36,6 +36,7 @@ public class LibraryGridFragment extends Fragment {
 
     private String[] covers;
     private String[] titles;
+    private static String originator;
 
     /**
      * Use this factory method to create a new instance of
@@ -43,7 +44,7 @@ public class LibraryGridFragment extends Fragment {
      *
      * @return A new instance of fragment MainFragment.
      */
-    public static LibraryGridFragment newInstance(String[] titles, String[] authors, String[] covers) {
+    public static LibraryGridFragment newInstance(String origin, String[] titles, String[] authors, String[] covers) {
 
         LibraryGridFragment fragment = new LibraryGridFragment();
 
@@ -51,6 +52,7 @@ public class LibraryGridFragment extends Fragment {
         args.putStringArray(ARG_COVERS, covers);
         args.putStringArray(ARG_TITLES, titles);
         fragment.setArguments(args);
+        originator = origin;
 
         return fragment;
     }
@@ -92,7 +94,7 @@ public class LibraryGridFragment extends Fragment {
 
                 title = titles[position];
                 Bundle b = Data.getBookBundle(title);
-                Log.i("xpmt", "book gridItem selected: "+title);
+                Log.i("xpmt", originator + "'s Library: book gridItem selected: "+title);
 
                 i.putExtras(b);
 
