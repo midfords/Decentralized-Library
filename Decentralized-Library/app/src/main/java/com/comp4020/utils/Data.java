@@ -677,6 +677,8 @@ public class Data {
             new Request(44, "Toquehead", "Ha", "Ho", "Hu"),
             new Request(14, "Toquehead", "Ha", "Ho", "Hu"),
             new Request(3, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(5, "Toquehead", "Ha", "Ho", "Hu"),
+            new Request(6, "Toquehead", "Ha", "Ho", "Hu"),
             new Request(17, "Toquehead", "Ha", "Ho", "Hu"), //TODO make location, date, and message data for requests
             new Request(22, "Sean", "Ha", "Ho", "Hu"),
             new Request(26, "Sean", "Ha", "Ho", "Hu"),
@@ -865,6 +867,7 @@ public class Data {
 
     public static Bundle getRequested() {
         Bundle b = new Bundle();
+        Collections.sort(requested);
         String[] rTitles = new String[requested.size()];
         String[] rAuthors = new String[requested.size()];
         String[] rCovers = new String[requested.size()];
@@ -883,6 +886,7 @@ public class Data {
 
     public static Bundle getBorrowed() {
         Bundle b = new Bundle();
+        Collections.sort(borrowed);
         String[] rTitles = new String[borrowed.size()];
         String[] rAuthors = new String[borrowed.size()];
         String[] rCovers = new String[borrowed.size()];
@@ -901,6 +905,7 @@ public class Data {
 
     public static Bundle getLent() {
         Bundle b = new Bundle();
+        Collections.sort(lent);
         String[] rTitles = new String[lent.size()];
         String[] rAuthors = new String[lent.size()];
         String[] rCovers = new String[lent.size()];
